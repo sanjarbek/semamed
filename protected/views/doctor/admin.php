@@ -48,6 +48,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'doctor_hospital',
 		'doctor_enable',
 		'created_at',
+		'created_user',
 		/*
 		'updated_at',
 		'created_user',

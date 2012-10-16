@@ -13,14 +13,6 @@
 
 	<?php echo $form->textFieldRow($model,'hospital_enable',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'created_at',array('class'=>'span5')); ?>
-
-	<?php echo $form->textFieldRow($model,'updated_at',array('class'=>'span5')); ?>
-
-	<?php echo $form->textFieldRow($model,'created_user',array('class'=>'span5')); ?>
-
-	<?php echo $form->textFieldRow($model,'updated_user',array('class'=>'span5')); ?>
-
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',

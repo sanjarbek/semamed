@@ -47,7 +47,7 @@ class Mrtscan extends MasterModel
 		// will receive user inputs.
 		return array(
 			array('mrtscan_name, mrtscan_description, mrtscan_price, mrtscan_enable, created_at, updated_at, created_user, updated_user', 'required'),
-			array('mrtscan_enable, created_user, updated_user', 'numerical', 'integerOnly'=>true),
+			array('mrtscan_enable', 'numerical', 'integerOnly'=>true),
 			array('mrtscan_name', 'length', 'max'=>45),
 			array('mrtscan_description', 'length', 'max'=>255),
 			array('mrtscan_price', 'length', 'max'=>10),

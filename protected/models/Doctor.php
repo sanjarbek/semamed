@@ -47,7 +47,7 @@ class Doctor extends MasterModel
 		// will receive user inputs.
 		return array(
 			array('doctor_fullname, doctor_phone, doctor_hospital, doctor_enable, created_at, updated_at, created_user, updated_user', 'required'),
-			array('doctor_hospital, doctor_enable, created_user, updated_user', 'numerical', 'integerOnly'=>true),
+			array('doctor_hospital, doctor_enable', 'numerical', 'integerOnly'=>true),
 			array('doctor_fullname, doctor_phone', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

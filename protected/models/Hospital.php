@@ -45,7 +45,7 @@ class Hospital extends MasterModel
 		// will receive user inputs.
 		return array(
 			array('hospital_name, hospital_phone, hospital_enable, created_at, updated_at, created_user, updated_user', 'required'),
-			array('hospital_enable, created_user, updated_user', 'numerical', 'integerOnly'=>true),
+			array('hospital_enable', 'numerical', 'integerOnly'=>true),
 			array('hospital_name, hospital_phone', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

@@ -49,7 +49,7 @@ class Registration extends MasterModel
 		// will receive user inputs.
 		return array(
 			array('reg_patient, reg_mrtscan, reg_discont, reg_price, reg_report_status, created_at, updated_at, created_user, updated_user', 'required'),
-			array('reg_patient, reg_mrtscan, reg_discont, reg_report_status, created_user, updated_user', 'numerical', 'integerOnly'=>true),
+			array('reg_patient, reg_mrtscan, reg_discont, reg_report_status', 'numerical', 'integerOnly'=>true),
 			array('reg_price', 'length', 'max'=>10),
 			array('reg_report_text', 'safe'),
 			// The following rule is used by search().

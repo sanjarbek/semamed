@@ -47,7 +47,7 @@ class Patient extends MasterModel
 		// will receive user inputs.
 		return array(
 			array('patient_fullname, patient_phone, patient_birthday, patient_doctor, created_at, updated_at, created_user, updated_user', 'required'),
-			array('patient_doctor, created_user, updated_user', 'numerical', 'integerOnly'=>true),
+			array('patient_doctor', 'numerical', 'integerOnly'=>true),
 			array('patient_fullname', 'length', 'max'=>30),
 			array('patient_phone', 'length', 'max'=>20),
 			// The following rule is used by search().

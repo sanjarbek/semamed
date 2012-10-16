@@ -19,6 +19,12 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+        'application.modules.user.*',
+        'application.modules.user.models.*',
+        'application.modules.user.components.*',
+        'application.modules.rights.*',
+        'application.modules.rights.models.*',
+        'application.modules.rights.components.*',
 	),
 
 	'modules'=>array(
@@ -33,6 +39,13 @@ return array(
                 'bootstrap.gii',
             ),
 		),
+        'user' => array(
+            // названия таблиц взяты по умолчанию, их можно изменить
+            'tableUsers' => 'users',
+            'tableProfiles' => 'profiles',
+            'tableProfileFields' => 'profiles_fields',
+        ),
+        'rights',
 
 	),
 
@@ -40,8 +53,14 @@ return array(
 	'components'=>array(
 		'user'=>array(
 			// enable cookie-based authentication
+            'class' => 'RWebUser',
 			'allowAutoLogin'=>true,
+            'loginUrl'=>array('/user/login'),
 		),
+        'authManager'=>array(
+            'class'=>'RDbAuthManager',
+            'defaultRoles' => array('Authenticated', 'Guest') // дефолтная роль
+        ),
         'bootstrap'=>array(
             'class'=>'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
         ),

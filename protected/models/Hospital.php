@@ -16,7 +16,7 @@
  * The followings are the available model relations:
  * @property Doctors[] $doctors
  */
-class Hospital extends CActiveRecord
+class Hospital extends MasterModel
 {
 	/**
 	 * Returns the static model of the specified AR class.

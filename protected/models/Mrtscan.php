@@ -18,7 +18,7 @@
  * @property Disconts[] $disconts
  * @property Registrations[] $registrations
  */
-class Mrtscan extends CActiveRecord
+class Mrtscan extends MasterModel
 {
 	/**
 	 * Returns the static model of the specified AR class.

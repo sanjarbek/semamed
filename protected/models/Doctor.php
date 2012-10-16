@@ -18,7 +18,7 @@
  * @property Hospitals $doctorHospital
  * @property Patients[] $patients
  */
-class Doctor extends CActiveRecord
+class Doctor extends MasterModel
 {
 	/**
 	 * Returns the static model of the specified AR class.

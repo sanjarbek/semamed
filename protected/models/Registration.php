@@ -20,7 +20,7 @@
  * @property Mrtscans $regMrtscan
  * @property Patients $regPatient
  */
-class Registration extends CActiveRecord
+class Registration extends MasterModel
 {
 	/**
 	 * Returns the static model of the specified AR class.

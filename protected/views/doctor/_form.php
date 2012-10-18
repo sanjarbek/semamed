@@ -11,9 +11,10 @@
 
 	<?php echo $form->textFieldRow($model,'doctor_phone',array('class'=>'span5','maxlength'=>45)); ?>
 
-	<?php echo $form->textFieldRow($model,'doctor_hospital',array('class'=>'span5')); ?>
+	<?php echo $form->dropDownListRow($model,'doctor_hospital',
+        CHtml::listData(Hospital::model()->findAll(), 'hospital_id', 'hospital_name')); ?>
 
-	<?php echo $form->textFieldRow($model,'doctor_enable',array('class'=>'span5')); ?>
+	<?php echo $form->checkBoxRow($model,'doctor_enable'    ); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

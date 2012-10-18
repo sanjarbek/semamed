@@ -13,11 +13,11 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('doctor_hospital')); ?>:</b>
-	<?php echo CHtml::encode($data->doctor_hospital); ?>
+	<?php echo CHtml::encode($data->doctorHospital->hospital_name); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('doctor_enable')); ?>:</b>
-	<?php echo CHtml::encode($data->doctor_enable); ?>
+	<?php echo CHtml::encode($data->getStatusText()); ?>
 	<br />
 
 <!--	<b>--><?php //echo CHtml::encode($data->getAttributeLabel('created_at')); ?><!--:</b>-->

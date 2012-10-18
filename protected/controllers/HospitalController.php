@@ -174,4 +174,5 @@ class HospitalController extends Controller
 			Yii::app()->end();
 		}
 	}
+
 }

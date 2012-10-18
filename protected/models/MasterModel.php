@@ -9,6 +9,9 @@
 
 abstract class MasterModel extends CActiveRecord
 {
+    const STATUS_ENABLE = 1;
+    const STATUS_DISABLE = 0;
+
     protected function beforeValidate()
     {
         if ($this->isNewRecord) // only if adding new record
@@ -26,6 +29,14 @@ abstract class MasterModel extends CActiveRecord
             $this->updated_user = Yii::app()->user->getId();
 
         return parent::beforeValidate();
+    }
+
+    protected  function getStatusOptions()
+    {
+        return array(
+            self::STATUS_ENABLE=>Yii::t('status', 'true'),
+            self::STATUS_DISABLE=>Yii::t('status', 'false'),
+        );
     }
 
 }

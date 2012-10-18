@@ -13,7 +13,7 @@
 
 	<?php echo $form->textFieldRow($model,'patient_birthday',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'patient_doctor',array('class'=>'span5')); ?>
+	<?php echo $form->dropDownListRow($model,'patient_doctor',Doctor::model()->doctorsList()); ?>
 
 <!--	--><?php //echo $form->textFieldRow($model,'created_at',array('class'=>'span5')); ?>
 <!---->

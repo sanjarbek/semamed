@@ -50,6 +50,13 @@ class Patient extends MasterModel
 			array('patient_doctor', 'numerical', 'integerOnly'=>true),
 			array('patient_fullname', 'length', 'max'=>30),
 			array('patient_phone', 'length', 'max'=>20),
+            array('patient_doctor', 'exist',
+                'allowEmpty' => false,
+                'attributeName' => 'doctor_id',
+                'className' => 'Doctor',
+                'message' => 'The specified Doctor does not exist.',
+                'skipOnError'=>true
+            ),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('patient_id, patient_fullname, patient_phone, patient_birthday, patient_doctor, created_at, updated_at, created_user, updated_user', 'safe', 'on'=>'search'),

@@ -25,6 +25,7 @@ return array(
         'application.modules.rights.*',
         'application.modules.rights.models.*',
         'application.modules.rights.components.*',
+        'ext.editable.*'
 	),
 
 	'modules'=>array(

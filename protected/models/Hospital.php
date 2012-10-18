@@ -18,6 +18,7 @@
  */
 class Hospital extends MasterModel
 {
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -106,4 +107,19 @@ class Hospital extends MasterModel
 			'criteria'=>$criteria,
 		));
 	}
+
+    /**
+     * @return string the status text display for the current issue
+     */
+    public function getStatusText()
+    {
+        $statusOptions = $this->statusOptions;
+        return isset($statusOptions[$this->hospital_enable]) ? $statusOptions[$this->hospital_enable] : "unknown status ({$this->hospital_enable})";
+    }
+
+    public function hospitalsList()
+    {
+        return CHtml::listData(Hospital::model()->findAll(), 'hospital_id', 'hospital_name');
+    }
+
 }

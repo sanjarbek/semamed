@@ -13,7 +13,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('hospital_enable')); ?>:</b>
-	<?php echo CHtml::encode($data->hospital_enable); ?>
+	<?php echo CHtml::encode($data->getStatusText()); ?>
 	<br />
 
 <!--	<b>--><?php //echo CHtml::encode($data->getAttributeLabel('created_at')); ?><!--:</b>-->

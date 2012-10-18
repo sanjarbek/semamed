@@ -40,12 +40,18 @@ $('.search-form form').submit(function(){
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'hospital-grid',
 	'dataProvider'=>$model->search(),
+    'type'=>'condensed, striped, bordered',
 	'filter'=>$model,
 	'columns'=>array(
 		'hospital_id',
 		'hospital_name',
 		'hospital_phone',
-		'hospital_enable',
+        array(
+            'name'=>'hospital_enable',
+            'value'=>'CHtml::encode(($data->getStatusText()))',
+            'filter'=>CHtml::dropDownList('hospital_enable',1,array('false', 'true')),
+        ),
+
 		'created_at',
 		'updated_at',
 		/*

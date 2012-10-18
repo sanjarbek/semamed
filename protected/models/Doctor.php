@@ -49,6 +49,13 @@ class Doctor extends MasterModel
 			array('doctor_fullname, doctor_phone, doctor_hospital, doctor_enable, created_at, updated_at, created_user, updated_user', 'required'),
 			array('doctor_hospital, doctor_enable', 'numerical', 'integerOnly'=>true),
 			array('doctor_fullname, doctor_phone', 'length', 'max'=>45),
+            array('doctor_hospital', 'exist',
+                'allowEmpty' => false,
+                'attributeName' => 'hospital_id',
+                'className' => 'Hospital',
+                'message' => 'The specified Hospital does not exist.',
+                'skipOnError'=>true
+            ),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('doctor_id, doctor_fullname, doctor_phone, doctor_hospital, doctor_enable, created_at, updated_at, created_user, updated_user', 'safe', 'on'=>'search'),
@@ -63,8 +70,8 @@ class Doctor extends MasterModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'doctorHospital' => array(self::BELONGS_TO, 'Hospitals', 'doctor_hospital'),
-			'patients' => array(self::HAS_MANY, 'Patients', 'patient_doctor'),
+			'doctorHospital' => array(self::BELONGS_TO, 'Hospital', 'doctor_hospital'),
+			'patients' => array(self::HAS_MANY, 'Patient', 'patient_doctor'),
 		);
 	}
 
@@ -111,4 +118,18 @@ class Doctor extends MasterModel
 			'criteria'=>$criteria,
 		));
 	}
+
+    /**
+     * @return string the status text display for the current issue
+     */
+    public function getStatusText()
+    {
+        $statusOptions = $this->statusOptions;
+        return isset($statusOptions[$this->doctor_enable]) ? $statusOptions[$this->doctor_enable] : "unknown status ({$this->hospital_enable})";
+    }
+
+    public function doctorsList()
+    {
+        return CHtml::listData(Doctor::model()->findAll(), 'doctor_id', 'doctor_fullname');
+    }
 }

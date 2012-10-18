@@ -15,16 +15,42 @@ $this->menu=array(
 
 <h1>View Hospital #<?php echo $model->hospital_id; ?></h1>
 
-<?php $this->widget('bootstrap.widgets.TbDetailView',array(
-	'data'=>$model,
-	'attributes'=>array(
-		'hospital_id',
-		'hospital_name',
-		'hospital_phone',
-		'hospital_enable',
-		'created_at',
-		'updated_at',
-		'created_user',
-		'updated_user',
-	),
-)); ?>
+<?php
+//$this->widget('bootstrap.widgets.TbDetailView',array(
+//	'data'=>$model,
+//	'attributes'=>array(
+//		'hospital_id',
+//		'hospital_name',
+//		'hospital_phone',
+//        array(
+//            'name'=>'hospital_enable',
+//            'value'=>CHtml::encode($model->getStatusText()),
+//        ),
+//		'created_at',
+//		'updated_at',
+////		'created_user',
+////		'updated_user',
+//	),
+
+    $this->widget('ext.editable.EditableDetailView', array(
+        'id' => 'user-details',
+        'data' => $model,
+        'url' => $this->createUrl('hospital/update'),  //common submit url for all editables
+        'attributes'=>array(
+            'hospital_id',
+            'hospital_name',
+            'hospital_phone',
+            array(
+                'name'=>'hospital_enable',
+                'editable'=>CHtml::encode($model->getStatusText()),
+            ),
+            array(
+                'name' => 'updated_at',
+                'editable' => array(
+                    'type' => 'date',
+                    'viewformat' => 'dd/mm/yyyy'
+                ),
+            ),
+        ),
+    ));
+?>

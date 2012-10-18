@@ -21,11 +21,17 @@ $this->menu=array(
 		'doctor_id',
 		'doctor_fullname',
 		'doctor_phone',
-		'doctor_hospital',
-		'doctor_enable',
+        array(
+            'name'=>'doctor_hospital',
+            'value'=>CHtml::encode($model->doctorHospital->hospital_name),
+        ),
+        array(
+            'name'=>'doctor_enable',
+            'value'=>CHtml::encode($model->getStatusText()),
+        ),
 		'created_at',
 		'updated_at',
-		'created_user',
-		'updated_user',
+//		'created_user',
+//		'updated_user',
 	),
 )); ?>

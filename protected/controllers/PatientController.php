@@ -94,6 +94,8 @@ class PatientController extends Controller
 		if(isset($_POST['Patient']))
 		{
 			$model->attributes=$_POST['Patient'];
+            $birthday = explode('/', $_POST['Patient']['patient_birthday']);
+            $model->patient_birthday = $birthday[2].'-'.$birthday[0].'-'.$birthday[1];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->patient_id));
 		}

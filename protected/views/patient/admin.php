@@ -9,21 +9,21 @@ $this->menu=array(
 	array('label'=>'Create Patient','url'=>array('create')),
 );
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('patient-grid', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
+//Yii::app()->clientScript->registerScript('search', "
+//$('.search-button').click(function(){
+//	$('.search-form').toggle();
+//	return false;
+//});
+//$('.search-form form').submit(function(){
+//	$.fn.yiiGridView.update('patient-grid', {
+//		data: $(this).serialize()
+//	});
+//	return false;
+//});
+//");
 ?>
 
-<h1>Manage Patients</h1>
+<h3>Manage Patients</h3>
 
 <!--<p>-->
 <!--You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>-->
@@ -39,6 +39,7 @@ $('.search-form form').submit(function(){
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'patient-grid',
+    'type'=>'condensed, striped, bordered',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(

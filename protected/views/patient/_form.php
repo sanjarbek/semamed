@@ -11,7 +11,7 @@
 
 	<?php echo $form->textFieldRow($model,'patient_phone',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<?php echo $form->textFieldRow($model,'patient_birthday',array('class'=>'span5')); ?>
+	<?php echo $form->datePickerRow($model,'patient_birthday'); ?>
 
 	<?php echo $form->dropDownListRow($model,'patient_doctor',Doctor::model()->doctorsList()); ?>
 

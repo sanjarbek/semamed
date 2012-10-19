@@ -9,6 +9,8 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Semamed',
 
+    'theme'=>'bootstrap',
+
 	// preloading 'log' component
 	'preload'=>array(
         'log',
@@ -25,7 +27,9 @@ return array(
         'application.modules.rights.*',
         'application.modules.rights.models.*',
         'application.modules.rights.components.*',
-        'ext.editable.*'
+        'ext.bootstrap-theme.widgets.*',
+        'ext.bootstrap-theme.helpers.*',
+        'ext.bootstrap-theme.behaviors.*',
 	),
 
 	'modules'=>array(

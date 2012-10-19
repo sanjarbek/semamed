@@ -21,6 +21,11 @@ class Controller extends RController
 	 */
 	public $breadcrumbs=array();
 
+    public function init()
+    {
+        $this->attachBehavior('bootstrap', new BController($this));
+    }
+
     public function filters(){
         return array(
             'rights'

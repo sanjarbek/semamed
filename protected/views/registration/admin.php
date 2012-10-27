@@ -37,11 +37,20 @@ $('.search-form form').submit(function(){
 //)); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
+<?php $this->widget('bootstrap.widgets.TbExtendedGridView',array(
 	'id'=>'registration-grid',
+    'type'=>'striped bordered',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
+    'template' => "{items}\n{extendedSummary}",
 	'columns'=>array(
+        //this for the auto page number of cgridview
+        array(
+            'name'=>'No',
+            'type'=>'raw',
+            'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize + $row+1',
+            'filter'=>''//without filtering
+        ),
 		'reg_id',
 		'reg_patient',
 		'reg_mrtscan',
@@ -59,4 +68,15 @@ $('.search-form form').submit(function(){
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),
 	),
+    'extendedSummary' => array(
+        'title' => Yii::t('text','Total Employee Hours'),
+        'columns' => array(
+            'reg_price' => array('label'=>Yii::t('text','Total Hours'),
+                'class'=>'TbSumOperation')
+        )
+    ),
+    'extendedSummaryOptions' => array(
+        'class' => 'well pull-right',
+        'style' => 'width:300px'
+    ),
 )); ?>

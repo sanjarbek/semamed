@@ -66,8 +66,8 @@ class Registration extends MasterModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'regMrtscan' => array(self::BELONGS_TO, 'Mrtscans', 'reg_mrtscan'),
-			'regPatient' => array(self::BELONGS_TO, 'Patients', 'reg_patient'),
+			'regMrtscan' => array(self::BELONGS_TO, 'Mrtscan', 'reg_mrtscan'),
+			'regPatient' => array(self::BELONGS_TO, 'Patient', 'reg_patient'),
 		);
 	}
 

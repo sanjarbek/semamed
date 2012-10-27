@@ -11,7 +11,16 @@
 
 	<?php echo $form->textFieldRow($model,'patient_phone',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<?php echo $form->datePickerRow($model,'patient_birthday'); ?>
+	<?php echo $form->datepickerRow($model,'patient_birthday',
+        array(
+            'options'=>array(
+                'format' => 'yyyy-mm-dd',
+                'weekStart'=> 1,
+                'viewMode'=>'years',
+            ))
+//        array('format'=>'dd.mm.yyyy')
+//            'prepend'=>'<i class="icon-calendar"/i>')
+    ); ?>
 
 	<?php echo $form->dropDownListRow($model,'patient_doctor',Doctor::model()->doctorsList()); ?>
 

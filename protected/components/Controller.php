@@ -28,7 +28,8 @@ class Controller extends RController
 
     public function filters(){
         return array(
-            'rights'
+            'rights',
+
         );
     }
 }

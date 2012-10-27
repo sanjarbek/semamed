@@ -21,7 +21,7 @@ $this->menu=array(
 		'patient_id',
 		'patient_fullname',
 		'patient_phone',
-		'patient_birthday',
+        'patient_birthday',
 		'patient_doctor',
 		'created_at',
 		'updated_at',

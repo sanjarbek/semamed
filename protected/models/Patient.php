@@ -20,6 +20,7 @@
  */
 class Patient extends MasterModel
 {
+    public $firstLetter;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -71,8 +72,8 @@ class Patient extends MasterModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'patientDoctor' => array(self::BELONGS_TO, 'Doctors', 'patient_doctor'),
-			'registrations' => array(self::HAS_MANY, 'Registrations', 'reg_patient'),
+			'patientDoctor' => array(self::BELONGS_TO, 'Doctor', 'patient_doctor'),
+			'registrations' => array(self::HAS_MANY, 'Registration', 'reg_patient'),
 		);
 	}
 
@@ -117,6 +118,9 @@ class Patient extends MasterModel
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'sort'=>array(
+                'defaultOrder'=>'created_at desc',
+            ),
 		));
 	}
 }

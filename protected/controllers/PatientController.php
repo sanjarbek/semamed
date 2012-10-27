@@ -16,7 +16,11 @@ class PatientController extends Controller
         return CMap::mergeArray(parent::filters(),array(
 //			'accessControl', // perform access control for CRUD operations
             'postOnly + delete', // we only allow deletion via POST request
+//            array( // handle gridview ajax update
+//                'application.filters.GridViewHandler', //path to GridViewHandler.php class
+//            ),
         ));
+
 	}
 
 	/**
@@ -70,13 +74,48 @@ class PatientController extends Controller
 		if(isset($_POST['Patient']))
 		{
 			$model->attributes=$_POST['Patient'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->patient_id));
-		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+//            $model->patient_birthday = $this->toMysqlDate($_POST['Patient']['birthday']);
+
+			if($model->save())
+            {
+                if (Yii::app()->request->isAjaxRequest)
+                {
+                    echo CJSON::encode(array(
+                        'status'=>'success',
+                        'div'=>Yii::t('text','Patient successfully added'),
+                    ));
+                    Yii::app()->end();
+                }
+                else
+                {
+                    $this->redirect(array('view','id'=>$model->patient_id));
+                }
+            }
+		}
+        if (Yii::app()->request->isAjaxRequest)
+        {
+            // To prevent js files conflict on client side.
+            Yii::app()->clientscript->scriptMap['jquery.js'] = false;
+            Yii::app()->clientscript->scriptMap['bootstrap.js'] = false;
+            Yii::app()->clientscript->scriptMap['jquery.min.js'] = false;
+            Yii::app()->clientscript->scriptMap['bootstrap.min.js'] = false;
+            Yii::app()->clientscript->scriptMap['bootstrap.bootbox.min.js'] = false;
+            Yii::app()->clientscript->scriptMap['bootstrap.datepicker.js'] = false;
+
+            echo CJSON::encode(array(
+                'status'=>'failure',
+                'div'=>$this->renderPartial('_form', array('model'=>$model), true, true)
+            ));
+            Yii::app()->end();
+        }
+        else
+        {
+            $this->render('create',array(
+                'model'=>$model,
+            ));
+        }
+
 	}
 
 	/**
@@ -94,15 +133,44 @@ class PatientController extends Controller
 		if(isset($_POST['Patient']))
 		{
 			$model->attributes=$_POST['Patient'];
-            $birthday = explode('/', $_POST['Patient']['patient_birthday']);
-            $model->patient_birthday = $birthday[2].'-'.$birthday[0].'-'.$birthday[1];
+
+//            $model->patient_birthday = $this->toMysqlDate($_POST['Patient']['patient_birthday']);
+
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->patient_id));
+            {
+                if( Yii::app()->request->isAjaxRequest )
+                {
+                    echo CJSON::encode( array(
+                        'status' => 'success',
+                        'content' => 'ModelName successfully updated',
+                    ));
+                    exit;
+                }
+                else
+                {
+                    $this->redirect( array( 'view', 'id' => $model->patient_id ) );
+                }
+            }
 		}
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+        if( Yii::app()->request->isAjaxRequest )
+        {
+            // To prevent js files conflict on client side.
+            Yii::app()->clientscript->scriptMap['jquery.js'] = false;
+            Yii::app()->clientscript->scriptMap['bootstrap.js'] = false;
+            Yii::app()->clientscript->scriptMap['bootstrap.bootbox.min.js'] = false;
+
+            echo CJSON::encode( array(
+                'status' => 'failure',
+                'content' => $this->renderPartial( '_form', array(
+                    'model' => $model ), true, true ),
+            ));
+            Yii::app()->end();
+        }
+        else
+        {
+            $this->render( 'update', array( 'model' => $model ) );
+        }
 	}
 
 	/**
@@ -176,4 +244,42 @@ class PatientController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+    /**
+     * Returns valid mysql date value
+     * @param date the birthday of the model to be loaded
+     */
+    protected function toMysqlDate($date)
+    {
+        $birthday = explode('.', $date);
+        return $birthday[2].'-'.$birthday[0].'-'.$birthday[1];
+    }
+
+    /**
+     * Ajax request:
+     * Returns nothing in success case,if not, return error message
+     * @param integer the
+     */
+    public function actionEditable()
+    {
+        $r = Yii::app()->getRequest();
+
+        // needed to check model attribute name. !!!
+        $id=$r->getParam('pk');
+        $name = $r->getParam('name');
+        $value = $r->getParam('value');
+
+        $model=Patient::model()->findByPk($id);
+        if($model!==NULL)
+        {
+            $model->$name = $value;
+            if(!$model->save())
+            {
+                echo $model->getError($name);
+            }
+        }
+        Yii::app()->end();
+
+    }
+
 }

@@ -6,9 +6,11 @@
  * Time: 12:29 AM
  * To change this template use File | Settings | File Templates.
  */
-class GridViewHandler extends CFilter {
+class GridViewHandler extends CFilter
+{
 
-    protected function preFilter($filterChain){
+    protected function preFilter($filterChain)
+    {
         if (Yii::app()->request->getIsAjaxRequest() && isset($_GET["ajax"])) {
             $selectedTable = $_GET["ajax"];
             $method='_getGridView'.$selectedTable;
@@ -22,3 +24,5 @@ class GridViewHandler extends CFilter {
         return true;
     }
 }
+
+?>

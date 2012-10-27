@@ -9,7 +9,7 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Semamed',
 
-    'theme'=>'bootstrap',
+    'theme'=>'classic',
 
 	// preloading 'log' component
 	'preload'=>array(
@@ -68,7 +68,7 @@ return array(
         ),
         'bootstrap'=>array(
             'class'=>'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
-            'responsiveCss' => true,
+//            'responsiveCss' => true,
         ),
 		// uncomment the following to enable URLs in path-format
 		/*
@@ -89,6 +89,8 @@ return array(
 			'username' => 'root',
 			'password' => '12',
 			'charset' => 'utf8',
+            'enableProfiling'=>false,
+            'enableParamLogging'=>false,
 		),
 
 		'errorHandler'=>array(
@@ -99,6 +101,7 @@ return array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
 				array(
+//                    'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
 					'class'=>'CFileLogRoute',
 					'levels'=>'error, warning',
 				),

@@ -128,7 +128,8 @@ class TbJEditableColumn extends TbDataColumn
 				$options['class'] = $class;
 		}
 		echo CHtml::openTag('td', $options);
-		echo CHtml::openTag('span', array('class' => $this->cssClass, 'data-rowid' => $data->id));
+//		echo CHtml::openTag('span', array('class' => $this->cssClass, 'data-rowid' => $data->id));
+        echo CHtml::openTag('span', array('class' => $this->cssClass, 'data-rowid' => $data->primaryKey));
 		$this->renderDataCellContent($row, $data);
 		echo '</span>';
 		echo '</td>';
@@ -192,7 +193,8 @@ class TbJEditableColumn extends TbDataColumn
 		$options = CJavaScript::encode(array_filter($this->jEditableOptions));
 		$cs->registerScript('TbJEditableColumn#' . $this->id, "
 			jQuery(document).on('{$this->event}','.{$this->cssClass}', function(){
-				var id = jQuery(this).data('rowid');
+//				var id = jQuery(this).data('rowid');
+				var id = jQuery(this).data('data-rowid'); //patch
 				var options = jQuery.extend(true, {$options}, {'submitdata':{id:id,editable:'{$this->grid->id}'}});
 				jQuery(this).editable('{$this->saveURL}', options);
 			});

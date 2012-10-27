@@ -32,7 +32,7 @@ $this->menu=array(
 ////		'updated_user',
 //	),
 
-    $this->widget('ext.editable.EditableDetailView', array(
+    $this->widget('bootstrap.widgets.TbEditableDetailView', array(
         'id' => 'user-details',
         'data' => $model,
         'url' => $this->createUrl('hospital/update'),  //common submit url for all editables

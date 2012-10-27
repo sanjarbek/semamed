@@ -34,7 +34,7 @@
 						array('label'=>'Home', 'url'=>array('/site/index')),
 //						array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 //						array('label'=>'Contact', 'url'=>array('/site/contact')),
-                        array('label'=>'Patient', 'url'=>array('/Patient/admin'), 'visible'=>!Yii::app()->user->isGuest),
+                        array('label'=>'Patient', 'url'=>array('/patient/admin'), 'visible'=>!Yii::app()->user->isGuest),
 						array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
 					),
 					'htmlOptions'=>array(

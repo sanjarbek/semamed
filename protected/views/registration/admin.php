@@ -1,27 +1,99 @@
 <?php
-$this->breadcrumbs=array(
-	'Registrations'=>array('index'),
-	'Manage',
-);
+//$this->breadcrumbs=array(
+//	'Registrations'=>array('index'),
+//	'Manage',
+//);
+//
+//$this->menu=array(
+//	array('label'=>'List Registration','url'=>array('index')),
+//	array('label'=>'Create Registration','url'=>array('create')),
+//);
 
-$this->menu=array(
-	array('label'=>'List Registration','url'=>array('index')),
-	array('label'=>'Create Registration','url'=>array('create')),
-);
+//Yii::app()->clientScript->registerScript('search', "
+//$('.search-button').click(function(){
+//	$('.search-form').toggle();
+//	return false;
+//});
+//$('.search-form form').submit(function(){
+//	$.fn.yiiGridView.update('registration-grid', {
+//		data: $(this).serialize()
+//	});
+//	return false;
+//});
+//");
+//?>
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('registration-grid', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
-?>
+<!---->
+<?php $this->widget('bootstrap.widgets.TbButton', array(
+    'label'=>Yii::t('text','New registration'),
+    'type'=>'primary',
+    'htmlOptions'=>array(
+//        'data-toggle'=>'modal',
+        'data-target'=>'#dialogModal',
+        'onClick'=>"{addRegistration(); $('#dialogRegistration').dialog('open');}"
+
+    ),
+)); ?>
+<!--//################################################-->
+
+<?php //echo CHtml::link('Create patient', "",  // the link for open the dialog
+//    array(
+//        'style'=>'cursor: pointer; text-decoration: underline;',
+//        'onclick'=>"{addPatient(); $('#dialogPatient').dialog('open');}"));?>
+
+<?php
+$this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
+    'id'=>'dialogRegistration',
+    'options'=>array(
+        'title'=>'New Registration',
+        'autoOpen'=>false,
+        'modal'=>true,
+        'width'=>550,
+        'height'=>470,
+        'closeOnEscape'=>true,
+    ),
+));?>
+<div class="divForForm"></div>
+
+<?php $this->endWidget();?>
+
+<script type="text/javascript">
+    // here is the magic
+    function addRegistration()
+    {
+        <?php echo CHtml::ajax(array(
+            'url'=>array('registration/create'),
+            'data'=> "js:$(this).serialize()",
+            'type'=>'post',
+            'dataType'=>'json',
+            'success'=>"function(data)
+            {
+                if (data.status == 'failure')
+                {
+                    $('#dialogRegistration div.divForForm').html(data.div);
+                          // Here is the trick: on submit-> once again this function!
+                    $('#dialogRegistration div.divForForm form').submit(addRegistration);
+                    $('a.ui-dialog-titlebar-close.ui-corner-all[role=\"button\"]').bind('click',function()
+                        { $('#dialogRegistration div.divForForm').html(''); });
+                }
+                else
+                {
+                    $('#dialogRegistration div.divForForm').html(data.div);
+                    setTimeout(\"$('#dialogRegistration').dialog('close') \",1000);
+                    $.fn.yiiGridView.update('RegistrationGrid');
+                }
+
+            } ",
+        ))?>;
+        return false;
+    }
+
+</script>
+
+
+
+<!--//##################################################3-->
+
 
 <h1>Manage Registrations</h1>
 
@@ -38,7 +110,7 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php $this->widget('bootstrap.widgets.TbExtendedGridView',array(
-	'id'=>'registration-grid',
+	'id'=>'RegistrationGrid',
     'type'=>'striped bordered',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
@@ -54,9 +126,10 @@ $('.search-form form').submit(function(){
 		'reg_id',
 		'reg_patient',
 		'reg_mrtscan',
-		'reg_discont',
-		'reg_price',
-		'reg_report_status',
+        'reg_price',
+        'reg_discont',
+        'reg_total_price',
+//		'reg_report_status',
 		/*
 		'reg_report_text',
 		'created_at',
@@ -69,9 +142,9 @@ $('.search-form form').submit(function(){
 		),
 	),
     'extendedSummary' => array(
-        'title' => Yii::t('text','Total Employee Hours'),
+        'title' => Yii::t('text','Total service price'),
         'columns' => array(
-            'reg_price' => array('label'=>Yii::t('text','Total Hours'),
+            'reg_total_price' => array('label'=>Yii::t('text','Total price'),
                 'class'=>'TbSumOperation')
         )
     ),

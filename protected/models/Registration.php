@@ -7,8 +7,9 @@
  * @property integer $reg_id
  * @property integer $reg_patient
  * @property integer $reg_mrtscan
+ * @property integer $reg_price
  * @property integer $reg_discont
- * @property string $reg_price
+ * @property integer $reg_total_price
  * @property integer $reg_report_status
  * @property string $reg_report_text
  * @property string $created_at
@@ -48,8 +49,8 @@ class Registration extends MasterModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('reg_patient, reg_mrtscan, reg_discont, reg_price, reg_report_status, created_at, updated_at, created_user, updated_user', 'required'),
-			array('reg_patient, reg_mrtscan, reg_discont, reg_report_status', 'numerical', 'integerOnly'=>true),
+			array('reg_patient, reg_mrtscan, reg_discont, reg_total_price, reg_price, reg_report_status, created_at, updated_at, created_user, updated_user', 'required'),
+			array('reg_patient, reg_mrtscan, reg_discont, reg_total_price, reg_price, reg_report_status', 'numerical', 'integerOnly'=>true),
 			array('reg_price', 'length', 'max'=>10),
 			array('reg_report_text', 'safe'),
 			// The following rule is used by search().

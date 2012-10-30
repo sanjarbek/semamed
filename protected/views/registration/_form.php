@@ -1,3 +1,53 @@
+<?php
+$cs = Yii::app()->getClientScript();
+$cs->registerScript(
+    'getMrtscanPrice',
+    "$('#Registration_reg_mrtscan').bind('change',function(){getMrtscanPrice();});
+    $('#Registration_reg_discont').bind('change',function(){
+        getMrtscanPrice();
+        });
+    ",
+    CClientScript::POS_END
+);
+?>
+
+<script type="text/javascript">
+
+    $('#Registration_reg_mrtscan').change();
+    function getMrtscanPrice()
+    {
+        <?php echo CHtml::ajax(array(
+            'url'=>array('mrtscan/getPrice'),
+            'data'=> "js:$('#Registration_reg_mrtscan').serialize()",
+            'type'=>'post',
+            'dataType'=>'json',
+            'success'=>"function(data)
+            {
+                if (data.status == 'failure')
+                {
+                    alert('Please, check your internet connection.');
+                }
+                else
+                {
+                    var discont = parseInt($('#Registration_reg_discont').val());
+                    if (isNaN(discont))
+                    {
+                        $('#Registration_reg_discont').val(0);
+                        discont = 0;
+                    }
+                    var mrtscan_price = parseInt(data.content);
+                    $('#Registration_reg_price').val(mrtscan_price);
+                    $('#Registration_reg_total_price').val(mrtscan_price-discont);
+                }
+
+            } ",
+        ))?>;
+        return false;
+    }
+
+</script>
+
+
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'registration-form',
 	'enableAjaxValidation'=>false,
@@ -13,13 +63,16 @@
     <?php echo $form->dropDownListRow($model,'reg_mrtscan',
         CHtml::listData(Mrtscan::model()->findAll(),'mrtscan_id','mrtscan_name')); ?>
 
+
+    <?php echo $form->textFieldRow($model,'reg_price',array('readonly'=>true, 'class'=>'span2','maxlength'=>10)); ?>
+
 	<?php
         if ($model->isNewRecord)
             $model->reg_discont = 0;
         echo $form->textFieldRow($model,'reg_discont',array('class'=>'span2'));
     ?>
 
-	<?php echo $form->textFieldRow($model,'reg_price',array('class'=>'span2','maxlength'=>10)); ?>
+    <?php echo $form->textFieldRow($model,'reg_total_price',array('readonly'=>true, 'class'=>'span2','maxlength'=>10)); ?>
 
 	<?php echo $form->checkBoxRow($model,'reg_report_status'); ?>
 

@@ -142,9 +142,9 @@ class PatientController extends Controller
                 {
                     echo CJSON::encode( array(
                         'status' => 'success',
-                        'content' => 'ModelName successfully updated',
+                        'content' => 'Patient successfully updated',
                     ));
-                    exit;
+                    Yii::app()->end();
                 }
                 else
                 {
@@ -214,9 +214,22 @@ class PatientController extends Controller
 		if(isset($_GET['Patient']))
 			$model->attributes=$_GET['Patient'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+//        if( Yii::app()->request->isAjaxRequest )
+//        {
+//            $this->renderPartial('admin', array(
+//                'model'=>$model,
+//            ));
+//        }
+//        else
+//        {
+//            $this->render('admin',array(
+//                'model'=>$model,
+//            ));
+//        }
+
+        $this->render('admin',array(
+            'model'=>$model,
+        ));
 	}
 
 	/**
@@ -270,6 +283,7 @@ class PatientController extends Controller
         $value = $r->getParam('value');
 
         $model=Patient::model()->findByPk($id);
+
         if($model!==NULL)
         {
             $model->$name = $value;

@@ -174,4 +174,36 @@ class MrtscanController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+    /**
+     * Return mrtscan price
+     * @param integer the ID of the model to be loaded
+     */
+    public function actionGetPrice()
+    {
+        $id = 0;
+
+        if (isset($_POST['Registration']))
+            $id = $_POST['Registration']['reg_mrtscan'];
+
+        $model = Mrtscan::model()->findByPk($id);
+
+        if($model===null)
+        {
+            echo CJSON::encode( array(
+                'status' => 'failure',
+                'content' => 0,
+            ));
+        }
+        else
+        {
+            echo CJSON::encode( array(
+                'status' => 'success',
+                'content' => $model->mrtscan_price,
+        ));
+
+        }
+        Yii::app()->end();
+
+    }
 }

@@ -71,13 +71,44 @@ class RegistrationController extends Controller
 		{
 			$model->attributes=$_POST['Registration'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->reg_id));
+            {
+                if( Yii::app()->request->isAjaxRequest )
+                {
+                    echo CJSON::encode( array(
+                        'status' => 'success',
+                        'div' => 'ModelName successfully updated',
+                    ));
+                    Yii::app()->end();
+                }
+                else
+                {
+                    $this->redirect(array('view','id'=>$model->reg_id));
+                }
+            }
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
-	}
+        if( Yii::app()->request->isAjaxRequest )
+        {
+            // To prevent js files conflict on client side.
+            Yii::app()->clientscript->scriptMap['jquery.js'] = false;
+            Yii::app()->clientscript->scriptMap['bootstrap.js'] = false;
+            Yii::app()->clientscript->scriptMap['bootstrap.bootbox.min.js'] = false;
+
+            echo CJSON::encode( array(
+                'status' => 'failure',
+                'div' => $this->renderPartial( '_form', array(
+                    'model' => $model ), true, true ),
+            ));
+            Yii::app()->end();
+        }
+        else
+        {
+            $this->render('create',array(
+                'model'=>$model,
+            ));
+        }
+
+    }
 
 	/**
 	 * Updates a particular model.
@@ -140,9 +171,21 @@ class RegistrationController extends Controller
 	public function actionAdmin()
 	{
 		$model=new Registration('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Registration']))
-			$model->attributes=$_GET['Registration'];
+//		$model->unsetAttributes();  // clear any default values
+//		if(isset($_GET['Registration']))
+//			$model->attributes=$_GET['Registration'];
+
+
+        if( Yii::app()->request->isAjaxRequest )
+        {
+            echo CJSON::encode( array(
+                'status' => 'failure',
+                'div' => $this->renderPartial('admin',
+                    array('model'=>$model,), true, true),
+            ));
+
+            Yii::app()->end();
+        }
 
 		$this->render('admin',array(
 			'model'=>$model,

@@ -12,12 +12,16 @@
 	<?php echo CHtml::encode($data->reg_mrtscan); ?>
 	<br />
 
+    <b><?php echo CHtml::encode($data->getAttributeLabel('reg_price')); ?>:</b>
+    <?php echo CHtml::encode($data->reg_price); ?>
+    <br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('reg_discont')); ?>:</b>
 	<?php echo CHtml::encode($data->reg_discont); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('reg_price')); ?>:</b>
-	<?php echo CHtml::encode($data->reg_price); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('reg_total_price')); ?>:</b>
+	<?php echo CHtml::encode($data->reg_total_price); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('reg_report_status')); ?>:</b>

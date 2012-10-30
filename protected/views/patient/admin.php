@@ -89,12 +89,52 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
         return false;
     }
 
+    function patientRegistrations(url)
+    {
+        <?php echo CHtml::ajax(array(
+            'url'=>'js:url',
+            'type'=>'post',
+            'dataType'=>'json',
+            'success'=>"function(data)
+                {
+                    if (data.status == 'failure')
+                    {
+                        $('#dialogPatientRegistration div.divForForm').html(data.div);
+                              // Here is the trick: on submit-> once again this function!
+                        $('#dialogPatientRegistration div.divForForm form').submit(patientRegistrations);
+                        $('a.ui-dialog-titlebar-close.ui-corner-all[role=\"button\"]').bind('click',function()
+                            { $('#dialogPatientRegistration div.divForForm').html(''); });
+                    }
+                    else
+                    {
+                        $('#dialogPatientRegistration div.divForForm').html(data.div);
+                        setTimeout(\"$('#dialogPatientRegistration').dialog('close') \",1000);
+                    }
+
+                } ",
+        ))?>;
+        return false;
+    }
+
 </script>
 
 
 
 <!--//##################################################3-->
-
+<?php
+$this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
+    'id'=>'dialogPatientRegistration',
+    'options'=>array(
+        'title'=>'Patient Registrations',
+        'autoOpen'=>false,
+        'modal'=>true,
+        'width'=>750,
+        'height'=>470,
+        'closeOnEscape'=>true,
+    ),
+));?>
+<div class="divForForm"></div>
+<?php $this->endWidget();?>
 
 <!--//#############################################################/-->
 
@@ -189,21 +229,20 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'header'=>Yii::t('text','Action'),
             'template'=>'{view} {update} {delete}',
-//            'buttons'=> array(
-//                'update' => array
-//                (
-////                    'options'=>array('title'=>'Text shown as tooltip when user hovers image ...'),
-//                    'url'=>'$this->grid->controller->createUrl("/patient/update",
-//                        array("id"=>$data->patient_id))',
-//                    'click'=>"function( e ){
-//                        e.preventDefault();
-//                        $( '#update-dialog' ).children( ':eq(0)' ).empty(); // Stop auto POST
-//                        updateDialog( $( this ).attr( 'href' ) );
-//                        $( '#update-dialog' )
-//                          .dialog( { title: 'Update' } )
-//                          .dialog( 'open' ); }",
-//                ),
-//            ),
+            'buttons'=> array(
+                'update' => array
+                (
+                    'options'=>array('title'=>'Add ...'),
+                    'url'=>'$this->grid->controller->createUrl("/registration/admin",
+                        array("pid"=>$data->patient_id))',
+                    'click'=>"function( e ){
+                        e.preventDefault();
+//                        $( '#dialogPatientRegistration' ).children( ':eq(0)' ).empty(); // Stop auto POST
+                        //dialogPatientRegistration( $( this ).attr( 'href' ));
+                        patientRegistrations($( this ).attr( 'href' ));
+                        $('#dialogPatientRegistration').dialog( 'open' ); }",
+                ),
+            ),
 
         ),
     ),

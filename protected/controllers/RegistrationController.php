@@ -93,6 +93,7 @@ class RegistrationController extends Controller
             Yii::app()->clientscript->scriptMap['jquery.js'] = false;
             Yii::app()->clientscript->scriptMap['bootstrap.js'] = false;
             Yii::app()->clientscript->scriptMap['bootstrap.bootbox.min.js'] = false;
+            Yii::app()->clientscript->scriptMap['redactor.min.js'] = true;
 
             echo CJSON::encode( array(
                 'status' => 'failure',
@@ -171,6 +172,55 @@ class RegistrationController extends Controller
 	public function actionAdmin()
 	{
 		$model=new Registration('search');
+
+//        $r = Yii::app()->getRequest();
+
+        // needed to check model attribute name. !!!
+//        $model->reg_patient=$r->getParam('pid');
+
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Registration']))
+			$model->attributes=$_GET['Registration'];
+
+
+//        if( Yii::app()->request->isAjaxRequest )
+//        {
+//            Yii::app()->clientscript->scriptMap['jquery.js'] = false;
+//            Yii::app()->clientscript->scriptMap['bootstrap.js'] = false;
+//            Yii::app()->clientscript->scriptMap['jquery.min.js'] = false;
+//            Yii::app()->clientscript->scriptMap['bootstrap.min.js'] = false;
+//            Yii::app()->clientscript->scriptMap['bootstrap.bootbox.min.js'] = false;
+//            Yii::app()->clientscript->scriptMap['bootstrap.datepicker.js'] = false;
+//            Yii::app()->clientscript->scriptMap['jquery.ba-bbq.js'] = false;
+//            Yii::app()->clientscript->scriptMap['jquery-ui.min.js'] = false;
+//            Yii::app()->clientscript->scriptMap['jquery.yiigridview.js'] = false;
+//
+//            echo CJSON::encode( array(
+//                'status' => 'failure',
+//                'div' => $this->renderPartial('admin',
+//                    array('model'=>$model,), true, true),
+//            ));
+//            Yii::app()->end();
+//        }
+
+
+        $this->render('admin',array(
+			'model'=>$model,
+		));
+	}
+
+    /**
+     * Manages all models.
+     */
+    public function actionAjaxAdmin()
+    {
+        $model=new Registration('search');
+
+        $r = Yii::app()->getRequest();
+
+        // needed to check model attribute name. !!!
+        $model->reg_patient=$r->getParam('pid');
+
 //		$model->unsetAttributes();  // clear any default values
 //		if(isset($_GET['Registration']))
 //			$model->attributes=$_GET['Registration'];
@@ -178,6 +228,16 @@ class RegistrationController extends Controller
 
         if( Yii::app()->request->isAjaxRequest )
         {
+            Yii::app()->clientscript->scriptMap['jquery.js'] = false;
+            Yii::app()->clientscript->scriptMap['bootstrap.js'] = false;
+            Yii::app()->clientscript->scriptMap['jquery.min.js'] = false;
+            Yii::app()->clientscript->scriptMap['bootstrap.min.js'] = false;
+            Yii::app()->clientscript->scriptMap['bootstrap.bootbox.min.js'] = false;
+            Yii::app()->clientscript->scriptMap['bootstrap.datepicker.js'] = false;
+            Yii::app()->clientscript->scriptMap['jquery.ba-bbq.js'] = false;
+            Yii::app()->clientscript->scriptMap['jquery-ui.min.js'] = false;
+            Yii::app()->clientscript->scriptMap['jquery.yiigridview.js'] = false;
+
             echo CJSON::encode( array(
                 'status' => 'failure',
                 'div' => $this->renderPartial('admin',
@@ -187,10 +247,10 @@ class RegistrationController extends Controller
             Yii::app()->end();
         }
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
-	}
+        $this->render('admin',array(
+            'model'=>$model,
+        ));
+    }
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

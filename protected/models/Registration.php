@@ -117,6 +117,9 @@ class Registration extends MasterModel
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'sort'=>array(
+                'defaultOrder'=>'created_at desc',
+            ),
 		));
 	}
 }

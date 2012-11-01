@@ -95,7 +95,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
 <!--//##################################################3-->
 
 
-<h1>Manage Registrations</h1>
+<h3>Manage Registrations</h3>
 
 <!--<p>-->
 <!--You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>-->
@@ -114,7 +114,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
     'type'=>'striped bordered',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
-    'template' => "{items}\n{extendedSummary}",
+    'template' => "{pager}{items}\n{extendedSummary}",
 	'columns'=>array(
         //this for the auto page number of cgridview
         array(

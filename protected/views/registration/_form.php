@@ -79,7 +79,7 @@ $cs->registerScript(
 <!--	--><?php //echo $form->textAreaRow($model,'reg_report_text',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 <!--    --><?php //echo $form->html5EditorRow($model, 'reg_report_text', array('class'=>'span4', 'rows'=>5,
 //        'height'=>'200', 'options'=>array('color'=>true))); ?>
-    <?php echo $form->redactorRow($model, 'reg_report_text', array('class'=>'span8', 'rows'=>6)); ?>
+<!--    --><?php //echo $form->redactorRow($model, 'reg_report_text', array('class'=>'span8', 'rows'=>6)); ?>
 
 <!--	--><?php //echo $form->textFieldRow($model,'created_at',array('class'=>'span5')); ?>
 <!---->

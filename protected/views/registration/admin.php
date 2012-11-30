@@ -1,29 +1,4 @@
-<?php
-//$this->breadcrumbs=array(
-//	'Registrations'=>array('index'),
-//	'Manage',
-//);
-//
-//$this->menu=array(
-//	array('label'=>'List Registration','url'=>array('index')),
-//	array('label'=>'Create Registration','url'=>array('create')),
-//);
 
-//Yii::app()->clientScript->registerScript('search', "
-//$('.search-button').click(function(){
-//	$('.search-form').toggle();
-//	return false;
-//});
-//$('.search-form form').submit(function(){
-//	$.fn.yiiGridView.update('registration-grid', {
-//		data: $(this).serialize()
-//	});
-//	return false;
-//});
-//");
-//?>
-
-<!---->
 <?php $this->widget('bootstrap.widgets.TbButton', array(
     'label'=>Yii::t('text','New registration'),
     'type'=>'primary',
@@ -34,12 +9,6 @@
 
     ),
 )); ?>
-<!--//################################################-->
-
-<?php //echo CHtml::link('Create patient', "",  // the link for open the dialog
-//    array(
-//        'style'=>'cursor: pointer; text-decoration: underline;',
-//        'onclick'=>"{addPatient(); $('#dialogPatient').dialog('open');}"));?>
 
 <?php
 $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
@@ -62,7 +31,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
     function addRegistration()
     {
         <?php echo CHtml::ajax(array(
-            'url'=>array('registration/create'),
+            'url'=>array('registration/create&pid='.$patient_id),
             'data'=> "js:$(this).serialize()",
             'type'=>'post',
             'dataType'=>'json',
@@ -73,8 +42,8 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
                     $('#dialogRegistration div.divForForm').html(data.div);
                           // Here is the trick: on submit-> once again this function!
                     $('#dialogRegistration div.divForForm form').submit(addRegistration);
-                    $('a.ui-dialog-titlebar-close.ui-corner-all[role=\"button\"]').bind('click',function()
-                        { $('#dialogRegistration div.divForForm').html(''); });
+//                    $('div[aria-labelledby=\"ui-dialog-title-dialogRegistration\"] a.ui-dialog-titlebar-close.ui-corner-all[role=\"button\"]').live('click',function()
+//                        { $('#dialogRegistration div.divForForm').html(''); });
                 }
                 else
                 {
@@ -109,47 +78,33 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
 //)); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('bootstrap.widgets.TbExtendedGridView',array(
-	'id'=>'RegistrationGrid',
-    'type'=>'striped bordered',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-    'template' => "{pager}{items}\n{extendedSummary}",
-	'columns'=>array(
-        //this for the auto page number of cgridview
+<?php
+$new_registration_link = CHtml::Ajax(
+    array(
+        'success' => "{addRegistration(); $('#dialogRegistration').dialog('open');}",
+    )
+); ?>
+
+<?php $this->beginWidget('bootstrap.widgets.TbBox', array(
+    'title' => 'Manage Patients',
+    'headerIcon' => 'icon-th-list',
+// when displaying a table, if we include bootstra-widget-table class
+// the table will be 0-padding to the box
+    'headerButtonActionsLabel' => 'My actions',
+    'headerActions' => array(
         array(
-            'name'=>'No',
-            'type'=>'raw',
-            'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize + $row+1',
-            'filter'=>''//without filtering
+            'label'=>'Registration',
+            'url'=>'#',
+            'icon'=>'icon-music',
+            'linkOptions'=>array(
+                'onclick'=>$new_registration_link,
+            ),
         ),
-		'reg_id',
-		'reg_patient',
-		'reg_mrtscan',
-        'reg_price',
-        'reg_discont',
-        'reg_total_price',
-//		'reg_report_status',
-		/*
-		'reg_report_text',
-		'created_at',
-		'updated_at',
-		'created_user',
-		'updated_user',
-		*/
-		array(
-			'class'=>'bootstrap.widgets.TbButtonColumn',
-		),
-	),
-    'extendedSummary' => array(
-        'title' => Yii::t('text','Total service price'),
-        'columns' => array(
-            'reg_total_price' => array('label'=>Yii::t('text','Total price'),
-                'class'=>'TbSumOperation')
-        )
     ),
-    'extendedSummaryOptions' => array(
-        'class' => 'well pull-right',
-        'style' => 'width:300px'
-    ),
-)); ?>
+    'htmlOptions' => array('class'=>'bootstrap-widget-table')
+));?>
+
+<?php $this->_getGridViewRegistrationGrid(); ?>
+
+<?php $this->endWidget();?>
+

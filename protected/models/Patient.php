@@ -47,7 +47,7 @@ class Patient extends MasterModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('patient_fullname, patient_phone, patient_birthday, patient_doctor, created_at, updated_at, created_user, updated_user', 'required'),
+			array('patient_fullname, patient_phone, patient_birthday, patient_doctor', 'required'),
 			array('patient_doctor', 'numerical', 'integerOnly'=>true),
 			array('patient_fullname', 'length', 'max'=>30),
 			array('patient_phone', 'length', 'max'=>20),
@@ -121,6 +121,43 @@ class Patient extends MasterModel
             'sort'=>array(
                 'defaultOrder'=>'created_at desc',
             ),
+
+            'pagination'=>array(
+                'pageSize'=>5,
+            ),
 		));
 	}
+
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function report()
+    {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
+
+        $criteria=new CDbCriteria;
+
+        $criteria->compare('patient_id',$this->patient_id);
+        $criteria->compare('patient_fullname',$this->patient_fullname,true);
+        $criteria->compare('patient_phone',$this->patient_phone,true);
+        $criteria->compare('patient_birthday',$this->patient_birthday,true);
+        $criteria->compare('patient_doctor',$this->patient_doctor);
+        $criteria->compare('created_at',$this->created_at,true);
+        $criteria->compare('updated_at',$this->updated_at,true);
+        $criteria->compare('created_user',$this->created_user);
+        $criteria->compare('updated_user',$this->updated_user);
+
+        return new CActiveDataProvider($this, array(
+            'criteria'=>$criteria,
+            'sort'=>array(
+                'defaultOrder'=>'created_at desc',
+            ),
+
+            'pagination'=>array(
+                'pageSize'=>10000,
+            ),
+        ));
+    }
 }

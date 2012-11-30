@@ -21,7 +21,7 @@
 					$this->widget('bootstrap.widgets.TbMenu', array(
 						'items'=>$this->menu,
                         'type'=>'list',
-//						'htmlOptions'=>array('class'=>'operations'),
+						'htmlOptions'=>array('class'=>'operations'),
 					));
 					$this->endWidget();
 				?>

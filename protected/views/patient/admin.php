@@ -1,13 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'Patients'=>array('index'),
-	'Manage',
+	'Patients'
 );
 
-//$this->menu=array(
-//	array('label'=>'List Patient','url'=>array('index')),
-//	array('label'=>'Create Patient','url'=>array('create')),
-//);
+$this->menu=array(
+	array('label'=>'List Patient','url'=>array('index')),
+	array('label'=>'Create Patient','url'=>array('create')),
+);
 
 //Yii::app()->clientScript->registerScript('search', "
 //$('.search-button').click(function(){
@@ -21,42 +20,36 @@ $this->breadcrumbs=array(
 //	return false;
 //});
 //");
-?>
+//?>
 
 <!---->
-<?php $this->widget('bootstrap.widgets.TbButton', array(
-    'label'=>Yii::t('text','New patient'),
-    'type'=>'primary',
-    'htmlOptions'=>array(
-//        'data-toggle'=>'modal',
-        'data-target'=>'#dialogModal',
-        'onClick'=>"{addPatient(); $('#dialogPatient').dialog('open');}"
 
-    ),
-)); ?>
-
-<!--//################################################-->
-
-<?php //echo CHtml::link('Create patient', "",  // the link for open the dialog
-//    array(
-//        'style'=>'cursor: pointer; text-decoration: underline;',
-//        'onclick'=>"{addPatient(); $('#dialogPatient').dialog('open');}"));?>
 
 <?php
-$this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
-    'id'=>'dialogPatient',
-    'options'=>array(
-        'title'=>'Create patient',
-        'autoOpen'=>false,
-        'modal'=>true,
-        'width'=>550,
-        'height'=>470,
-        'closeOnEscape'=>true,
-    ),
-));?>
-<div class="divForForm"></div>
+//echo CHtml::ajaxLink('send a message', '/message',
+//    array('replace' => '#message-div'),
+//    array('id' => 'send-link-'.uniqid())
+//);
+//?><!--  -->
 
-<?php $this->endWidget();?>
+<!--//################################################-->
+<div id='divDialogPatient'>
+    <?php
+    $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
+        'id'=>'dialogPatient',
+        'options'=>array(
+            'title'=>'Create patient',
+            'autoOpen'=>false,
+            'modal'=>true,
+            'width'=>550,
+            'height'=>470,
+            'closeOnEscape'=>true,
+        ),
+    ));?>
+    <div class="divForForm"></div>
+
+    <?php $this->endWidget();?>
+</div>
 
 <script type="text/javascript">
     // here is the magic
@@ -74,8 +67,8 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
                     $('#dialogPatient div.divForForm').html(data.div);
                           // Here is the trick: on submit-> once again this function!
                     $('#dialogPatient div.divForForm form').submit(addPatient);
-                    $('a.ui-dialog-titlebar-close.ui-corner-all[role=\"button\"]').bind('click',function()
-                        { $('#dialogPatient div.divForForm').html(''); });
+//                    $('div[aria-labelledby=\"ui-dialog-title-dialogPatient\"] a.ui-dialog-titlebar-close.ui-corner-all[role=\"button\"]').live('click',function()
+//                        { $('#dialogPatient div.divForForm').html(''); });
                 }
                 else
                 {
@@ -93,16 +86,18 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
     {
         <?php echo CHtml::ajax(array(
             'url'=>'js:url',
+//            'id'=>uniqid(),
             'type'=>'post',
+//            'live'=>'false',
             'dataType'=>'json',
             'success'=>"function(data)
                 {
-                    if (data.status == 'failure')
+                    if (data.status == 'successfully')
                     {
                         $('#dialogPatientRegistration div.divForForm').html(data.div);
                               // Here is the trick: on submit-> once again this function!
                         $('#dialogPatientRegistration div.divForForm form').submit(patientRegistrations);
-                        $('a.ui-dialog-titlebar-close.ui-corner-all[role=\"button\"]').bind('click',function()
+                        $('div[aria-labelledby=\"ui-dialog-title-dialogPatientRegistration\"] a.ui-dialog-titlebar-close.ui-corner-all[role=\"button\"]').bind('click',function()
                             { $('#dialogPatientRegistration div.divForForm').html(''); });
                     }
                     else
@@ -121,20 +116,22 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
 
 
 <!--//##################################################3-->
-<?php
-$this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
-    'id'=>'dialogPatientRegistration',
-    'options'=>array(
-        'title'=>'Patient Registrations',
-        'autoOpen'=>false,
-        'modal'=>true,
-        'width'=>750,
-        'height'=>470,
-        'closeOnEscape'=>true,
-    ),
-));?>
-<div class="divForForm"></div>
-<?php $this->endWidget();?>
+<div id='divDialogPatientRegistration'>
+    <?php
+    $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
+        'id'=>'dialogPatientRegistration',
+        'options'=>array(
+            'title'=>'Patient Registrations',
+            'autoOpen'=>false,
+            'modal'=>true,
+            'width'=>750,
+            'height'=>470,
+            'closeOnEscape'=>true,
+        ),
+    ));?>
+    <div class="divForForm"></div>
+    <?php $this->endWidget();?>
+</div>
 
 <!--//#############################################################/-->
 
@@ -152,98 +149,59 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
 //)); ?>
 </div><!-- search-form -->
 
+<?php
+//$this->widget('bootstrap.widgets.TbBox', array(
+//    'title' => 'Basic Box',
+//    'headerIcon' => 'icon-home',
+//    'content' => $this->_getGridViewPatientGrid(),
+//    'headerButtonActionsLabel' => 'My actions',
+//    'headerActions' => array(
+//        array('label'=>'first action', 'url'=>'#', 'icon'=>'icon-music'),
+//        array('label'=>'second action', 'url'=>'#', 'icon'=>'icon-headphones'),
+//        '---',
+//        array('label'=>'third action', 'url'=>'#', 'icon'=>'icon-facetime-video')
+//    )
+//));
+//?>
+<?php
+$create_new_patient_ajax = CHtml::Ajax(
+    array(
+        'success' => "function(){addPatient(); $('#dialogPatient').dialog('open');}",
+    )
+);
 
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
-    'id'=>'PatientGrid',
-    'type'=>'condensed striped bordered',
-    'dataProvider'=>$model->search(),
-    'filter'=>$model,
-    'template'=>'{items}{pager}{summary}',
-    'columns'=>array(
-        //this for the auto page number of cgridview
-        array(
-            'name'=>'No',
-            'type'=>'raw',
-            'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize + $row+1',
-            'filter'=>''//without filtering
-        ),
-        array(
-            'name'=>'patient_id',
-            'value'=>'CHtml::encode($data->patient_id)',
-            'sortable'=>false,
-            'htmlOptions'=>array(
-                'width'=>'10px',
-            ),
-        ),
-        array(
-            'class' => 'bootstrap.widgets.TbEditableColumn',
-            'name' => 'patient_fullname',
-            'sortable'=>false,
-            'editable' => array(
-                'url' => $this->createUrl('patient/editable'),
-                'placement' => 'right',
-                'inputclass' => 'span3',
-            )
-        ),
-        array(
-            'class' => 'bootstrap.widgets.TbEditableColumn',
-            'name' => 'patient_phone',
-            'sortable'=>false,
-//            'htmlOptions'=>array('style'=>'width: 100px'),
-            'editable' => array(
-                'url' => $this->createUrl('patient/editable'),
-                'placement' => 'left',
-                'inputclass' => 'span3',
-            ),
-        ),
-        array(
-            'class' => 'bootstrap.widgets.TbEditableColumn',
-            'name' => 'patient_birthday',
-            'sortable'=>false,
-            'editable' => array(
-                'url' => $this->createUrl('patient/editable'),
-                'type'=>'date',
-                'format'=>'yyyy-mm-dd',
-                'viewformat'  => 'dd.mm.yyyy',
-            )
-        ),
-        array(
-            'class' => 'bootstrap.widgets.TbEditableColumn',
-            'name' => 'patient_doctor',
-            'sortable'=>false,
-            'editable' => array(
-                'url' => $this->createUrl('patient/editable'),
-                'type'=>'select',
-                'source' => CHtml::listData(Doctor::model()->findAll(array('order'=>'doctor_fullname')),'doctor_id','doctor_fullname'),
-            ),
-            'filter'=>CHtml::listData(Doctor::model()->findAll(array('order'=>'doctor_fullname')),'doctor_id','doctor_fullname'),
-        ),
-        'created_at',
+?>
 
-        /*
-          'updated_at',
-          'created_user',
-          'updated_user',
-          */
+<?php $this->beginWidget('bootstrap.widgets.TbBox', array(
+    'title' => 'Manage Patients',
+    'headerIcon' => 'icon-th-list',
+// when displaying a table, if we include bootstra-widget-table class
+// the table will be 0-padding to the box
+    'headerButtonActionsLabel' => 'My actions',
+    'headerActions' => array(
         array(
-            'class'=>'bootstrap.widgets.TbButtonColumn',
-            'header'=>Yii::t('text','Action'),
-            'template'=>'{view} {update} {delete}',
-            'buttons'=> array(
-                'update' => array
-                (
-                    'options'=>array('title'=>'Add ...'),
-                    'url'=>'$this->grid->controller->createUrl("/registration/admin",
-                        array("pid"=>$data->patient_id))',
-                    'click'=>"function( e ){
-                        e.preventDefault();
-//                        $( '#dialogPatientRegistration' ).children( ':eq(0)' ).empty(); // Stop auto POST
-                        //dialogPatientRegistration( $( this ).attr( 'href' ));
-                        patientRegistrations($( this ).attr( 'href' ));
-                        $('#dialogPatientRegistration').dialog( 'open' ); }",
+            'label'=>'Add new patient',
+            'url'=>'#',
+            'icon'=>'icon-plus',
+            'linkOptions'=>array(
+                'onclick'=>$create_new_patient_ajax,
                 ),
-            ),
-
         ),
     ),
-)); ?>
+    'htmlOptions' => array('class'=>'bootstrap-widget-table')
+));?>
+
+<?php //$this->widget('bootstrap.widgets.TbButton', array(
+//    'label'=>Yii::t('text','New patient'),
+//    'type'=>'primary',
+//    'htmlOptions'=>array(
+////        'data-toggle'=>'modal',
+//        'data-target'=>'#dialogModal',
+//        'onClick'=>"{addPatient(); $('#dialogPatient').dialog('open');}"
+//
+//    ),
+//)); ?>
+
+<?php $this->_getGridViewPatientGrid(); ?>
+
+<?php $this->endWidget();?>

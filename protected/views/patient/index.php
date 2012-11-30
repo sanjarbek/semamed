@@ -9,9 +9,11 @@ $this->menu=array(
 );
 ?>
 
+<?php $this->_getGridViewPatientGrid(); ?>
+
 <h1>Patients</h1>
 
-<?php $this->widget('bootstrap.widgets.TbListView',array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+<?php //$this->widget('bootstrap.widgets.TbListView',array(
+	//'dataProvider'=>$dataProvider,
+	//'itemView'=>'_view',
+//)); ?>

@@ -8,14 +8,14 @@
 	<meta name="author" content="">
 
 	<!-- Le styles -->
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap.min.css" rel="stylesheet">
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/application.min.css" rel="stylesheet">
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap-responsive.css" rel="stylesheet">
+<!--	<link href="--><?php //echo Yii::app()->theme->baseUrl; ?><!--/css/bootstrap.min.css" rel="stylesheet">-->
+<!--	<link href="--><?php //echo Yii::app()->theme->baseUrl; ?><!--/css/application.min.css" rel="stylesheet">-->
+<!--	<link href="--><?php //echo Yii::app()->theme->baseUrl; ?><!--/css/bootstrap-responsive.css" rel="stylesheet">-->
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
+<!--	[if lt IE 9]>-->
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+<!--	<![endif]-->
 
 	<!-- Le fav and touch icons -->
 	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico">
@@ -28,7 +28,7 @@
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="brand" href="<?php echo $this->createAbsoluteUrl('//'); ?>"><?php echo CHtml::encode(Yii::app()->name); ?></a>
+<!--				<a class="brand" href="--><?php //echo $this->createAbsoluteUrl('//'); ?><!--">--><?php //echo CHtml::encode(Yii::app()->name); ?><!--</a>-->
 				<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
 						array('label'=>'Home', 'url'=>array('/site/index')),
@@ -43,7 +43,7 @@
 				)); ?>
 				<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
-						array('label'=>Yii::app()->user->name, 'url'=>array('site/profile'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>Yii::app()->user->name . ' - profile', 'url'=>array('user/profile'), 'visible'=>!Yii::app()->user->isGuest),
 						array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn'))
 					),
 					'htmlOptions'=>array(
@@ -67,9 +67,9 @@
 	
 	<footer class="footer">
 		<div class="container">
-			<p>Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-			All Rights Reserved.<br/>
-			<?php echo Yii::powered(); ?></p>
+			<p>Copyright &copy; <?php echo date('Y'); ?> by Sanzharbek Amatov.<br/>
+<!--			All Rights Reserved.<br/>-->
+<!--			--><?php //echo Yii::powered(); ?><!--</p>-->
 		</div>
 	</footer>
 	

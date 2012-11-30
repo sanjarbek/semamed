@@ -29,3 +29,17 @@ $this->menu=array(
 		'updated_user',
 	),
 )); ?>
+
+
+<?php
+//    $registrations = new Registration('search');
+//    $registrations->reg_patient = $model->patient_id;
+//    echo $this->renderPartial('//registration/_partial_admin', array(
+//        'model'=>$registrations,
+//    ), false, true);
+//?>
+
+<?php
+    $this->widget('application.components.RegistrationGridViewWidget');
+?>
+

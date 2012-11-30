@@ -6,7 +6,7 @@ class PatientController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -16,9 +16,9 @@ class PatientController extends Controller
         return CMap::mergeArray(parent::filters(),array(
 //			'accessControl', // perform access control for CRUD operations
             'postOnly + delete', // we only allow deletion via POST request
-//            array( // handle gridview ajax update
-//                'application.filters.GridViewHandler', //path to GridViewHandler.php class
-//            ),
+            array( // handle gridview ajax update
+               'application.filters.GridViewHandler', //path to GridViewHandler.php class
+            ),
         ));
 
 	}
@@ -101,7 +101,7 @@ class PatientController extends Controller
             Yii::app()->clientscript->scriptMap['jquery.min.js'] = false;
             Yii::app()->clientscript->scriptMap['bootstrap.min.js'] = false;
             Yii::app()->clientscript->scriptMap['bootstrap.bootbox.min.js'] = false;
-            Yii::app()->clientscript->scriptMap['bootstrap.datepicker.js'] = false;
+//            Yii::app()->clientscript->scriptMap['bootstrap.datepicker.js'] = false;
 
             echo CJSON::encode(array(
                 'status'=>'failure',
@@ -214,23 +214,25 @@ class PatientController extends Controller
 		if(isset($_GET['Patient']))
 			$model->attributes=$_GET['Patient'];
 
-//        if( Yii::app()->request->isAjaxRequest )
-//        {
-//            $this->renderPartial('admin', array(
-//                'model'=>$model,
-//            ));
-//        }
-//        else
-//        {
-//            $this->render('admin',array(
-//                'model'=>$model,
-//            ));
-//        }
-
         $this->render('admin',array(
             'model'=>$model,
         ));
 	}
+
+    /**
+     * Manages all models.
+     */
+    public function actionManage()
+    {
+        $model=new Patient('search');
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['Patient']))
+            $model->attributes=$_GET['Patient'];
+
+        $this->render('manage',array(
+            'model'=>$model,
+        ));
+    }
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
@@ -294,6 +296,55 @@ class PatientController extends Controller
         }
         Yii::app()->end();
 
+    }
+    
+    public function _getGridViewPatientGrid(){ 
+        //create data provider and renderPartial CGridView widget
+        $model=new Patient('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Patient']))
+			$model->attributes=$_GET['Patient'];
+    
+        $this->renderPartial('_gridview',array(
+            'model'=>$model)
+        );
+    }
+
+    public function _getGridViewManagePatientGrid(){
+        //create data provider and renderPartial CGridView widget
+        $model=new Patient('search');
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['Patient']))
+            $model->attributes=$_GET['Patient'];
+
+        $this->renderPartial('_manage_gridview',array(
+            'model'=>$model, true, false
+        ));
+    }
+
+    public function actionReport()
+    {
+        $model=new Patient();
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['Patient']))
+            $model->attributes=$_GET['Patient'];
+
+        $this->widget('ext.EExcelView', array(
+            'dataProvider'=> $model->report(), //new CActiveDataProvider(NetClientType),
+            'grid_mode'=>'export',
+            'exportType'=> 'Excel2007',
+            'columns'=> array(
+                'patient_fullname',
+                'patient_phone',
+                'patient_birthday',
+                array(
+                    'name'=>'patient_doctor',
+                    'value'=>'$data->patientDoctor->doctor_fullname',
+                ),
+                'created_at',
+            ),
+        ));
+        Yii::app()->end();
     }
 
 }

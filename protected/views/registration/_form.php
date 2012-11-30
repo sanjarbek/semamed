@@ -57,8 +57,10 @@ $cs->registerScript(
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->dropDownListRow($model,'reg_patient',
-            CHtml::listData(Patient::model()->findAll(),'patient_id','patient_fullname')); ?>
+<!--	--><?php //echo $form->dropDownListRow($model,'reg_patient',
+//            CHtml::listData(Patient::model()->findAll(),'patient_id','patient_fullname')); ?>
+    <?php echo $form->textFieldRow($model, 'reg_patient',
+                    array('readonly'=>true, 'class'=>'span2','maxlength'=>10)); ?>
 
     <?php echo $form->dropDownListRow($model,'reg_mrtscan',
         CHtml::listData(Mrtscan::model()->findAll(),'mrtscan_id','mrtscan_name')); ?>

@@ -2,26 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed88faa5-2029-4907-bc63-a90ae1c42b8d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/themes/bootstrap/views/layouts/column1.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/themes/bootstrap/views/layouts/column2.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/themes/bootstrap/views/layouts/main.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/themes/bootstrap/views/site/contact.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/themes/bootstrap/views/site/error.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/themes/bootstrap/views/site/index.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/themes/bootstrap/views/site/login.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/themes/bootstrap/views/site/pages/about.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/MrtscanController.php" afterPath="$PROJECT_DIR$/protected/controllers/MrtscanController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/components/RegistrationGridViewWidget.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/extensions/EExcelView.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/views/patient/_gridview.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/views/patient/_manage_gridview.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/views/patient/manage.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/views/registration/_gridview.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/views/registration/adminmanage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/config/main.php" afterPath="$PROJECT_DIR$/protected/config/main.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/PatientController.php" afterPath="$PROJECT_DIR$/protected/controllers/PatientController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/RegistrationController.php" afterPath="$PROJECT_DIR$/protected/controllers/RegistrationController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/extensions/bootstrap/widgets/TbRelationalColumn.php" afterPath="$PROJECT_DIR$/protected/extensions/bootstrap/widgets/TbRelationalColumn.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/filters/GridViewHandler.php" afterPath="$PROJECT_DIR$/protected/filters/GridViewHandler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/models/Patient.php" afterPath="$PROJECT_DIR$/protected/models/Patient.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/models/Registration.php" afterPath="$PROJECT_DIR$/protected/models/Registration.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/layouts/column1.php" afterPath="$PROJECT_DIR$/protected/views/layouts/column1.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/layouts/column2.php" afterPath="$PROJECT_DIR$/protected/views/layouts/column2.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/layouts/main.php" afterPath="$PROJECT_DIR$/protected/views/layouts/main.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/patient/admin.php" afterPath="$PROJECT_DIR$/protected/views/patient/admin.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/patient/index.php" afterPath="$PROJECT_DIR$/protected/views/patient/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/patient/view.php" afterPath="$PROJECT_DIR$/protected/views/patient/view.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/registration/_form.php" afterPath="$PROJECT_DIR$/protected/views/registration/_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/registration/_view.php" afterPath="$PROJECT_DIR$/protected/views/registration/_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/registration/_relation.php" afterPath="$PROJECT_DIR$/protected/views/registration/_relation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/registration/_search.php" afterPath="$PROJECT_DIR$/protected/views/registration/_search.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/registration/admin.php" afterPath="$PROJECT_DIR$/protected/views/registration/admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/registration/create.php" afterPath="$PROJECT_DIR$/protected/views/registration/create.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/registration/view.php" afterPath="$PROJECT_DIR$/protected/views/registration/view.php" />
     </list>
     <ignored path="semamed.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,37 +50,28 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="_form.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/views/registration/_form.php">
+      <file leaf-file-name="adminmanage.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/views/registration/adminmanage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="2" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0">
+            <state line="126" column="16" selection-start="3835" selection-end="3842" vertical-scroll-proportion="-2.4166667">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/views/registration/admin.php">
+      <file leaf-file-name="Patient.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/models/Patient.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
+            <state line="49" column="84" selection-start="1307" selection-end="1307" vertical-scroll-proportion="-4.375">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/protected/views/patient/admin.php">
+      <file leaf-file-name="_gridview.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/views/patient/_gridview.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="115" column="21" selection-start="3783" selection-end="3783" vertical-scroll-proportion="0.027881041">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Registration.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/models/Registration.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="21" selection-start="2494" selection-end="2494" vertical-scroll-proportion="0.0">
+            <state line="0" column="41" selection-start="41" selection-end="41" vertical-scroll-proportion="5.625">
               <folding />
             </state>
           </provider>
@@ -85,46 +80,68 @@
       <file leaf-file-name="RegistrationController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protected/controllers/RegistrationController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="189" column="15" selection-start="5138" selection-end="5138" vertical-scroll-proportion="0.0">
+            <state line="333" column="22" selection-start="10110" selection-end="10110" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PatientController.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="GridViewHandler.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/filters/GridViewHandler.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="120" selection-start="379" selection-end="379" vertical-scroll-proportion="-5.9583335">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/views/patient/admin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="182" column="39" selection-start="5892" selection-end="5892" vertical-scroll-proportion="-7.7916665">
+              <folding>
+                <element signature="e#510#562#0" expanded="true" />
+                <element signature="tag#div#0" expanded="false" />
+                <element signature="e#1264#2394#0" expanded="false" />
+                <element signature="e#2439#3651#0" expanded="false" />
+                <element signature="tag#div#1" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PatientController.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/protected/controllers/PatientController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="217" column="0" selection-start="6458" selection-end="6458" vertical-scroll-proportion="0.0">
+            <state line="100" column="12" selection-start="2884" selection-end="2884" vertical-scroll-proportion="-6.427466">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/views/registration/create.php">
+      <file leaf-file-name="_gridview.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/views/registration/_gridview.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
+            <state line="66" column="10" selection-start="2047" selection-end="2047" vertical-scroll-proportion="-33.041668">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MrtscanController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/controllers/MrtscanController.php">
+      <file leaf-file-name="manage.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/views/patient/manage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="186" column="24" selection-start="4647" selection-end="4647" vertical-scroll-proportion="0.0">
+            <state line="2" column="14" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_form.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/views/patient/_form.php">
+      <file leaf-file-name="_relation.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/views/registration/_relation.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="39" selection-start="614" selection-end="614" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1351253356113" expanded="true" signature="1320:1498" placeholder="..." />
-              </folding>
+            <state line="12" column="60" selection-start="420" selection-end="420" vertical-scroll-proportion="-3.75">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -138,25 +155,30 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="test1" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/protected/components/Controller.php" />
-        <option value="$PROJECT_DIR$/protected/extensions/bootstrap/widgets/TbJEditableColumn.php" />
-        <option value="$PROJECT_DIR$/protected/models/Patient.php" />
-        <option value="$PROJECT_DIR$/protected/views/patient/_form.php" />
-        <option value="$PROJECT_DIR$/protected/config/main.php" />
-        <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/protected/controllers/MrtscanController.php" />
-        <option value="$PROJECT_DIR$/protected/models/Registration.php" />
-        <option value="$PROJECT_DIR$/protected/views/registration/_view.php" />
-        <option value="$PROJECT_DIR$/protected/views/registration/view.php" />
-        <option value="$PROJECT_DIR$/protected/views/registration/create.php" />
-        <option value="$PROJECT_DIR$/protected/views/registration/_form.php" />
-        <option value="$PROJECT_DIR$/protected/controllers/PatientController.php" />
+        <option value="$PROJECT_DIR$/protected/views/layouts/column2.php" />
+        <option value="$PROJECT_DIR$/protected/views/layouts/column1.php" />
+        <option value="$PROJECT_DIR$/../yii-framework/zii/widgets/assets/gridview/jquery.yiigridview.js" />
         <option value="$PROJECT_DIR$/protected/views/registration/admin.php" />
+        <option value="$PROJECT_DIR$/protected/views/layouts/main.php" />
+        <option value="$PROJECT_DIR$/protected/views/patient/manage.php" />
+        <option value="$PROJECT_DIR$/protected/views/patient/_manage_gridview.php" />
         <option value="$PROJECT_DIR$/protected/controllers/RegistrationController.php" />
+        <option value="$PROJECT_DIR$/protected/views/registration/_relation.php" />
+        <option value="$PROJECT_DIR$/protected/filters/GridViewHandler.php" />
+        <option value="$PROJECT_DIR$/protected/models/Patient.php" />
+        <option value="$PROJECT_DIR$/protected/views/patient/_gridview.php" />
+        <option value="$PROJECT_DIR$/protected/views/registration/adminmanage.php" />
+        <option value="$PROJECT_DIR$/protected/views/registration/_gridview.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/PatientController.php" />
         <option value="$PROJECT_DIR$/protected/views/patient/admin.php" />
       </list>
     </option>
@@ -213,17 +235,12 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="semamed" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.jetbrains.php.config.PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -233,6 +250,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="semamed" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="semamed" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="semamed" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="semamed" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="semamed" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bootstrap" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -326,7 +375,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="semamed" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="semamed" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="semamed" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="semamed" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filters" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -366,51 +455,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="semamed" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="semamed" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protected" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="semamed" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="semamed" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protected" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="commands" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="147" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="122" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="59" />
     <property name="options.lastSelected" value="settings.github" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../yii-framework" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="101" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="565" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="740" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="70" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="66" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
   </component>
@@ -433,6 +503,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/protected/views/registration" />
+      <recent name="$PROJECT_DIR$/protected/views/patient" />
+      <recent name="$PROJECT_DIR$/themes/classic" />
       <recent name="$PROJECT_DIR$/themes/bootstrap/css" />
     </key>
   </component>
@@ -546,30 +619,46 @@
       <created>1351563733439</created>
       <updated>1351563733439</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Added rights and users modules">
+      <created>1351563801581</created>
+      <updated>1351563801581</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Bootstrap css in classic theme added">
+      <created>1351611690419</created>
+      <updated>1351611690419</updated>
+    </task>
+    <task id="LOCAL-00021" summary="v.0.1">
+      <created>1351781579671</created>
+      <updated>1351781579671</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Added css files">
+      <created>1351781950199</created>
+      <updated>1351781950200</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1024" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Framework MVC Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22392638" sideWeight="0.48713827" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924336" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29856852" sideWeight="0.32636657" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22801636" sideWeight="0.66237944" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23108384" sideWeight="0.95337623" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924336" sideWeight="0.49517685" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37942123" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Framework MVS Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -610,7 +699,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added rights and users modules" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added css files" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -622,7 +711,7 @@
     <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
-    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.9023669" />
     <MESSAGE value="Initial project files" />
     <MESSAGE value="yii-bootstrap extension added." />
     <MESSAGE value="Connected to db and created models and cruds" />
@@ -640,107 +729,126 @@
     <MESSAGE value="Avoiding rendering entire page when using CGridView and CListView via AJAX" />
     <MESSAGE value="Finished patient configuration" />
     <MESSAGE value="Added rights and users modules" />
+    <MESSAGE value="Bootstrap css in classic theme added" />
+    <MESSAGE value="v.0.1" />
+    <MESSAGE value="Added css files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/protected/controllers/HospitalController.php">
+    <entry file="file://$PROJECT_DIR$/protected/extensions/bootstrap-theme/widgets/BModal.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
+    <entry file="file://$PROJECT_DIR$/protected/views/layouts/column1.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="47" selection-start="260" selection-end="260" vertical-scroll-proportion="0.19056262" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/config/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="18" selection-start="3079" selection-end="3079" vertical-scroll-proportion="0.5055762" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/models/Patient.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="63" selection-start="3899" selection-end="3899" vertical-scroll-proportion="-13.041667" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/models/Mrtscan.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="34" selection-start="270" selection-end="270" vertical-scroll-proportion="-5.625" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/controllers/MrtscanController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="186" column="24" selection-start="4647" selection-end="4647" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/models/Registration.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="21" selection-start="2494" selection-end="2494" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/registration/view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="20" selection-start="782" selection-end="782" vertical-scroll-proportion="0.64126396" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/registration/_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="68" selection-start="817" selection-end="817" vertical-scroll-proportion="0.59891105" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/registration/_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="2" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/registration/create.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/patient/_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="39" selection-start="614" selection-end="614" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1351253356113" expanded="true" signature="1320:1498" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/controllers/PatientController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="217" column="0" selection-start="6458" selection-end="6458" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="8" column="31" selection-start="387" selection-end="387" vertical-scroll-proportion="0.22304833" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/views/registration/admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
+        <state line="109" column="0" selection-start="3448" selection-end="3448" vertical-scroll-proportion="0.8121646" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/Doctor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/layouts/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="69" selection-start="2254" selection-end="2254" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1353717671767" expanded="true" signature="2610:2673" placeholder="..." />
+            <marker date="1353717671767" expanded="true" signature="2856:2922" placeholder="..." />
+            <marker date="1353717671767" expanded="true" signature="2882:2922" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/patient/manage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="14" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/controllers/RegistrationController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="189" column="15" selection-start="5138" selection-end="5138" vertical-scroll-proportion="0.0">
+        <state line="333" column="22" selection-start="10110" selection-end="10110" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/filters/GridViewHandler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="120" selection-start="379" selection-end="379" vertical-scroll-proportion="-5.9583335">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/Patient.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="84" selection-start="1307" selection-end="1307" vertical-scroll-proportion="-4.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/patient/_manage_gridview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="101" column="39" selection-start="3473" selection-end="3473" vertical-scroll-proportion="0.53578335">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/registration/_relation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="60" selection-start="420" selection-end="420" vertical-scroll-proportion="-3.75">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/patient/_gridview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="41" selection-start="41" selection-end="41" vertical-scroll-proportion="5.625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/registration/_gridview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="10" selection-start="2047" selection-end="2047" vertical-scroll-proportion="-33.041668">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/registration/adminmanage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="126" column="16" selection-start="3835" selection-end="3842" vertical-scroll-proportion="-2.4166667">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/views/patient/admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="21" selection-start="3783" selection-end="3783" vertical-scroll-proportion="0.027881041">
+        <state line="182" column="39" selection-start="5892" selection-end="5892" vertical-scroll-proportion="-7.7916665">
+          <folding>
+            <element signature="e#510#562#0" expanded="true" />
+            <element signature="tag#div#0" expanded="false" />
+            <element signature="e#1264#2394#0" expanded="false" />
+            <element signature="e#2439#3651#0" expanded="false" />
+            <element signature="tag#div#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/PatientController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="12" selection-start="2884" selection-end="2884" vertical-scroll-proportion="-6.427466">
           <folding />
         </state>
       </provider>

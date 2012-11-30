@@ -9,12 +9,12 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Semamed',
 
-//    'theme'=>'bootstrap',
-    'theme'=>'classic',
+    'theme'=>'bootstrap',
+//    'theme'=>'classic',
 
 	// preloading 'log' component
 	'preload'=>array(
-        'log',
+//        'log',
         'bootstrap',
     ),
 
@@ -104,7 +104,7 @@ return array(
 				array(
 //                    'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
 					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
+					'levels'=>'info',
 				),
 				// uncomment the following to show log messages on web pages
 				/*

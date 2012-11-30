@@ -122,4 +122,38 @@ class Registration extends MasterModel
             ),
 		));
 	}
+
+    public function report()
+    {
+        return new CActiveDataProvider($this, array(
+
+        ));
+    }
+
+    public function getGridDataProvider($id)
+    {
+        $criteria=new CDbCriteria;
+
+//        $criteria->compare('reg_id',$this->reg_id);
+        $criteria->compare('reg_patient', $id);
+//        $criteria->compare('reg_mrtscan',$this->reg_mrtscan);
+//        $criteria->compare('reg_discont',$this->reg_discont);
+//        $criteria->compare('reg_price',$this->reg_price,true);
+//        $criteria->compare('reg_report_status',$this->reg_report_status);
+//        $criteria->compare('reg_report_text',$this->reg_report_text,true);
+//        $criteria->compare('created_at',$this->created_at,true);
+//        $criteria->compare('updated_at',$this->updated_at,true);
+//        $criteria->compare('created_user',$this->created_user);
+//        $criteria->compare('updated_user',$this->updated_user);
+
+        return new CActiveDataProvider($this, array(
+            'criteria'=>$criteria,
+            'sort'=>array(
+                'defaultOrder'=>'created_at desc',
+            ),
+            'pagination'=>array(
+                'pageSize'=>100,
+            ),
+        ));
+    }
 }

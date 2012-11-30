@@ -2,11 +2,16 @@
 
 class RegistrationController extends Controller
 {
+    /**
+     * @var private property containing the associated Patient model instance.
+     */
+    private $_patient = null;
+
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -15,7 +20,11 @@ class RegistrationController extends Controller
 	{
         return CMap::mergeArray(parent::filters(),array(
 //			'accessControl', // perform access control for CRUD operations
+            'patientContext + create admin adminmanage', //check to ensure valid patient context
             'postOnly + delete', // we only allow deletion via POST request
+            array(
+                'application.filters.GridViewHandler' //path to GridViewHandler.php class
+            )
         ));
 	}
 
@@ -64,6 +73,8 @@ class RegistrationController extends Controller
 	{
 		$model=new Registration;
 
+        $model->reg_patient = $this->_patient->patient_id;
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -76,7 +87,7 @@ class RegistrationController extends Controller
                 {
                     echo CJSON::encode( array(
                         'status' => 'success',
-                        'div' => 'ModelName successfully updated',
+                        'div' => 'Registration successfully updated',
                     ));
                     Yii::app()->end();
                 }
@@ -98,7 +109,7 @@ class RegistrationController extends Controller
             echo CJSON::encode( array(
                 'status' => 'failure',
                 'div' => $this->renderPartial( '_form', array(
-                    'model' => $model ), true, true ),
+                    'model' => $model), true, true ),
             ));
             Yii::app()->end();
         }
@@ -171,62 +182,17 @@ class RegistrationController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Registration('search');
-
-//        $r = Yii::app()->getRequest();
-
-        // needed to check model attribute name. !!!
-//        $model->reg_patient=$r->getParam('pid');
-
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Registration']))
-			$model->attributes=$_GET['Registration'];
-
-
-//        if( Yii::app()->request->isAjaxRequest )
-//        {
-//            Yii::app()->clientscript->scriptMap['jquery.js'] = false;
-//            Yii::app()->clientscript->scriptMap['bootstrap.js'] = false;
-//            Yii::app()->clientscript->scriptMap['jquery.min.js'] = false;
-//            Yii::app()->clientscript->scriptMap['bootstrap.min.js'] = false;
-//            Yii::app()->clientscript->scriptMap['bootstrap.bootbox.min.js'] = false;
-//            Yii::app()->clientscript->scriptMap['bootstrap.datepicker.js'] = false;
-//            Yii::app()->clientscript->scriptMap['jquery.ba-bbq.js'] = false;
-//            Yii::app()->clientscript->scriptMap['jquery-ui.min.js'] = false;
-//            Yii::app()->clientscript->scriptMap['jquery.yiigridview.js'] = false;
+//		$model=new Registration('search');
 //
-//            echo CJSON::encode( array(
-//                'status' => 'failure',
-//                'div' => $this->renderPartial('admin',
-//                    array('model'=>$model,), true, true),
-//            ));
-//            Yii::app()->end();
-//        }
-
-
-        $this->render('admin',array(
-			'model'=>$model,
-		));
-	}
-
-    /**
-     * Manages all models.
-     */
-    public function actionAjaxAdmin()
-    {
-        $model=new Registration('search');
-
-        $r = Yii::app()->getRequest();
-
-        // needed to check model attribute name. !!!
-        $model->reg_patient=$r->getParam('pid');
-
 //		$model->unsetAttributes();  // clear any default values
 //		if(isset($_GET['Registration']))
 //			$model->attributes=$_GET['Registration'];
+//
+//        $model->reg_patient = $this->_patient->patient_id;
 
 
-        if( Yii::app()->request->isAjaxRequest )
+
+        if( Yii::app()->request->isAjaxRequest)
         {
             Yii::app()->clientscript->scriptMap['jquery.js'] = false;
             Yii::app()->clientscript->scriptMap['bootstrap.js'] = false;
@@ -239,20 +205,43 @@ class RegistrationController extends Controller
             Yii::app()->clientscript->scriptMap['jquery.yiigridview.js'] = false;
 
             echo CJSON::encode( array(
-                'status' => 'failure',
+                'status' => 'successfully',
                 'div' => $this->renderPartial('admin',
-                    array('model'=>$model,), true, true),
+                    array( 'patient_id'=>$this->_patient->patient_id), true, true),
             ));
-
             Yii::app()->end();
         }
 
-        $this->render('admin',array(
-            'model'=>$model,
-        ));
+//        echo CJSON::encode( array(
+//            'status' => 'failure',
+//            'div' => $this->renderPartial('admin', array( 'patient_id'=>$this->_patient->patient_id), true, true),
+//        ));
+//        Yii::app()->end();
+
+//        $this->render('admin',array(
+//			'model'=>$model, 'patient_id'=>$this->_patient->patient_id
+//		));
+	}
+    /**
+     * Manages all models.
+     */
+    public function actionAdminManage()
+    {
+		$model=new Registration('search');
+
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Registration']))
+			$model->attributes=$_GET['Registration'];
+
+        $model->reg_patient = $this->_patient->patient_id;
+
+        $this->render('adminmanage',array(
+			'model'=>$model, 'patient'=>$this->_patient
+		), false, true);
     }
 
-	/**
+
+    /**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer the ID of the model to be loaded
@@ -277,6 +266,127 @@ class RegistrationController extends Controller
 			Yii::app()->end();
 		}
 	}
+	
+	public function _getGridViewRegistrationGrid()
+	{     
+        $model=new Registration('search');
+
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Registration']))
+			$model->attributes=$_GET['Registration'];
+
+        $model->reg_patient = $this->_patient->patient_id;
+
+        $this->renderPartial('_gridview',array(
+			'model'=>$model, 'patient_id'=>$this->_patient->patient_id
+		));
+    }
+
+    /**
+     * In-class defined filter method, configured for use in the above filters() method
+     * It is called before the actionCreate() action method is run in order to ensure a proper project context
+     */
+
+    public function filterPatientContext($filterChain)
+    {
+        //set the project identifier based on either the GET or POST input
+        //request variables, since we allow both types for our actions
+
+        $patientId = null;
+        if(isset($_GET['pid']))
+            $patientId = $_GET['pid'];
+        else if (isset($_POST['pid']))
+            $patientId = $_POST['pid'];
+
+        $this->loadPatient($patientId);
+
+        // complete the running of other filters and execute the requested action
+        $filterChain->run();
+    }
+
+    /**
+    * Protected method to load the associated Project model class
+    * @project_id the primary identifier of the associated Project
+    * @return object the Project data model based on the primary key
+    */
+    protected function loadPatient($patient_id)
+    {
+        //if the project property is null, create it based on input id
+        if($this->_patient===null)
+        {
+            $this->_patient=Patient::model()->findbyPk($patient_id);
+            if($this->_patient===null)
+            {
+                throw new CHttpException(404,'The requested patient does not exist.');
+            }
+        }
+        return $this->_patient;
+    }
+
+    public function actionRelation()
+    {
+// partially rendering "_relational" view
+        $id = Yii::app()->getRequest()->getParam('id');
+        $this->renderPartial('_relation', array(
+            'id' => $id,
+            'gridDataProvider' => Registration::model()->getGridDataProvider($id),
+            'gridColumns' => $this->getGridColumns(),
+        ), false, true);
+    }
+
+    public function getGridColumns()
+    {
+        $gridColumns = array(
+            //this for the auto page number of cgridview
+            array(
+                'name'=>'No',
+                'type'=>'raw',
+                'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize + $row+1',
+                'filter'=>false,
+                'sortable'=>false,
+            ),
+            array(
+                'name'=>'reg_id',
+                'value'=>'$data->reg_id',
+                'filter'=>false,
+                'sortable'=>false,
+            ),
+//            array(
+//                'name'=>'reg_patient',
+//                'value'=>'CHtml::encode($data->regPatient->patient_fullname)',
+//                'filter'=>false,
+//            ),
+            array(
+                'name'=>'reg_mrtscan',
+                'value'=>'CHtml::encode($data->regMrtscan->mrtscan_name)',
+                'filter'=>false,
+                'sortable'=>false,
+            ),
+            array(
+                'name'=>'reg_price',
+                'value'=>'$data->reg_price',
+                'filter'=>false,
+                'sortable'=>false,
+            ),
+            array(
+                'name'=>'reg_discont',
+                'value'=>'$data->reg_discont',
+                'filter'=>false,
+                'sortable'=>false,
+            ),
+            array(
+                'name'=>'reg_total_price',
+                'value'=>'$data->reg_total_price',
+                'filter'=>false,
+                'sortable'=>false,
+            ),
+
+        );
+
+        return $gridColumns;
+    }
+
+
 
 
 }

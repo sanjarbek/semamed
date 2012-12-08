@@ -85,9 +85,9 @@ return array(
 		*/
 
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=patientdb',
+			'connectionString' => 'mysql:host=localhost;dbname=semamed',
 			'emulatePrepare' => true,
-			'username' => 'root',
+			'username' => 'semamed',
 			'password' => '12',
 			'charset' => 'utf8',
             'enableProfiling'=>false,

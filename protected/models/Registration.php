@@ -125,9 +125,64 @@ class Registration extends MasterModel
 
     public function report()
     {
-        return new CActiveDataProvider($this, array(
+        $criteria=new CDbCriteria;
 
+        $criteria->compare('reg_id',$this->reg_id);
+        $criteria->compare('reg_patient',$this->reg_patient);
+        $criteria->compare('reg_mrtscan',$this->reg_mrtscan);
+        $criteria->compare('reg_discont',$this->reg_discont);
+        $criteria->compare('reg_price',$this->reg_price,true);
+        $criteria->compare('reg_report_status',$this->reg_report_status);
+        $criteria->compare('reg_report_text',$this->reg_report_text,true);
+        $criteria->compare('created_at',$this->created_at,true);
+        $criteria->compare('updated_at',$this->updated_at,true);
+        $criteria->compare('created_user',$this->created_user);
+        $criteria->compare('updated_user',$this->updated_user);
+
+        return new CActiveDataProvider($this, array(
+            'criteria'=>$criteria,
+            'sort'=>array(
+                'defaultOrder'=>'created_at desc',
+            ),
+            'pagination'=>array(
+                'pageSize'=>1000000,
+            ),
         ));
+    }
+
+    public function getDoctorReport()
+    {
+        $str = 'select * from doctor_report';
+
+        return new CSqlDataProvider(
+            $str,
+            array(
+                'pagination'=>array(
+                    'pageSize'=>1000000,
+                )
+            )
+        );
+
+//        $criteria = new CDbCriteria;
+//        $criteria->select = array(
+//            '`d`.`doctor_fullname`',
+//            '`d`.`doctor_phone`',
+//            'date(`t`.`created_at`) as "created_at"',
+//            'count(*) as "quantity"',
+//            'sum(t.reg_price) as "price"');
+//        $criteria->join = 'LEFT JOIN `patients` AS `p` ON t.reg_patient=p.patient_id
+//LEFT JOIN doctors d ON p.patient_doctor=d.doctor_id';
+//        $criteria->group = 'd.doctor_fullname, d.doctor_phone, date(t.created_at)';
+//
+//        return new CActiveDataProvider($this, array(
+//            'criteria'=>$criteria,
+////            'sort'=>array(
+////                'defaultOrder'=>'created_at desc',
+////            ),
+//            'pagination'=>array(
+//                'pageSize'=>1000000,
+//            ),
+//        ));
     }
 
     public function getGridDataProvider($id)

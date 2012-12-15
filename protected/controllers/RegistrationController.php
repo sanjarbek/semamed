@@ -386,6 +386,86 @@ class RegistrationController extends Controller
         return $gridColumns;
     }
 
+    public function actionReport()
+    {
+        $model=new Registration();
+        $model->unsetAttributes();  // clear any default values
+
+//        if(isset($_GET['Patient']))
+//            $model->attributes=$_GET['Patient'];
+
+        $this->widget('ext.EExcelView', array(
+            'dataProvider'=> $model->report(), //new CActiveDataProvider(NetClientType),
+            'grid_mode'=>'export',
+            'exportType'=> 'Excel2007',
+            'columns'=> array(
+                array(
+                    'name'=>'patient',
+                    'value'=>'CHtml::encode($data->regPatient->patient_fullname . " " . $data->regPatient->patient_birthday)',
+                ),
+                array(
+                    'name'=>'patient_phone',
+                    'value'=>'CHtml::encode($data->regPatient->patient_phone)',
+                ),
+//
+                array(
+                    'name'=>'patient_doctor',
+                    'value'=>'CHtml::encode($data->regPatient->patientDoctor->doctor_fullname . " "
+                                . $data->regPatient->patientDoctor->doctorHospital->hospital_name)',
+                ),
+                array(
+                    'name'=>'hospital_phone',
+                    'value'=>'CHtml::encode($data->regPatient->patientDoctor->doctorHospital->hospital_phone)',
+                ),
+                array(
+                    'name'=>'mrtscan_name',
+                    'value'=>'CHtml::encode($data->regMrtscan->mrtscan_name)',
+                ),
+//                'created_at',
+            ),
+        ));
+        Yii::app()->end();
+    }
+
+    public function actionDoctorReport()
+    {
+        $model=new Registration();
+        $model->unsetAttributes();  // clear any default values
+
+//        if(isset($_GET['Patient']))
+//            $model->attributes=$_GET['Patient'];
+
+        $data = $model->getDoctorReport();
+        $this->widget('ext.EExcelView', array(
+            'dataProvider'=> $data, //new CActiveDataProvider(NetClientType),
+            'grid_mode'=>'export',
+            'exportType'=> 'Excel2007',
+            'columns'=> array(
+                array(
+                    'name'=>'doctor',
+                    'value'=>'$data["doctor_fullname"]',
+                ),
+                array(
+                    'name'=>'doctor_phone',
+                    'value'=>'$data["doctor_phone"]',
+                ),
+                array(
+                    'name'=>'date',
+                    'value'=>'$data["created_at"]',
+                ),
+                array(
+                    'name'=>'quantity',
+                    'value'=>'$data["quantity"]',
+                ),
+                array(
+                    'name'=>'price',
+                    'value'=>'$data["price"]',
+                ),
+            ),
+        ));
+        Yii::app()->end();
+    }
+
 
 
 

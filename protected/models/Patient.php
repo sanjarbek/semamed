@@ -123,7 +123,7 @@ class Patient extends MasterModel
             ),
 
             'pagination'=>array(
-                'pageSize'=>5,
+                'pageSize'=>10,
             ),
 		));
 	}

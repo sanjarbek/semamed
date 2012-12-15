@@ -1,12 +1,15 @@
 <?php
-$this->breadcrumbs=array(
-	'Patients'
-);
-
-$this->menu=array(
-	array('label'=>'List Patient','url'=>array('index')),
-	array('label'=>'Create Patient','url'=>array('create')),
-);
+//$this->breadcrumbs=array(
+//	'Patients'
+//);
+$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+    'links'=>array('Patients'),
+));
+//
+//$this->menu=array(
+//	array('label'=>'List Patient','url'=>array('index')),
+//	array('label'=>'Create Patient','url'=>array('create')),
+//);
 
 //Yii::app()->clientScript->registerScript('search', "
 //$('.search-button').click(function(){

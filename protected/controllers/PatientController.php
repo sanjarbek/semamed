@@ -334,14 +334,23 @@ class PatientController extends Controller
             'grid_mode'=>'export',
             'exportType'=> 'Excel2007',
             'columns'=> array(
-                'patient_fullname',
+                array(
+                    'name'=>'patient',
+                    'value'=>'CHtml::encode($data->patient_fullname . " " . $data->patient_birthday)',
+                ),
+//                'patient_fullname',
                 'patient_phone',
-                'patient_birthday',
+//                'patient_birthday',
                 array(
                     'name'=>'patient_doctor',
-                    'value'=>'$data->patientDoctor->doctor_fullname',
+                    'value'=>'CHtml::encode($data->patientDoctor->doctor_fullname . " "
+                                . $data->patientDoctor->doctorHospital->hospital_name)',
                 ),
-                'created_at',
+                array(
+                    'name'=>'hospital_phone',
+                    'value'=>'CHtml::encode($data->patientDoctor->doctorHospital->hospital_phone)',
+                ),
+//                'created_at',
             ),
         ));
         Yii::app()->end();

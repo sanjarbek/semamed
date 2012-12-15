@@ -206,4 +206,5 @@ class MrtscanController extends Controller
         Yii::app()->end();
 
     }
+
 }

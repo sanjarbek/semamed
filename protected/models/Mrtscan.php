@@ -113,4 +113,5 @@ class Mrtscan extends MasterModel
 			'criteria'=>$criteria,
 		));
 	}
+
 }

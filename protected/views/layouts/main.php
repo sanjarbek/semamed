@@ -25,35 +25,70 @@
 </head>
 
 <body>
-	<div class="navbar">
-		<div class="navbar-inner">
-			<div class="container">
+<!--	<div class="navbar">-->
+<!--		<div class="navbar-inner">-->
+<!--			<div class="container">-->
 <!--				<a class="brand" href="--><?php //echo $this->createAbsoluteUrl('//'); ?><!--">--><?php //echo CHtml::encode(Yii::app()->name); ?><!--</a>-->
-				<?php $this->widget('zii.widgets.CMenu',array(
-					'items'=>array(
-						array('label'=>'Home', 'url'=>array('/site/index')),
-//						array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-//						array('label'=>'Contact', 'url'=>array('/site/contact')),
-                        array('label'=>'Patient', 'url'=>array('/patient/admin'), 'visible'=>!Yii::app()->user->isGuest),
-						array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
-					),
-					'htmlOptions'=>array(
-						'class'=>'nav',
-					),
-				)); ?>
-				<?php $this->widget('zii.widgets.CMenu',array(
-					'items'=>array(
-						array('label'=>Yii::app()->user->name . ' - profile', 'url'=>array('user/profile'), 'visible'=>!Yii::app()->user->isGuest),
-						array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn'))
-					),
-					'htmlOptions'=>array(
-						'class'=>'nav pull-right',
-					),
-				)); ?>
-			</div>
-		</div>
-	</div>
-	
+<!--				--><?php //$this->widget('zii.widgets.CMenu',array(
+//					'items'=>array(
+//						array('label'=>'Home', 'url'=>array('/site/index')),
+////						array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+////						array('label'=>'Contact', 'url'=>array('/site/contact')),
+//                        array('label'=>'Patient', 'url'=>array('/patient/admin'), 'visible'=>!Yii::app()->user->isGuest),
+//                        array('label'=>'Report', 'url'=>array('/registration/report'), 'visible'=>!Yii::app()->user->isGuest),
+//						array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
+//					),
+//					'htmlOptions'=>array(
+//						'class'=>'nav',
+//					),
+//				)); ?>
+<!--				--><?php //$this->widget('zii.widgets.CMenu',array(
+//					'items'=>array(
+//						array('label'=>Yii::app()->user->name . ' - profile', 'url'=>array('user/profile'), 'visible'=>!Yii::app()->user->isGuest),
+//						array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn'))
+//					),
+//					'htmlOptions'=>array(
+//						'class'=>'nav pull-right',
+//					),
+//				)); ?>
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
+
+    <?php
+    $this->widget('bootstrap.widgets.TbNavbar', array(
+        'brand' => 'Semamed',
+        'fixed' => 'false',
+//        'htmlOptions' => array('style' => 'position:absolute'),
+        'items' => array(
+            array(
+                'class' => 'bootstrap.widgets.TbMenu',
+                'items' => array(
+                    array('label'=>'Home', 'url'=>array('/site/index'), /*'active'=>true*/),
+//                    array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+//                    array('label'=>'Contact', 'url'=>array('/site/contact')),
+                    array('label'=>'Patient', 'url'=>array('/patient/admin'), 'visible'=>!Yii::app()->user->isGuest),
+                    array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
+                    array('label'=>'Report', 'items'=> array(
+                        array('label'=>'Registration', 'url'=>array('/registration/report'), 'visible'=>!Yii::app()->user->isGuest),
+                        array('label'=>'Doctor Report', 'url'=>array('/registration/doctorreport'), 'visible'=>!Yii::app()->user->isGuest),
+                    )),
+                )
+            ),
+            array(
+                'class' => 'bootstrap.widgets.TbMenu',
+                'items'=>array(
+					array('label'=>Yii::app()->user->name . ' - profile', 'url'=>array('//user/profile'), 'visible'=>!Yii::app()->user->isGuest),
+                    array('label'=>'User rights', 'url'=>array('/rights'), 'visible'=>Yii::app()->user->checkAccess('admin')),
+					array('label'=>'Logout', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn')),
+				),
+                'htmlOptions'=>array(
+                    'class'=>'nav pull-right',
+                ),
+            ),
+        )
+    ));
+	?>
 	<div class="container">
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('BBreadcrumbs', array(
@@ -64,12 +99,12 @@
 	</div>
 	
 	<?php echo $content; ?>
-	
+
 	<footer class="footer">
 		<div class="container">
 			<p>Copyright &copy; <?php echo date('Y'); ?> by Sanzharbek Amatov.<br/>
-<!--			All Rights Reserved.<br/>-->
-<!--			--><?php //echo Yii::powered(); ?><!--</p>-->
+			All Rights Reserved.<br/>
+			<?php echo Yii::powered(); ?></p>
 		</div>
 	</footer>
 	

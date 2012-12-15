@@ -55,11 +55,11 @@ $cs->registerScript(
 
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+<!--	--><?php //echo $form->errorSummary($model); ?>
 
 <!--	--><?php //echo $form->dropDownListRow($model,'reg_patient',
 //            CHtml::listData(Patient::model()->findAll(),'patient_id','patient_fullname')); ?>
-    <?php echo $form->textFieldRow($model, 'reg_patient',
+    <?php echo $form->hiddenField($model, 'reg_patient',
                     array('readonly'=>true, 'class'=>'span2','maxlength'=>10)); ?>
 
     <?php echo $form->dropDownListRow($model,'reg_mrtscan',

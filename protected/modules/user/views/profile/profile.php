@@ -6,12 +6,30 @@ $this->menu=array(
 	((UserModule::isAdmin())
 		?array('label'=>UserModule::t('Manage Users'), 'url'=>array('/user/admin'))
 		:array()),
-    array('label'=>UserModule::t('List User'), 'url'=>array('/user')),
+    ((UserModule::isAdmin())
+        ?array('label'=>UserModule::t('List User'), 'url'=>array('/user'))
+        :array()),
     array('label'=>UserModule::t('Edit'), 'url'=>array('edit')),
     array('label'=>UserModule::t('Change password'), 'url'=>array('changepassword')),
     array('label'=>UserModule::t('Logout'), 'url'=>array('/user/logout')),
 );
-?><h1><?php echo UserModule::t('Your profile'); ?></h1>
+?>
+
+<?php $box = $this->beginWidget('bootstrap.widgets.TbBox', array(
+    'title' => Yii::t('title', 'Your profile'),
+    'headerIcon' => 'icon-user',
+    'headerActions'=>array(
+        ((UserModule::isAdmin())
+            ?array('label'=>UserModule::t('Manage Users'), 'url'=>array('/user/admin'))
+            :array()),
+//        ((UserModule::isAdmin())
+//            ?array('label'=>UserModule::t('List User'), 'url'=>array('/user'))
+//            :array()),
+        array('label'=>UserModule::t('Edit'), 'url'=>array('edit')),
+        array('label'=>UserModule::t('Change password'), 'url'=>array('changepassword')),
+        array('label'=>UserModule::t('Logout'), 'url'=>array('/user/logout')),
+    ),
+));?>
 
 <?php if(Yii::app()->user->hasFlash('profileMessage')): ?>
 <div class="success">
@@ -27,7 +45,7 @@ $this->menu=array(
 		$profileFields=ProfileField::model()->forOwner()->sort()->findAll();
 		if ($profileFields) {
 			foreach($profileFields as $field) {
-				//echo "<pre>"; print_r($profile); die();
+//				echo "<pre>"; print_r($profile); die();
 			?>
 	<tr>
 		<th class="label"><?php echo CHtml::encode(UserModule::t($field->title)); ?></th>
@@ -54,3 +72,5 @@ $this->menu=array(
     	<td><?php echo CHtml::encode(User::itemAlias("UserStatus",$model->status)); ?></td>
 	</tr>
 </table>
+
+<?php $this->endWidget() ?>

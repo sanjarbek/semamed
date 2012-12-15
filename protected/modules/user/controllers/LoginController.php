@@ -19,7 +19,12 @@ class LoginController extends Controller
 				if($model->validate()) {
 					$this->lastViset();
 					if (Yii::app()->user->returnUrl=='/index.php')
-						$this->redirect(Yii::app()->controller->module->returnUrl);
+                    {
+                        if (Yii::app()->user->checkAccess('Registrator'))
+                            $this->redirect($this->createUrl('/patient/admin'));
+                        $this->redirect(Yii::app()->controller->module->returnUrl);
+
+                    }
 					else
 						$this->redirect(Yii::app()->user->returnUrl);
 				}

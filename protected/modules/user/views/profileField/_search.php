@@ -5,6 +5,7 @@
     'method'=>'get',
 )); ?>
 
+<!--    --><?php //echo $form->textFieldRow($model, 'id'); ?>
     <div class="row">
         <?php echo $form->label($model,'id'); ?>
         <?php echo $form->textField($model,'id'); ?>

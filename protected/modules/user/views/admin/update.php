@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	(UserModule::t('Users'))=>array('admin'),
+	(UserModule::t('Users'))=>array('//user/admin'),
 	$model->username=>array('view','id'=>$model->id),
 	(UserModule::t('Update')),
 );
@@ -13,8 +13,15 @@ $this->menu=array(
 );
 ?>
 
-<h1><?php echo  UserModule::t('Update User')." ".$model->id; ?></h1>
+<!--<h1>--><?php //echo  UserModule::t('Update User')." ".$model->id; ?><!--</h1>-->
+
+<?php $box = $this->beginWidget('bootstrap.widgets.TbBox', array(
+    'title' => Yii::t('title', 'Manage users'),
+    'headerIcon' => 'icon-user',
+));?>
 
 <?php
 	echo $this->renderPartial('_form', array('model'=>$model,'profile'=>$profile));
 ?>
+
+<?php $this->endWidget() ?>

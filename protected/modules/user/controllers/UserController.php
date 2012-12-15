@@ -7,7 +7,10 @@ class UserController extends Controller
 	 */
 	private $_model;
 
-	/**
+    public $defaultAction = 'admin';
+
+
+    /**
 	 * @return array action filters
 	 */
 	public function filters()
@@ -54,7 +57,7 @@ class UserController extends Controller
 			'criteria'=>array(
 		        'condition'=>'status>'.User::STATUS_BANNED,
 		    ),
-				
+
 			'pagination'=>array(
 				'pageSize'=>Yii::app()->controller->module->user_page_size,
 			),

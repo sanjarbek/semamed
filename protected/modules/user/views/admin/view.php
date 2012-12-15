@@ -14,8 +14,13 @@ $this->menu=array(
     array('label'=>UserModule::t('List User'), 'url'=>array('/user')),
 );
 ?>
-<h1><?php echo UserModule::t('View User').' "'.$model->username.'"'; ?></h1>
 
+<!--<h1>--><?php //echo UserModule::t('View User').' "'.$model->username.'"'; ?><!--</h1>-->
+
+<?php $box = $this->beginWidget('bootstrap.widgets.TbBox', array(
+    'title' => Yii::t('title', 'View details of user '.$model->username),
+    'headerIcon' => 'icon-user',
+));?>
 <?php
  
 	$attributes = array(
@@ -58,3 +63,5 @@ $this->menu=array(
 	
 
 ?>
+
+<?php $this->endWidget(); ?>

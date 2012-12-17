@@ -8,6 +8,7 @@
  * @property string $hospital_name
  * @property string $hospital_phone
  * @property integer $hospital_enable
+ * @property integer $hospital_manager_id
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_user
@@ -45,12 +46,12 @@ class Hospital extends MasterModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('hospital_name, hospital_phone, hospital_enable, created_at, updated_at, created_user, updated_user', 'required'),
-			array('hospital_enable', 'numerical', 'integerOnly'=>true),
+			array('hospital_name, hospital_phone, hospital_enable, hospital_manager_id, created_at, updated_at, created_user, updated_user', 'required'),
+			array('hospital_enable, hospital_manager_id', 'numerical', 'integerOnly'=>true),
 			array('hospital_name, hospital_phone', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('hospital_id, hospital_name, hospital_phone, hospital_enable, created_at, updated_at, created_user, updated_user', 'safe', 'on'=>'search'),
+			array('hospital_id, hospital_name, hospital_manager_id, hospital_phone, hospital_enable, created_at, updated_at, created_user, updated_user', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,7 +63,8 @@ class Hospital extends MasterModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'doctors' => array(self::HAS_MANY, 'Doctors', 'doctor_hospital'),
+			'doctors' => array(self::HAS_MANY, 'Doctor', 'doctor_hospital'),
+            'manager' => array(self::BELONGS_TO, 'User', 'hospital_manager_id'),
 		);
 	}
 
@@ -76,6 +78,7 @@ class Hospital extends MasterModel
 			'hospital_name' => 'Hospital Name',
 			'hospital_phone' => 'Hospital Phone',
 			'hospital_enable' => 'Hospital Enable',
+            'hospital_manager_id' => 'Hospital Manager',
 			'created_at' => 'Created At',
 			'updated_at' => 'Updated At',
 			'created_user' => 'Created User',
@@ -98,6 +101,7 @@ class Hospital extends MasterModel
 		$criteria->compare('hospital_name',$this->hospital_name,true);
 		$criteria->compare('hospital_phone',$this->hospital_phone,true);
 		$criteria->compare('hospital_enable',$this->hospital_enable);
+        $criteria->compare('hospital_manager_id',$this->hospital_manager_id);
 		$criteria->compare('created_at',$this->created_at,true);
 		$criteria->compare('updated_at',$this->updated_at,true);
 		$criteria->compare('created_user',$this->created_user);

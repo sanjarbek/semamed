@@ -144,7 +144,7 @@ $new_registration_link = CHtml::Ajax(
             ),
         ),
     ),
-    'htmlOptions' => array('class'=>'bootstrap-widget-table')
+//    'htmlOptions' => array('class'=>'bootstrap-widget-table')
 ));?>
 
 <?php $this->_getGridViewRegistrationGrid(); ?>

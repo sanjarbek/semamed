@@ -80,7 +80,7 @@ class Mrtscan extends MasterModel
 			'mrtscan_name' => Yii::t('column', 'MRT scan name'),
 			'mrtscan_description' => Yii::t('column', 'MRT scan description'),
 			'mrtscan_price' => Yii::t('column', 'MRT scan price'),
-			'mrtscan_enable' => Yii::t('column', 'MRT scan enable'),
+			'mrtscan_enable' => Yii::t('column', 'Enable'),
 			'created_at' => Yii::t('column', 'Created At'),
 			'updated_at' => Yii::t('column', 'Updated At'),
 			'created_user' => Yii::t('column', 'Created User'),

@@ -6,7 +6,9 @@ class MrtscanController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
+
+    public $defaultAction='admin';
 
 	/**
 	 * @return array action filters
@@ -16,6 +18,9 @@ class MrtscanController extends Controller
         return CMap::mergeArray(parent::filters(),array(
 //			'accessControl', // perform access control for CRUD operations
             'postOnly + delete', // we only allow deletion via POST request
+            array(
+                'application.filters.GridViewHandler' //path to GridViewHandler.php class
+            )
         ));
 	}
 
@@ -148,6 +153,21 @@ class MrtscanController extends Controller
 			'model'=>$model,
 		));
 	}
+
+    /**
+     * Manages all models.
+     */
+    public function _getGridViewMrtscanGrid()
+    {
+        $model=new Mrtscan('search');
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['Mrtscan']))
+            $model->attributes=$_GET['Mrtscan'];
+
+        $this->renderPartial('_gridview',array(
+            'model'=>$model,
+        ));
+    }
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

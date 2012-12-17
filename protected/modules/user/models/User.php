@@ -80,6 +80,7 @@ class User extends CActiveRecord
         $relations = Yii::app()->getModule('user')->relations;
         if (!isset($relations['profile']))
             $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
+        $relations['hospitals'] = array(self::HAS_MANY, 'Hospital', 'hospital_manager_id');
         return $relations;
 	}
 
@@ -122,6 +123,9 @@ class User extends CActiveRecord
             ),
             'notsafe'=>array(
             	'select' => 'id, username, password, email, activkey, create_at, lastvisit_at, superuser, status',
+            ),
+            'managers'=>array(
+                'condition'=> "id IN (SELECT userid FROM AuthAssignment Where itemname='Manager')",
             ),
         );
     }
@@ -195,5 +199,32 @@ class User extends CActiveRecord
 
     public function setLastvisit($value) {
         $this->lastvisit_at=date('Y-m-d H:i:s',$value);
+    }
+
+    public function getFullname()
+    {
+        return $this->profile->firstname . ' ' . $this->profile->lastname;
+    }
+
+    public function getManagersList()
+    {
+        $listData = array();
+        $managers = User::model()->active()->managers()->findAll();
+        foreach($managers as $key=>$manager)
+        {
+            $listData[] = array('id'=>$manager->id, 'fullname'=>$manager->getFullname());
+        }
+        return $listData;
+    }
+
+    public function getManagersListForFilter()
+    {
+        $listData = array();
+        $managers = User::model()->active()->managers()->findAll();
+        foreach($managers as $key=>$manager)
+        {
+            $listData[$manager->id] = $manager->getFullname();
+        }
+        return $listData;
     }
 }

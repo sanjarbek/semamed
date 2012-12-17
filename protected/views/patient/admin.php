@@ -180,7 +180,7 @@ $create_new_patient_ajax = CHtml::Ajax(
     'headerIcon' => 'icon-th-list',
 // when displaying a table, if we include bootstra-widget-table class
 // the table will be 0-padding to the box
-    'headerButtonActionsLabel' => 'My actions',
+//    'headerButtonActionsLabel' => 'My actions',
     'headerActions' => array(
         array(
             'label'=>'Add new patient',
@@ -191,7 +191,7 @@ $create_new_patient_ajax = CHtml::Ajax(
                 ),
         ),
     ),
-    'htmlOptions' => array('class'=>'bootstrap-widget-table')
+//    'htmlOptions' => array('class'=>'bootstrap-widget-table')
 ));?>
 
 <?php //$this->widget('bootstrap.widgets.TbButton', array(

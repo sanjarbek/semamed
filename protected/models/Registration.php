@@ -78,17 +78,18 @@ class Registration extends MasterModel
 	public function attributeLabels()
 	{
 		return array(
-			'reg_id' => 'Reg',
-			'reg_patient' => 'Reg Patient',
-			'reg_mrtscan' => 'Reg Mrtscan',
-			'reg_discont' => 'Reg Discont',
-			'reg_price' => 'Reg Price',
-			'reg_report_status' => 'Reg Report Status',
-			'reg_report_text' => 'Reg Report Text',
-			'created_at' => 'Created At',
-			'updated_at' => 'Updated At',
-			'created_user' => 'Created User',
-			'updated_user' => 'Updated User',
+			'reg_id' => Yii::t('column', 'Registration ID'),
+			'reg_patient' => Yii::t('column', 'Patient'),
+			'reg_mrtscan' => Yii::t('column', 'MRT Scan'),
+			'reg_discont' => Yii::t('column', 'Discont'),
+			'reg_price' => Yii::t('column', 'MRT Price'),
+            'reg_total_price' => Yii::t('column', 'Total Price'),
+			'reg_report_status' => Yii::t('column', 'Report Status'),
+			'reg_report_text' => Yii::t('column', 'Report Text'),
+			'created_at' => Yii::t('column', 'Created At'),
+			'updated_at' => Yii::t('column', 'Updated At'),
+			'created_user' => Yii::t('column', 'Created User'),
+			'updated_user' => Yii::t('column', 'Updated User'),
 		);
 	}
 

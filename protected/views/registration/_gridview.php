@@ -14,7 +14,7 @@
         ),
         array(
             'name'=>'reg_id',
-            'value'=>'CHtml::encode($data->reg_id)',
+//            'value'=>'CHtml::encode($data->reg_id)',
             'sortable'=>false,
             'filter'=>false,
         ),
@@ -29,24 +29,28 @@
             'value'=>'CHtml::encode($data->regMrtscan->mrtscan_name)',
             'sortable'=>false,
             'filter'=>false,
+            'footer'=>'<b><i>'.Yii::t('text','Total').'</i></b>'
         ),
         array(
             'name'=>'reg_price',
-            'value'=>'CHtml::encode($data->reg_price)',
+//            'value'=>'CHtml::encode($data->reg_price)',
             'sortable'=>false,
             'filter'=>false,
+            'class'=>'bootstrap.widgets.TbTotalSumColumn',
         ),
         array(
             'name'=>'reg_discont',
-            'value'=>'CHtml::encode($data->reg_discont)',
+//            'value'=>'CHtml::encode($data->reg_discont)',
             'sortable'=>false,
             'filter'=>false,
+            'class'=>'bootstrap.widgets.TbTotalSumColumn',
         ),
         array(
             'name'=>'reg_total_price',
-            'value'=>'CHtml::encode($data->reg_total_price)',
+//            'value'=>'CHtml::encode($data->reg_total_price)',
             'sortable'=>false,
             'filter'=>false,
+            'class'=>'bootstrap.widgets.TbTotalSumColumn',
         ),
 //		'reg_report_status',
 		/*
@@ -65,7 +69,7 @@
     'extendedSummary' => array(
 //        'title' => Yii::t('text','Total service price'),
         'columns' => array(
-            'reg_total_price' => array('label'=>Yii::t('text','Total price'),
+            'reg_total_price' => array('label'=>Yii::t('text','<b>Result price</b>'),
                 'class'=>'TbSumOperation')
         )
     ),

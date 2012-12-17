@@ -133,7 +133,7 @@ $new_registration_link = CHtml::Ajax(
     'headerIcon' => 'icon-th-list',
 // when displaying a table, if we include bootstrap-widget-table class
 // the table will be 0-padding to the box
-    'headerButtonActionsLabel' => 'My actions',
+    'headerButtonActionsLabel' => Yii::t('title', 'Actions'),
     'headerActions' => array(
         array(
             'label'=>'Registration',

@@ -114,4 +114,13 @@ class Mrtscan extends MasterModel
 		));
 	}
 
+    /**
+     * @return string the status text display for the current issue
+     */
+    public function getEnableStatus()
+    {
+        $statusOptions = $this->statusOptions;
+        return isset($statusOptions[$this->mrtscan_enable]) ? $statusOptions[$this->mrtscan_enable] : "unknown status ({$this->mrtscan_enable})";
+    }
+
 }

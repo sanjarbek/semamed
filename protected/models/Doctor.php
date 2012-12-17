@@ -122,10 +122,10 @@ class Doctor extends MasterModel
     /**
      * @return string the status text display for the current issue
      */
-    public function getStatusText()
+    public function getEnableStatus()
     {
         $statusOptions = $this->statusOptions;
-        return isset($statusOptions[$this->doctor_enable]) ? $statusOptions[$this->doctor_enable] : "unknown status ({$this->hospital_enable})";
+        return isset($statusOptions[$this->doctor_enable]) ? $statusOptions[$this->doctor_enable] : "unknown status ({$this->doctor_enable})";
     }
 
     public function doctorsList()

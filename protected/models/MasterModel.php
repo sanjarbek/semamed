@@ -34,9 +34,10 @@ abstract class MasterModel extends CActiveRecord
     protected  function getStatusOptions()
     {
         return array(
-            self::STATUS_ENABLE=>Yii::t('status', 'true'),
-            self::STATUS_DISABLE=>Yii::t('status', 'false'),
+            self::STATUS_ENABLE=>Yii::t('status', 'Enable'),
+            self::STATUS_DISABLE=>Yii::t('status', 'Disable'),
         );
     }
+
 
 }

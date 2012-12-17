@@ -11,9 +11,9 @@
 
 	<?php echo $form->textFieldRow($model,'mrtscan_description',array('class'=>'span5','maxlength'=>255)); ?>
 
-	<?php echo $form->textFieldRow($model,'mrtscan_price',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'mrtscan_price',array('class'=>'span2','maxlength'=>10)); ?>
 
-	<?php echo $form->textFieldRow($model,'mrtscan_enable',array('class'=>'span5')); ?>
+	<?php echo $form->checkBoxRow($model,'mrtscan_enable'); ?>
 
 <!--	--><?php //echo $form->textFieldRow($model,'created_at',array('class'=>'span5')); ?>
 <!---->

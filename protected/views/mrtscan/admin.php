@@ -1,29 +1,29 @@
 <?php
 $this->breadcrumbs=array(
-	'Mrtscans'=>array('index'),
+	'Mrtscans'=>array('admin'),
 	'Manage',
 );
 
-$this->menu=array(
-	array('label'=>'List Mrtscan','url'=>array('index')),
-	array('label'=>'Create Mrtscan','url'=>array('create')),
-);
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('mrtscan-grid', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
-?>
-
-<h1>Manage Mrtscans</h1>
+//$this->menu=array(
+//	array('label'=>'List Mrtscan','url'=>array('index')),
+//	array('label'=>'Create Mrtscan','url'=>array('create')),
+//);
+//
+//Yii::app()->clientScript->registerScript('search', "
+//$('.search-button').click(function(){
+//	$('.search-form').toggle();
+//	return false;
+//});
+//$('.search-form form').submit(function(){
+//	$.fn.yiiGridView.update('mrtscan-grid', {
+//		data: $(this).serialize()
+//	});
+//	return false;
+//});
+//");
+//?>
+<!---->
+<!--<h1>Manage Mrtscans</h1>-->
 
 <!--<p>-->
 <!--You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>-->
@@ -37,33 +37,15 @@ $('.search-form form').submit(function(){
 //)); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('bootstrap.widgets.TbExtendedGridView',array(
-	'id'=>'mrtscan-grid',
-    'type'=>'striped bordered',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
-        //this for the auto page number of cgridview
-        array(
-            'name'=>'No',
-            'type'=>'raw',
-            'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize + $row+1',
-            'filter'=>''//without filtering
-        ),
-		'mrtscan_id',
-		'mrtscan_name',
-		'mrtscan_description',
-		'mrtscan_price',
-		'mrtscan_enable',
-		'created_at',
-		/*
-		'updated_at',
-		'created_user',
-		'updated_user',
-		*/
-		array(
-			'class'=>'bootstrap.widgets.TbButtonColumn',
-		),
-	),
-
+<?php $this->beginWidget('bootstrap.widgets.TbBox', array(
+    'title'=>Yii::t('title', 'Manage MRT scans'),
+    'headerIcon'=>'icon-th-list',
+    'headerButtonActionsLabel' => Yii::t('title', 'Actions'),
+    'headerActions'=>array(
+        array('label'=>'Create MRT scan','url'=>array('create'), 'icon'=>'icon-plus'),
+    ),
 )); ?>
+
+<?php $this->_getGridViewMrtscanGrid(); ?>
+
+<?php $this->endWidget(); ?>

@@ -6,7 +6,9 @@ class DoctorController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
+
+    public $defaultAction='admin';
 
 	/**
 	 * @return array action filters
@@ -16,6 +18,9 @@ class DoctorController extends Controller
         return CMap::mergeArray(parent::filters(),array(
 //			'accessControl', // perform access control for CRUD operations
             'postOnly + delete', // we only allow deletion via POST request
+            array( // handle gridview ajax update
+                'application.filters.GridViewHandler', //path to GridViewHandler.php class
+            ),
         ));
 	}
 
@@ -126,13 +131,13 @@ class DoctorController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Doctor');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
+//	public function actionIndex()
+//	{
+//		$dataProvider=new CActiveDataProvider('Doctor');
+//		$this->render('index',array(
+//			'dataProvider'=>$dataProvider,
+//		));
+//	}
 
 	/**
 	 * Manages all models.
@@ -148,6 +153,21 @@ class DoctorController extends Controller
 			'model'=>$model,
 		));
 	}
+
+    /**
+     * Manages all models though AJAX.
+     */
+    public function _getGridViewDoctorGrid()
+    {
+        $model=new Doctor('search');
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['Doctor']))
+            $model->attributes=$_GET['Doctor'];
+
+        $this->renderPartial('_gridview',array(
+            'model'=>$model,
+        ));
+    }
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

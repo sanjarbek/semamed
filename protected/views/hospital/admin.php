@@ -1,29 +1,29 @@
 <?php
 $this->breadcrumbs=array(
-	'Hospitals'=>array('index'),
-	'Manage',
+    Yii::t('title','Hospitals')=>array('admin'),
+    Yii::t('title','Manage'),
 );
 
-$this->menu=array(
-	array('label'=>'List Hospital','url'=>array('index')),
-	array('label'=>'Create Hospital','url'=>array('create')),
-);
+//$this->menu=array(
+//	array('label'=>'List Hospital','url'=>array('index')),
+//	array('label'=>'Create Hospital','url'=>array('create')),
+//);
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('hospital-grid', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
-?>
-
-<h1>Manage Hospitals</h1>
+//Yii::app()->clientScript->registerScript('search', "
+//$('.search-button').click(function(){
+//	$('.search-form').toggle();
+//	return false;
+//});
+//$('.search-form form').submit(function(){
+//	$.fn.yiiGridView.update('hospital-grid', {
+//		data: $(this).serialize()
+//	});
+//	return false;
+//});
+//");
+//?>
+<!---->
+<!--<h1>Manage Hospitals</h1>-->
 
 <!--<p>-->
 <!--You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>-->
@@ -37,33 +37,16 @@ $('.search-form form').submit(function(){
 //)); ?>
 <!--</div><!-- search-form -->
 
-
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
-	'id'=>'hospital-grid',
-	'dataProvider'=>$model->search(),
-    'type'=>'condensed, striped, bordered',
-	'filter'=>$model,
-	'columns'=>array(
-		'hospital_id',
-		'hospital_name',
-		'hospital_phone',
-        array(
-            'name'=>'hospital_enable',
-            'value'=>'CHtml::encode(($data->getStatusText()))',
-            'filter'=>array(
-                '1'=>'true',
-                '0'=>'false',
-            ),
-        ),
-
-		'created_at',
-		'updated_at',
-		/*
-		'created_user',
-		'updated_user',
-		*/
-		array(
-			'class'=>'bootstrap.widgets.TbButtonColumn',
-		),
-	),
+<?php $this->beginWidget('bootstrap.widgets.TbBox', array(
+    'title'=>Yii::t('title', 'Manage Hospital'),
+    'headerIcon'=>'icon-th-list',
+    'headerButtonActionsLabel'=>Yii::t('title', 'Actions'),
+    'headerActions'=>array(
+        array('label'=>Yii::t('title', 'Create Hospital'),'url'=>array('create'), 'icon'=>'icon-plus'),
+    ),
+//    'htmlOptions' => array('class'=>'bootstrap-widget-table'),
 )); ?>
+
+<?php $this->_getGridViewHospitalGrid(); ?>
+
+<?php $this->endWidget(); ?>

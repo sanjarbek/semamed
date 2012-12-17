@@ -83,15 +83,15 @@ class Patient extends MasterModel
 	public function attributeLabels()
 	{
 		return array(
-			'patient_id' => 'Patient',
-			'patient_fullname' => 'Patient Fullname',
-			'patient_phone' => 'Patient Phone',
-			'patient_birthday' => 'Patient Birthday',
-			'patient_doctor' => 'Patient Doctor',
-			'created_at' => 'Created At',
-			'updated_at' => 'Updated At',
-			'created_user' => 'Created User',
-			'updated_user' => 'Updated User',
+			'patient_id' => Yii::t('column', 'Patient'),
+			'patient_fullname' => Yii::t('column', 'Patient Fullname'),
+			'patient_phone' => Yii::t('column', 'Patient Phone'),
+			'patient_birthday' => Yii::t('column', 'Patient Birthday'),
+			'patient_doctor' => Yii::t('column', 'Patient Doctor'),
+			'created_at' => Yii::t('column', 'Created At'),
+			'updated_at' => Yii::t('column', 'Updated At'),
+			'created_user' => Yii::t('column', 'Created User'),
+			'updated_user' => Yii::t('column', 'Updated User'),
 		);
 	}
 

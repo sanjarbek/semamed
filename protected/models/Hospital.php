@@ -74,15 +74,15 @@ class Hospital extends MasterModel
 	public function attributeLabels()
 	{
 		return array(
-			'hospital_id' => 'Hospital',
-			'hospital_name' => 'Hospital Name',
-			'hospital_phone' => 'Hospital Phone',
-			'hospital_enable' => 'Hospital Enable',
-            'hospital_manager_id' => 'Hospital Manager',
-			'created_at' => 'Created At',
-			'updated_at' => 'Updated At',
-			'created_user' => 'Created User',
-			'updated_user' => 'Updated User',
+			'hospital_id' => Yii::t('column', 'Hospital'),
+			'hospital_name' => Yii::t('column', 'Hospital name'),
+			'hospital_phone' => Yii::t('column', 'Hospital phone'),
+			'hospital_enable' => Yii::t('column', 'Hospital enable'),
+            'hospital_manager_id' => Yii::t('column', 'Hospital manager'),
+			'created_at' => Yii::t('column', 'Created At'),
+			'updated_at' => Yii::t('column', 'Updated At'),
+			'created_user' => Yii::t('column', 'Created User'),
+			'updated_user' => Yii::t('column', 'Updated User'),
 		);
 	}
 

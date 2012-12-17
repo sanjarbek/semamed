@@ -76,15 +76,15 @@ class Mrtscan extends MasterModel
 	public function attributeLabels()
 	{
 		return array(
-			'mrtscan_id' => 'Mrtscan',
-			'mrtscan_name' => 'Mrtscan Name',
-			'mrtscan_description' => 'Mrtscan Description',
-			'mrtscan_price' => 'Mrtscan Price',
-			'mrtscan_enable' => 'Mrtscan Enable',
-			'created_at' => 'Created At',
-			'updated_at' => 'Updated At',
-			'created_user' => 'Created User',
-			'updated_user' => 'Updated User',
+			'mrtscan_id' => Yii::t('column', 'MRT scan'),
+			'mrtscan_name' => Yii::t('column', 'MRT scan name'),
+			'mrtscan_description' => Yii::t('column', 'MRT scan description'),
+			'mrtscan_price' => Yii::t('column', 'MRT scan price'),
+			'mrtscan_enable' => Yii::t('column', 'MRT scan enable'),
+			'created_at' => Yii::t('column', 'Created At'),
+			'updated_at' => Yii::t('column', 'Updated At'),
+			'created_user' => Yii::t('column', 'Created User'),
+			'updated_user' => Yii::t('column', 'Updated User'),
 		);
 	}
 

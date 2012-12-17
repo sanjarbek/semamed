@@ -81,15 +81,15 @@ class Doctor extends MasterModel
 	public function attributeLabels()
 	{
 		return array(
-			'doctor_id' => 'Doctor',
-			'doctor_fullname' => 'Doctor Fullname',
-			'doctor_phone' => 'Doctor Phone',
-			'doctor_hospital' => 'Doctor Hospital',
-			'doctor_enable' => 'Doctor Enable',
-			'created_at' => 'Created At',
-			'updated_at' => 'Updated At',
-			'created_user' => 'Created User',
-			'updated_user' => 'Updated User',
+			'doctor_id' => Yii::t('column', 'Doctor'),
+			'doctor_fullname' => Yii::t('column', 'Doctor fullname'),
+			'doctor_phone' => Yii::t('column', 'Doctor phone'),
+			'doctor_hospital' => Yii::t('column', 'Doctor\' hospital'),
+			'doctor_enable' => Yii::t('column', 'Doctor enable'),
+			'created_at' => Yii::t('column', 'Created At'),
+			'updated_at' => Yii::t('column', 'Updated At'),
+			'created_user' => Yii::t('column', 'Created User'),
+			'updated_user' => Yii::t('column', 'Updated User'),
 		);
 	}
 

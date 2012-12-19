@@ -40,7 +40,7 @@ $this->breadcrumbs=array(
         ),
         array(
             'name'=>'doctor_enable',
-            'value'=>CHtml::encode($model->getStatusText()),
+            'value'=>CHtml::encode($model->getEnableStatus()),
         ),
 		'created_at',
 		'updated_at',

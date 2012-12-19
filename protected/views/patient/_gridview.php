@@ -97,4 +97,21 @@
 
         ),
     ),
+
+//    'chartOptions' => array(
+//        'data' => array(
+//            'series' => array(
+//                array(
+//                    'name' => 'Patient doctor',
+//                    'attribute' => 'patient_doctor'
+//                )
+//            )
+//        ),
+//        'config' => array(
+//            'chart'=>array(
+//                'title'=>'Hello World!!!',
+//                'width'=>800
+//            )
+//        )
+//    ),
 )); ?>

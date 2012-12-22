@@ -88,16 +88,22 @@ $new_registration_link = CHtml::Ajax(
 <?php $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title' => 'Manage Patients',
     'headerIcon' => 'icon-th-list',
-// when displaying a table, if we include bootstra-widget-table class
+// when displaying a table, if we include bootstrap-widget-table class
 // the table will be 0-padding to the box
-    'headerButtonActionsLabel' => 'My actions',
-    'headerActions' => array(
+    'headerButtons' => array(
         array(
-            'label'=>'Registration',
-            'url'=>'#',
-            'icon'=>'icon-music',
-            'linkOptions'=>array(
-                'onclick'=>$new_registration_link,
+            'class' => 'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                array(
+                    'buttonType'=>'ajaxLink',
+                    'label'=>'Registration',
+                    'url'=>$new_registration_link,
+                    'icon'=>'icon-music',
+//                    'linkOptions'=>array(
+//                        'onclick'=>$new_registration_link,
+//                    ),
+                ),
             ),
         ),
     ),

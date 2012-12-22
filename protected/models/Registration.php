@@ -156,12 +156,13 @@ class Registration extends MasterModel
         $str = 'select * from doctor_report';
 
         return new CSqlDataProvider(
-            $str,
-            array(
-                'pagination'=>array(
-                    'pageSize'=>1000000,
-                )
-            )
+            $str
+//            array(
+////                'pagination'=>false,
+//                'pagination'=>array(
+//                    'pageSize'=>10,
+//                )
+//            )
         );
 
 //        $criteria = new CDbCriteria;

@@ -1,7 +1,4 @@
 <?php
-//$this->breadcrumbs=array(
-//	'Patients'
-//);
 $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
     'links'=>array('Patients'),
 ));
@@ -25,15 +22,26 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 //");
 //?>
 
-<!---->
-
-
 <?php
 //echo CHtml::ajaxLink('send a message', '/message',
 //    array('replace' => '#message-div'),
 //    array('id' => 'send-link-'.uniqid())
 //);
-//?><!--  -->
+//?>
+
+
+<?php //$this->widget('bootstrap.widgets.TbButton', array(
+//    'label'=>Yii::t('text','New registration'),
+//    'type'=>'primary',
+//    'htmlOptions'=>array(
+//        'data-toggle'=>'modal',
+////        'data-target'=>'#dialogRegistration',
+//        'onClick'=>"{addPatient(); $('#dialogPatient').dialog('open');}"
+//
+//    ),
+//)); ?>
+
+
 
 <!--//################################################-->
 <div id='divDialogPatient'>
@@ -44,8 +52,8 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
             'title'=>'Create patient',
             'autoOpen'=>false,
             'modal'=>true,
-            'width'=>550,
-            'height'=>470,
+            'width'=>450,
+            'height'=>465,
             'closeOnEscape'=>true,
         ),
     ));?>
@@ -153,25 +161,11 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 </div><!-- search-form -->
 
 <?php
-//$this->widget('bootstrap.widgets.TbBox', array(
-//    'title' => 'Basic Box',
-//    'headerIcon' => 'icon-home',
-//    'content' => $this->_getGridViewPatientGrid(),
-//    'headerButtonActionsLabel' => 'My actions',
-//    'headerActions' => array(
-//        array('label'=>'first action', 'url'=>'#', 'icon'=>'icon-music'),
-//        array('label'=>'second action', 'url'=>'#', 'icon'=>'icon-headphones'),
-//        '---',
-//        array('label'=>'third action', 'url'=>'#', 'icon'=>'icon-facetime-video')
+//$create_new_patient_via_ajax = CHtml::Ajax(
+//    array(
+//        'success' => "function(){addPatient(); $('#dialogPatient').dialog('open');}",
 //    )
-//));
-//?>
-<?php
-$create_new_patient_ajax = CHtml::Ajax(
-    array(
-        'success' => "function(){addPatient(); $('#dialogPatient').dialog('open');}",
-    )
-);
+//);
 
 ?>
 
@@ -180,15 +174,29 @@ $create_new_patient_ajax = CHtml::Ajax(
     'headerIcon' => 'icon-th-list',
 // when displaying a table, if we include bootstra-widget-table class
 // the table will be 0-padding to the box
-//    'headerButtonActionsLabel' => 'My actions',
-    'headerActions' => array(
+    'headerButtons' => array(
         array(
-            'label'=>'Add new patient',
-            'url'=>'#',
-            'icon'=>'icon-plus',
-            'linkOptions'=>array(
-                'onclick'=>$create_new_patient_ajax,
+            'class' => 'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                array(
+                    'label'=>Yii::t('title', 'Add new patient'),
+                    'url'=>'#',
+                    'type'=>'ajaxLink',
+                    'icon'=>'icon-plus',
+//                    'ajaxOptions'=>array(
+//                        'url'=>"addPatient(); $('#dialogPatient').dialog('open');",
+//                        'onClick'=>"addPatient(); $('#dialogPatient').dialog('open');",
+//                    ),
+                    'htmlOptions'=>array(
+//                        'data-toggle'=>'modal',
+//                        'data-target'=>'#dialogPatient',
+                        'onClick'=>"addPatient(); $('#dialogPatient').dialog('open');",
+                        'id' => 'send-link-'.uniqid(),
+                    ),
                 ),
+
+            ),
         ),
     ),
 //    'htmlOptions' => array('class'=>'bootstrap-widget-table')

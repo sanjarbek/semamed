@@ -18,11 +18,16 @@ $this->breadcrumbs=array(
 <?php $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title'=>Yii::t('title', 'Update MRT scan'),
     'headerIcon'=>'icon-pencil',
-    'headerButtonActionsLabel' => Yii::t('title', 'Actions'),
-    'headerActions'=>array(
-        array('label'=>Yii::t('menu', 'Create Mrtscan'),'url'=>array('create'), 'icon'=>'icon-plus'),
-        array('label'=>Yii::t('menu', 'View Mrtscan'),'url'=>array('view','id'=>$model->mrtscan_id), 'icon'=>'icon-eye-open'),
-        array('label'=>Yii::t('menu', 'Manage Mrtscan'),'url'=>array('admin'), 'icon'=>'icon-th-list'),
+    'headerButtons'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                array('label'=>Yii::t('menu', 'Create Mrtscan'),'url'=>array('create'), 'icon'=>'icon-plus'),
+                array('label'=>Yii::t('menu', 'View Mrtscan'),'url'=>array('view','id'=>$model->mrtscan_id), 'icon'=>'icon-eye-open'),
+                array('label'=>Yii::t('menu', 'Manage Mrtscan'),'url'=>array('admin'), 'icon'=>'icon-th-list'),
+            ),
+        ),
     ),
 )); ?>
 

@@ -18,12 +18,17 @@ $this->breadcrumbs=array(
 <?php $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title'=>Yii::t('title', 'View hospital '.$model->hospital_id),
     'headerIcon'=>'icon-eye-open',
-    'headerButtonActionsLabel'=>Yii::t('title', 'Actions'),
-    'headerActions'=>array(
-        array('label'=>Yii::t('title','Create Hospital'),'url'=>array('create'), 'icon'=>'icon-plus'),
-        array('label'=>Yii::t('title','Update Hospital'),'url'=>array('update','id'=>$model->hospital_id), 'icon'=>'icon-pencil'),
-        array('label'=>Yii::t('title','Delete Hospital'),'url'=>'#', 'icon'=>'icon-remove','linkOptions'=>array('submit'=>array('delete','id'=>$model->hospital_id),'confirm'=>'Are you sure you want to delete this item?')),
-        array('label'=>Yii::t('title','Manage Hospital'),'url'=>array('admin'), 'icon'=>'icon-th-list'),
+    'headerButtons'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                array('label'=>Yii::t('title','Create Hospital'),'url'=>array('create'), 'icon'=>'icon-plus'),
+                array('label'=>Yii::t('title','Update Hospital'),'url'=>array('update','id'=>$model->hospital_id), 'icon'=>'icon-pencil'),
+                array('label'=>Yii::t('title','Delete Hospital'),'url'=>'#', 'icon'=>'icon-remove','linkOptions'=>array('submit'=>array('delete','id'=>$model->hospital_id),'confirm'=>'Are you sure you want to delete this item?')),
+                array('label'=>Yii::t('title','Manage Hospital'),'url'=>array('admin'), 'icon'=>'icon-th-list'),
+            ),
+        ),
     ),
 )); ?>
 

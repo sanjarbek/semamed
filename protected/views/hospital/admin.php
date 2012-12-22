@@ -40,9 +40,14 @@ $this->breadcrumbs=array(
 <?php $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title'=>Yii::t('title', 'Manage Hospital'),
     'headerIcon'=>'icon-th-list',
-    'headerButtonActionsLabel'=>Yii::t('title', 'Actions'),
-    'headerActions'=>array(
-        array('label'=>Yii::t('title', 'Create Hospital'),'url'=>array('create'), 'icon'=>'icon-plus'),
+    'headerButtons'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                array('label'=>Yii::t('title', 'Create Hospital'),'url'=>array('create'), 'icon'=>'icon-plus'),
+            ),
+        ),
     ),
 //    'htmlOptions' => array('class'=>'bootstrap-widget-table'),
 )); ?>

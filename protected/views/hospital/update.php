@@ -18,11 +18,16 @@ $this->breadcrumbs=array(
 <?php $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title'=>Yii::t('title', 'Update hospital '. $model->hospital_id),
     'headerIcon'=>'icon-pencil',
-    'headerButtonActionsLabel'=>Yii::t('title', 'Actions'),
-    'headerActions'=>array(
-        array('label'=>Yii::t('title','Create Hospital'),'url'=>array('create'), 'icon'=>'icon-plus'),
-        array('label'=>Yii::t('title','View Hospital'),'url'=>array('view','id'=>$model->hospital_id), 'icon'=>'icon-eye-open'),
-        array('label'=>Yii::t('title','Manage Hospital'),'url'=>array('admin'), 'icon'=>'icon-th-list'),
+    'headerButtons'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                array('label'=>Yii::t('title','Create Hospital'),'url'=>array('create'), 'icon'=>'icon-plus'),
+                array('label'=>Yii::t('title','View Hospital'),'url'=>array('view','id'=>$model->hospital_id), 'icon'=>'icon-eye-open'),
+                array('label'=>Yii::t('title','Manage Hospital'),'url'=>array('admin'), 'icon'=>'icon-th-list'),
+            ),
+        ),
     ),
 )); ?>
 

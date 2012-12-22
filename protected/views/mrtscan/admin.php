@@ -40,9 +40,14 @@ $this->breadcrumbs=array(
 <?php $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title'=>Yii::t('title', 'Manage MRT scans'),
     'headerIcon'=>'icon-th-list',
-    'headerButtonActionsLabel' => Yii::t('title', 'Actions'),
-    'headerActions'=>array(
-        array('label'=>'Create MRT scan','url'=>array('create'), 'icon'=>'icon-plus'),
+    'headerButtons'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                array('label'=>'Create MRT scan','url'=>array('create'), 'icon'=>'icon-plus'),
+            ),
+        ),
     ),
 )); ?>
 

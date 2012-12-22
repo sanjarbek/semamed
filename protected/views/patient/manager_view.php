@@ -74,65 +74,39 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 
 <?php $data = $model->getPatientCountPerDoctor(); ?>
 
-<?php //print_r($data); ?>
+<?php
+    //print_r($data);
+//    $current_date = date('Y-m-d');
+//    $from_date = data('Y-m-d', strtotime("-4 months"));
+
+?>
 
 <?php $this->widget('bootstrap.widgets.TbExtendedGridView',array(
     'id'=>'ManagerViewGrid',
-//    'type'=>'condensed striped bordered',
+    'type'=>'condensed striped bordered',
     'dataProvider'=>$data,
 //    'filter'=>$model,
-//    'template'=>'{items}{pager}{summary}',
+    'template'=>'{items}{pager}{summary}',
     'columns'=>array(
-        //this for the auto page number of cgridview
-//        array(
-//            'name'=>'No',
-//            'type'=>'raw',
-//            'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize + $row+1',
-//            'filter'=>''//without filtering
-//        ),
-//        array(
-//            'name'=>'patient_id',
-//            'value'=>'CHtml::encode($data->patient_id)',
-//            'sortable'=>false,
-//            'htmlOptions'=>array(
-//                'width'=>'10px',
-//            ),
-//        ),
-//        array(
-////            'class' => 'bootstrap.widgets.TbEditableColumn',
-//            'name' => 'patient_fullname',
-//            'sortable'=>false,
-//        ),
-//        array(
-//            'name' => 'patient_phone',
-//            'sortable'=>false,
-//        ),
-//        array(
-//            'name' => 'patient_birthday',
-//            'sortable'=>false,
-//        ),
-//        array(
-//            'name' => 'patient_doctor',
-//            'sortable'=>false,
-//            'value'=>'CHtml::encode($data->patientDoctor->doctor_fullname)',
-//            'filter'=>CHtml::listData(Doctor::model()->findAll(array('order'=>'doctor_fullname')),'doctor_id','doctor_fullname'),
-//        ),
-//        'created_at',
         array(
-//            'name'=>'hospital_name',
-            'value'=>'$data["hospital_name"]'
+            'name'=>Yii::t('column', 'Hospital name'),
+            'value'=>'$data["hospital_name"]',
         ),
         array(
-//            'name'=>'doctor_fullname',
-            'value'=>'$data["doctor_fullname"]'
+            'name'=>Yii::t('column', 'Doctor name'),
+            'value'=>'$data["doctor_fullname"]',
         ),
         array(
-//            'name'=>'date',
-            'value'=>'$data["date"]'
+            'name'=>Yii::t('column', 'Date'),
+            'value'=>'$data["date"]',
         ),
+//        array(
+//            'name'=>Yii::t('column', 'Count'),
+//            'value'=>'$data["count"]',
+//        ),
         array(
-//            'name'=>'count',
-            'value'=>'$data["count"]'
+            'name'=>Yii::t('column', 'Count'),
+            'value'=>'$data["count"]',
         ),
 
 
@@ -142,23 +116,55 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
           'updated_user',
           */
     ),
-//
-//    'chartOptions' => array(
-//        'data' => array(
-//            'series' => array(
+
+    'chartOptions' => array(
+        'data' => array(
+            'series' => array(
+                array(
+                    'name' => 'Patient count',
+                    'attribute' => 'count',
+                ),
 //                array(
-//                    'name' => 'Patient doctor',
-//                    'attribute' => 'patient_doctor'
+//                    'name' => 'Date',
+//                    'attribute' => 'date',
 //                )
-//            )
-//        ),
-//        'config' => array(
-//            'chart'=>array(
-//                'title'=>'Hello World!!!',
-//                'width'=>800
-//            )
-//        )
-//    ),
+            )
+        ),
+        'config' => array(
+            'chart'=>array(
+                'width'=>800,
+                'type'=>'line',
+            ),
+            'title'=>array(
+                'text'=>'Hello World',
+
+            ),
+            'xAxis'=>array(
+                'title'=>array(
+                    'text'=>'Date'
+                ),
+//                'labels'=>array(
+//                    'rotation'=>90,
+//                ),
+//                'min'=>0,
+//                'max'=>31,
+//                'tickInterval'=>1,
+                'type'=>'datetime',
+//                'dateTimeLabelFormats'=>array(
+//                    'day' => '%d-%m'
+//                ),
+//                'tickInterval'=>24 * 3600 * 1000,
+//                'min'=>strtotime("2012-10-01 00:00:01 UTC"),
+//                'max'=>strtotime("2012-10-12 11:59:59 UTC"),
+            ),
+            'yAxis'=>array(
+                'title'=>array(
+                    'text'=>'Count'
+                ),
+                'tickInterval'=>1,
+            ),
+        )
+    ),
 
 )); ?>
 

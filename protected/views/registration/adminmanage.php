@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
     'Manage',
 );
 ?>
-<!---->
+
 <?php //$this->widget('bootstrap.widgets.TbButton', array(
 //    'label'=>Yii::t('text','New registration'),
 //    'type'=>'primary',
@@ -25,7 +25,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
         'autoOpen'=>false,
         'modal'=>true,
         'width'=>550,
-        'height'=>570,
+        'height'=>500,
         'closeOnEscape'=>true,
     ),
 ));?>
@@ -124,7 +124,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
 <?php
 $new_registration_link = CHtml::Ajax(
     array(
-        'success' => "function(){addRegistration(); $('#dialogRegistration').dialog('open');}",
+        'success' => "function(data){addRegistration(); $('#dialogRegistration').dialog('open');}",
     )
 ); ?>
 
@@ -133,14 +133,22 @@ $new_registration_link = CHtml::Ajax(
     'headerIcon' => 'icon-th-list',
 // when displaying a table, if we include bootstrap-widget-table class
 // the table will be 0-padding to the box
-    'headerButtonActionsLabel' => Yii::t('title', 'Actions'),
-    'headerActions' => array(
+    'headerButtons' => array(
         array(
-            'label'=>'Registration',
-            'url'=>'#',
-            'icon'=>'icon-plus',
-            'linkOptions'=>array(
-                'onclick'=>$new_registration_link,
+            'class' => 'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                array(
+                    'label'=>'Registration',
+//                    'buttonType'=>'ajaxButton',
+//                    'url'=>"{addRegistration(); $('#dialogRegistration').dialog('open');}",
+                    'icon'=>'icon-plus',
+                    'htmlOptions'=>array(
+                        'data-toggle'=>'modal',
+//                        'data-target'=>'#dialogRegistration',
+                        'onClick'=>"{addRegistration(); $('#dialogRegistration').dialog('open');}"
+                    ),
+                ),
             ),
         ),
     ),

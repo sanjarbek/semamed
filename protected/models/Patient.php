@@ -160,4 +160,18 @@ class Patient extends MasterModel
             ),
         ));
     }
+
+    public function getPatientCountPerDoctor()
+    {
+
+//        $str = "select hospital_name, doctor_fullname, CONCAT(CONCAT(date, ', '), count) AS count from patient_count";
+        $str = "select * from patient_count";
+        return new CSqlDataProvider(
+            $str,
+            array(
+                'pagination'=>false,
+                'keyField' => 'hospital_name',
+            )
+        );
+    }
 }

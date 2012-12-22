@@ -18,11 +18,17 @@ $this->breadcrumbs=array(
 <?php $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title'=>Yii::t('title', 'Update doctor'),
     'headerIcon'=>'icon-pencil',
-    'headerButtonActionsLabel'=>Yii::t('title', 'Actions'),
-    'headerActions'=>array(
-        array('label'=>Yii::t('title', 'Create Doctor'),'url'=>array('create'), 'icon'=>'icon-plus'),
-        array('label'=>Yii::t('title', 'View Doctor'),'url'=>array('view','id'=>$model->doctor_id), 'icon'=>'icon-eye-open'),
-        array('label'=>Yii::t('title', 'Manage Doctor'),'url'=>array('admin'), 'icon'=>'icon-th-list'),
+//    'headerButtonActionsLabel'=>Yii::t('title', 'Actions'),
+    'headerButtons'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                array('label'=>Yii::t('title', 'Create Doctor'),'url'=>array('create'), 'icon'=>'icon-plus'),
+                array('label'=>Yii::t('title', 'View Doctor'),'url'=>array('view','id'=>$model->doctor_id), 'icon'=>'icon-eye-open'),
+                array('label'=>Yii::t('title', 'Manage Doctor'),'url'=>array('admin'), 'icon'=>'icon-th-list'),
+            ),
+        ),
     ),
 )); ?>
 

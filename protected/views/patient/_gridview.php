@@ -45,6 +45,15 @@
 //            'class' => 'bootstrap.widgets.TbEditableColumn',
             'name' => 'patient_birthday',
             'sortable'=>false,
+//            'filter'=>$this->widget('bootstrap.widgets.TbDatePicker', array(
+//                'model'=>$model,
+//                'attribute'=>'patient_birthday',
+//                'options'=>array(
+//                    'format'=>'mm/dd/yyyy',
+//                ),
+//                ),
+//                true
+//            ),
 //            'editable' => array(
 //                'url' => $this->createUrl('patient/editable'),
 //                'type'=>'date',

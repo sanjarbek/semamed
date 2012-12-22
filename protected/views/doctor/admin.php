@@ -40,9 +40,15 @@ $this->breadcrumbs=array(
 <?php $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title'=>Yii::t('title', 'Manage doctors'),
     'headerIcon'=>'icon-th-list',
-    'headerButtonActionsLabel'=>Yii::t('title', 'Actions'),
-    'headerActions'=>array(
-        array('label'=>'Create Doctor','url'=>array('create'), 'icon'=>'icon-plus   '),
+//    'headerButtonActionsLabel'=>Yii::t('title', 'Actions'),
+    'headerButtons'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                array('label'=>Yii::t('title','Create Doctor'),'url'=>array('create'), 'icon'=>'icon-plus'),
+            ),
+        ),
     ),
 )) ?>
 

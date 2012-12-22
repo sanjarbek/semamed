@@ -101,7 +101,7 @@ class PatientController extends Controller
             Yii::app()->clientscript->scriptMap['jquery.min.js'] = false;
             Yii::app()->clientscript->scriptMap['bootstrap.min.js'] = false;
             Yii::app()->clientscript->scriptMap['bootstrap.bootbox.min.js'] = false;
-//            Yii::app()->clientscript->scriptMap['bootstrap.datepicker.js'] = false;
+//            Yii::app()->clientscript->scriptMap['bootstrap.datepicker.js'] = true;
 
             echo CJSON::encode(array(
                 'status'=>'failure',
@@ -157,6 +157,7 @@ class PatientController extends Controller
         {
             // To prevent js files conflict on client side.
             Yii::app()->clientscript->scriptMap['jquery.js'] = false;
+            Yii::app()->clientscript->scriptMap['jquery.min.js'] = false;
             Yii::app()->clientscript->scriptMap['bootstrap.js'] = false;
             Yii::app()->clientscript->scriptMap['bootstrap.bootbox.min.js'] = false;
 
@@ -304,6 +305,11 @@ class PatientController extends Controller
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Patient']))
 			$model->attributes=$_GET['Patient'];
+
+//        Yii::app()->clientscript->scriptMap['jquery.js'] = false;
+//        Yii::app()->clientscript->scriptMap['jquery.min.js'] = false;
+//        Yii::app()->clientscript->scriptMap['bootstrap.js'] = false;
+//        Yii::app()->clientscript->scriptMap['bootstrap.bootbox.min.js'] = false;
     
         $this->renderPartial('_gridview',array(
             'model'=>$model)
@@ -354,6 +360,20 @@ class PatientController extends Controller
             ),
         ));
         Yii::app()->end();
+    }
+
+    public function actionManagerView()
+    {
+        $model=new Patient('search');
+
+        $model->unsetAttributes();  // clear any default values
+
+        if(isset($_GET['Patient']))
+            $model->attributes=$_GET['Patient'];
+
+        $this->render('manager_view',array(
+            'model'=>$model,
+        ));
     }
 
 }

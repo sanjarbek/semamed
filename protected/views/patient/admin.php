@@ -93,56 +93,7 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
         return false;
     }
 
-    function patientRegistrations(url)
-    {
-        <?php echo CHtml::ajax(array(
-            'url'=>'js:url',
-//            'id'=>uniqid(),
-            'type'=>'post',
-//            'live'=>'false',
-            'dataType'=>'json',
-            'success'=>"function(data)
-                {
-                    if (data.status == 'successfully')
-                    {
-                        $('#dialogPatientRegistration div.divForForm').html(data.div);
-                              // Here is the trick: on submit-> once again this function!
-                        $('#dialogPatientRegistration div.divForForm form').submit(patientRegistrations);
-                        $('div[aria-labelledby=\"ui-dialog-title-dialogPatientRegistration\"] a.ui-dialog-titlebar-close.ui-corner-all[role=\"button\"]').bind('click',function()
-                            { $('#dialogPatientRegistration div.divForForm').html(''); });
-                    }
-                    else
-                    {
-                        $('#dialogPatientRegistration div.divForForm').html(data.div);
-                        setTimeout(\"$('#dialogPatientRegistration').dialog('close') \",1000);
-                    }
-
-                } ",
-        ))?>;
-        return false;
-    }
-
 </script>
-
-
-
-<!--//##################################################3-->
-<div id='divDialogPatientRegistration'>
-    <?php
-    $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
-        'id'=>'dialogPatientRegistration',
-        'options'=>array(
-            'title'=>'Patient Registrations',
-            'autoOpen'=>false,
-            'modal'=>true,
-            'width'=>750,
-            'height'=>470,
-            'closeOnEscape'=>true,
-        ),
-    ));?>
-    <div class="divForForm"></div>
-    <?php $this->endWidget();?>
-</div>
 
 <!--//#############################################################/-->
 

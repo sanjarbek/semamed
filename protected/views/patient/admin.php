@@ -78,8 +78,8 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
                     $('#dialogPatient div.divForForm').html(data.div);
                           // Here is the trick: on submit-> once again this function!
                     $('#dialogPatient div.divForForm form').submit(addPatient);
-//                    $('div[aria-labelledby=\"ui-dialog-title-dialogPatient\"] a.ui-dialog-titlebar-close.ui-corner-all[role=\"button\"]').live('click',function()
-//                        { $('#dialogPatient div.divForForm').html(''); });
+                    $('div[aria-labelledby=\"ui-dialog-title-dialogPatient\"] a.ui-dialog-titlebar-close.ui-corner-all[role=\"button\"]').live('click',function()
+                        { $('#dialogPatient div.divForForm').html(''); });
                 }
                 else
                 {

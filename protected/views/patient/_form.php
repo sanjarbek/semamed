@@ -13,7 +13,11 @@
 
 	<?php echo $form->datepickerRow($model,'patient_birthday',
         array(
+            'id'=>'patient_birthday',
             'prepend'=>'<i class="icon-calendar"></i>',
+            'options'=>array(
+                'format'=>'yyyy-mm-dd',
+            ),
         )
     ); ?>
 

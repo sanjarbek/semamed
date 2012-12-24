@@ -12,14 +12,8 @@
 	<?php echo $form->textFieldRow($model,'patient_phone',array('class'=>'span5','maxlength'=>20)); ?>
 
 	<?php echo $form->datepickerRow($model,'patient_birthday',
-//        array(
-//            'options'=>array(
-////                'format' => 'yyyy-mm-dd',
-//                'weekStart'=> 1,
-//                'viewMode'=>'years',
-//            ))
         array(
-            'prepend'=>'<i class="icon-calendar"></i>'
+            'prepend'=>'<i class="icon-calendar"></i>',
         )
     ); ?>
 

@@ -371,9 +371,10 @@ class PatientController extends Controller
         if(isset($_GET['Patient']))
             $model->attributes=$_GET['Patient'];
 
-        $this->render('manager_view',array(
-            'model'=>$model,
-        ));
+//        $this->render('manager_view',array(
+//            'model'=>$model,
+//        ));
+        $this->render('highchartwidget');
     }
 
 }

@@ -166,7 +166,14 @@ class Patient extends MasterModel
 
 //        $str = "select hospital_name, doctor_fullname, CONCAT(CONCAT(date, ', '), count) AS count from patient_count";
 //        $str = "select * from patient_count";
-        $str = "select hospital_name, doctor_fullname, CONCAT('Date.UTC(',Year(date), ',',  Month(date), ',', Day(date), '),', count) as count from patient_count";
+//        $str = "select hospital_name, doctor_fullname, CONCAT('Date.UTC(',Year(date), ',',  Month(date), ',', Day(date), '),', count) as count from patient_count";
+
+//        $str = "select hospital_name, doctor_fullname, CONCAT(CONCAT(date, ', '), count) AS count from patient_count";
+
+        $str = "select hospital_name, doctor_fullname, (unix_timestamp(date)*1000) as 'date', count
+                    from patient_count
+                    order by `date`";
+
         return new CSqlDataProvider(
             $str,
             array(

@@ -374,7 +374,11 @@ class PatientController extends Controller
 //        $this->render('manager_view',array(
 //            'model'=>$model,
 //        ));
-        $this->render('highchartwidget');
+        $this->render('highchartwidget',
+            array(
+                'model'=>$model
+            )
+        );
     }
 
 }

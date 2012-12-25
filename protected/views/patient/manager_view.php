@@ -139,26 +139,26 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
                 'text'=>'Hello World',
 
             ),
-//            'xAxis'=>array(
-//                'title'=>array(
-//                    'text'=>'Date'
-//                ),
-////                'categories'=>'date',
+            'xAxis'=>array(
+                'title'=>array(
+                    'text'=>'Date'
+                ),
+//                'categories'=>'date',
 //                'minPadding'=>0.05,
-////                'labels'=>array(
-////                    'rotation'=>90,
-////                ),
-////                'min'=>0,
-////                'max'=>31,
-////                'tickInterval'=>1,
-//                'type'=>'datetime',
-////                'dateTimeLabelFormats'=>array(
-////                    'day' => '%d-%m'
-////                ),
-////                'tickInterval'=>24 * 3600 * 1000,
-////                'min'=>strtotime("2012-10-01 00:00:01 UTC"),
-////                'max'=>strtotime("2012-10-12 11:59:59 UTC"),
-//            ),
+//                'labels'=>array(
+//                    'rotation'=>90,
+//                ),
+//                'min'=>0,
+//                'max'=>31,
+//                'tickInterval'=>1,
+                'type'=>'datetime',
+//                'dateTimeLabelFormats'=>array(
+//                    'day' => '%d-%m'
+//                ),
+//                'tickInterval'=>24 * 3600 * 1000,
+//                'min'=>strtotime("2012-10-01 00:00:01 UTC"),
+//                'max'=>strtotime("2012-10-12 11:59:59 UTC"),
+            ),
             'yAxis'=>array(
                 'title'=>array(
                     'text'=>'Count'

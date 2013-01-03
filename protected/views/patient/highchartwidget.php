@@ -17,7 +17,7 @@
          'name'=>$key,
          'data'=>$data,
          'pointInterval'=>24 * 3600 * 1000, // one day
-         'type'=>'line',
+         'type'=>'column',
      );
  }
 //echo var_dump($datas);

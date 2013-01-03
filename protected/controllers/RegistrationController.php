@@ -1,5 +1,7 @@
 <?php
 
+Yii::import('ext.phpexcel.Classes.*');
+
 class RegistrationController extends Controller
 {
     /**
@@ -20,7 +22,7 @@ class RegistrationController extends Controller
 	{
         return CMap::mergeArray(parent::filters(),array(
 //			'accessControl', // perform access control for CRUD operations
-            'patientContext + create admin adminmanage', //check to ensure valid patient context
+            'patientContext + create admin adminmanage gettemplate', //check to ensure valid patient context
             'postOnly + delete', // we only allow deletion via POST request
             array(
                 'application.filters.GridViewHandler' //path to GridViewHandler.php class
@@ -277,6 +279,8 @@ class RegistrationController extends Controller
 
         $model->reg_patient = $this->_patient->patient_id;
 
+//        Yii::app()->clientScript->scriptMap['jquery.ba-bbq.js'] = false;
+
         $this->renderPartial('_gridview',array(
 			'model'=>$model, 'patient_id'=>$this->_patient->patient_id
 		));
@@ -466,7 +470,143 @@ class RegistrationController extends Controller
         Yii::app()->end();
     }
 
+    public function actionExcelTemplate()
+    {
+//        $model=$this->loadModel($id);
+
+        // Turn off our amazing library autoload
+        spl_autoload_unregister(array('YiiBase','autoload'));
+
+        // get a reference to the path of PHPExcel classes
+        $phpExcelPath = Yii::getPathOfAlias('ext.phpexcel.Classes');
 
 
+        // making use of our reference, include the main class
+        // when we do this, phpExcel has its own autoload registration
+        // procedure (PHPExcel_Autoloader::Register();)
+        include($phpExcelPath . DIRECTORY_SEPARATOR . 'PHPExcel.php');
+
+        spl_autoload_register(array('YiiBase', 'autoload'));
+
+//        PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
+
+        $objPHPExcel = new PHPExcel();
+        // Set properties
+        $objPHPExcel->getProperties()->setCreator("Semamed")
+            ->setLastModifiedBy("Semamed")
+            ->setTitle("PDF Test Document")
+            ->setSubject("PDF Test Document")
+            ->setDescription("Test document for PDF, generated using PHP classes.")
+            ->setKeywords("pdf php")
+            ->setCategory("Test result file");
+
+
+        // Add some data
+        $objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('A1', 'Hello')
+            ->setCellValue('B2', 'world!')
+            ->setCellValue('C1', 'Hello')
+            ->setCellValue('D2', 'world!');
+
+        // Miscellaneous glyphs, UTF-8
+        $objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('A4', 'Miscellaneous glyphs')
+            ->setCellValue('A5', 'kdkdk');
+
+        // Rename sheet
+        $objPHPExcel->getActiveSheet()->setTitle('Simple');
+
+        // Set active sheet index to the first sheet,
+        // so Excel opens this as the first sheet
+        $objPHPExcel->setActiveSheetIndex(0);
+
+        ob_end_clean();
+        ob_start();
+
+        // Redirect output to a client’s web browser (Excel2007)
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="01simple.xls"');
+        header('Cache-Control: max-age=0');
+
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
+        Yii::app()->end();
+    }
+
+    public function actionGetTemplate()
+    {
+        // Turn off our amazing library autoload
+        spl_autoload_unregister(array('YiiBase','autoload'));
+
+        // get a reference to the path of PHPExcel classes
+        $phpExcelPath = Yii::getPathOfAlias('ext.phpexcel.Classes');
+
+
+        // making use of our reference, include the main class
+        // when we do this, phpExcel has its own autoload registration
+        // procedure (PHPExcel_Autoloader::Register();)
+        include($phpExcelPath . DIRECTORY_SEPARATOR . 'PHPExcel.php');
+
+        spl_autoload_register(array('YiiBase', 'autoload'));
+
+        $fileType = 'Excel2007';
+        $readFileName = 'conclusion_template.xlsx';
+        $writeFileName = $this->_patient->patient_fullname .'_('. Date('d.m.Y') .').xlsx';
+
+
+        // Read the file
+        $objReader = PHPExcel_IOFactory::createReader($fileType);
+//        $objPHPExcel = $objReader->load(Yii::app()->basePath.'/data/excel_templates/test_xlsx1.xlsx');
+//        $objPHPExcel = $objReader->load(Yii::app()->basePath.'/data/excel_templates/conclusion_template.xlsx');
+        $objPHPExcel = $objReader->load(Yii::app()->basePath.'/data/excel_templates/'. $readFileName);
+
+
+//        $objPHPExcel = new PHPExcel();
+
+        // Set properties
+        $objPHPExcel->getProperties()->setCreator("Semamed")
+            ->setLastModifiedBy("Semamed")
+            ->setTitle("Semamed MRT conclution report")
+            ->setSubject("Report")
+            ->setDescription("Test document for PDF, generated using PHP classes.")
+            ->setKeywords("pdf php")
+            ->setCategory("Test result file");
+
+
+        // Add some data
+        $objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('D5', Date('d.m.Y'))
+            ->setCellValue('I5', Date('d.m.Y'))
+            ->setCellValue('D6', $this->_patient->patient_fullname)
+            ->setCellValue('D7', $this->_patient->patient_birthday)
+            ->setCellValue('J7', Yii::t('value', $this->_patient->patient_sex))
+            ->setCellValue('D8', $this->_patient->patientDoctor->doctor_fullname);
+
+//         Miscellaneous glyphs, UTF-8
+//        $objPHPExcel->setActiveSheetIndex(0)
+//            ->setCellValue('A20', 'Miscellaneous glyphs')
+//            ->setCellValue('A25', 'Өнүктүрөйлү деп жатабыз @ Hello World');
+
+        // Rename sheet
+//        $objPHPExcel->getActiveSheet()->setTitle('Simple');
+
+        // Set active sheet index to the first sheet,
+        // so Excel opens this as the first sheet
+        $objPHPExcel->setActiveSheetIndex(0);
+
+        ob_end_clean();
+        ob_start();
+
+        // Redirect output to a client’s web browser (Excel2007)
+        header("Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+//        header("Content-type: application/vnd.ms-excel");
+        header('Content-Disposition: attachment;filename="'. $writeFileName .'"');
+        header('Cache-Control: max-age=0');
+
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+//        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
+        Yii::app()->end();
+    }
 
 }

@@ -21,6 +21,17 @@
         )
     ); ?>
 
+    <?php echo $form->toggleButtonRow($model, 'patient_sex',
+                array(
+                    'options'=>array(
+                        'enabledLabel'=>Yii::t('value', 'male'),
+                        'disabledLabel'=>Yii::t('value', 'female'),
+                    ),
+                    'data-enabled'=>Yii::t('value', 'male'),
+                    'data-disabled'=>Yii::t('value', 'female'),
+                )
+            ); ?>
+
 	<?php echo $form->dropDownListRow($model,'patient_doctor',Doctor::model()->doctorsList()); ?>
 
 <!--	--><?php //echo $form->textFieldRow($model,'created_at',array('class'=>'span5')); ?>

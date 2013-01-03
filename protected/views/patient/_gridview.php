@@ -62,6 +62,15 @@
 //            )
         ),
         array(
+            'name'=>'patient_sex',
+            'value'=>'Yii::t(\'value\', $data->patient_sex)',
+            'filter'=>array(
+                'male'=>Yii::t('value','male'),
+                'female'=>Yii::t('value','female'),
+            ),
+            'sortable'=>false,
+        ),
+        array(
 //            'class' => 'bootstrap.widgets.TbEditableColumn',
             'name' => 'patient_doctor',
             'sortable'=>false,

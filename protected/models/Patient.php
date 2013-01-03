@@ -8,6 +8,7 @@
  * @property string $patient_fullname
  * @property string $patient_phone
  * @property string $patient_birthday
+ * @property enum $patient_sex
  * @property integer $patient_doctor
  * @property string $created_at
  * @property string $updated_at
@@ -47,10 +48,11 @@ class Patient extends MasterModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('patient_fullname, patient_phone, patient_birthday, patient_doctor', 'required'),
+			array('patient_fullname, patient_phone, patient_birthday, patient_doctor, patient_sex', 'required'),
 			array('patient_doctor', 'numerical', 'integerOnly'=>true),
 			array('patient_fullname', 'length', 'max'=>30),
 			array('patient_phone', 'length', 'max'=>20),
+            array('patient_sex', 'in', 'range'=>array('male', 'female')),
             array('patient_doctor', 'exist',
                 'allowEmpty' => false,
                 'attributeName' => 'doctor_id',
@@ -60,7 +62,7 @@ class Patient extends MasterModel
             ),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('patient_id, patient_fullname, patient_phone, patient_birthday, patient_doctor, created_at, updated_at, created_user, updated_user', 'safe', 'on'=>'search'),
+			array('patient_id, patient_fullname, patient_phone, patient_birthday, patient_doctor, patient_sex,  created_at, updated_at, created_user, updated_user', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -87,6 +89,7 @@ class Patient extends MasterModel
 			'patient_fullname' => Yii::t('column', 'Patient Fullname'),
 			'patient_phone' => Yii::t('column', 'Patient Phone'),
 			'patient_birthday' => Yii::t('column', 'Patient Birthday'),
+            'patient_sex'=> Yii::t('column', 'Patient Sex'),
 			'patient_doctor' => Yii::t('column', 'Patient Doctor'),
 			'created_at' => Yii::t('column', 'Created At'),
 			'updated_at' => Yii::t('column', 'Updated At'),
@@ -110,6 +113,7 @@ class Patient extends MasterModel
 		$criteria->compare('patient_fullname',$this->patient_fullname,true);
 		$criteria->compare('patient_phone',$this->patient_phone,true);
 		$criteria->compare('patient_birthday',$this->patient_birthday,true);
+        $criteria->compare('patient_sex',$this->patient_sex);
 		$criteria->compare('patient_doctor',$this->patient_doctor);
 		$criteria->compare('created_at',$this->created_at,true);
 		$criteria->compare('updated_at',$this->updated_at,true);

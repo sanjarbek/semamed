@@ -15,7 +15,7 @@
         array(
             'name'=>'reg_id',
 //            'value'=>'CHtml::encode($data->reg_id)',
-            'sortable'=>false,
+            'sortable'=>true,
             'filter'=>false,
         ),
         array(
@@ -29,28 +29,28 @@
             'value'=>'CHtml::encode($data->regMrtscan->mrtscan_name)',
             'sortable'=>false,
             'filter'=>false,
-            'footer'=>'<b><i>'.Yii::t('text','Total').'</i></b>'
+//            'footer'=>'<b><i>'.Yii::t('text','Total').'</i></b>'
         ),
         array(
             'name'=>'reg_price',
 //            'value'=>'CHtml::encode($data->reg_price)',
             'sortable'=>false,
             'filter'=>false,
-            'class'=>'bootstrap.widgets.TbTotalSumColumn',
+//            'class'=>'bootstrap.widgets.TbTotalSumColumn',
         ),
         array(
             'name'=>'reg_discont',
 //            'value'=>'CHtml::encode($data->reg_discont)',
             'sortable'=>false,
             'filter'=>false,
-            'class'=>'bootstrap.widgets.TbTotalSumColumn',
+//            'class'=>'bootstrap.widgets.TbTotalSumColumn',
         ),
         array(
             'name'=>'reg_total_price',
 //            'value'=>'CHtml::encode($data->reg_total_price)',
             'sortable'=>false,
             'filter'=>false,
-            'class'=>'bootstrap.widgets.TbTotalSumColumn',
+//            'class'=>'bootstrap.widgets.TbTotalSumColumn',
         ),
 //		'reg_report_status',
 		/*

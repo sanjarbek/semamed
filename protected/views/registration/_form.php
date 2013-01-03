@@ -66,15 +66,28 @@ $cs->registerScript(
         CHtml::listData(Mrtscan::model()->findAll(),'mrtscan_id','mrtscan_name')); ?>
 
 
-    <?php echo $form->textFieldRow($model,'reg_price',array('readonly'=>true, 'class'=>'span2','maxlength'=>10)); ?>
+    <?php echo $form->textFieldRow($model,'reg_price',
+            array(
+                'readonly'=>true,
+                'class'=>'span2',
+                'maxlength'=>10,
+                'append'=>'.00 сомов',
+            )
+        ); ?>
 
 	<?php
         if ($model->isNewRecord)
             $model->reg_discont = 0;
-        echo $form->textFieldRow($model,'reg_discont',array('class'=>'span2'));
+        echo $form->textFieldRow($model,'reg_discont',
+            array(
+                'class'=>'span2',
+                'append'=>'.00',
+                'maxlength'=>5
+            )
+        );
     ?>
 
-    <?php echo $form->textFieldRow($model,'reg_total_price',array('readonly'=>true, 'class'=>'span2','maxlength'=>10)); ?>
+    <?php echo $form->textFieldRow($model,'reg_total_price',array('readonly'=>true, 'class'=>'span2','maxlength'=>10,'append'=>'.00 сомов')); ?>
 
 	<?php echo $form->checkBoxRow($model,'reg_report_status'); ?>
 

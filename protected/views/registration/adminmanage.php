@@ -50,8 +50,8 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
                     $('#dialogRegistration div.divForForm').html(data.div);
                           // Here is the trick: on submit-> once again this function!
                     $('#dialogRegistration div.divForForm form').submit(addRegistration);
-//                    $('div[aria-labelledby=\"ui-dialog-title-dialogRegistration\"] a.ui-dialog-titlebar-close.ui-corner-all[role=\"button\"]').live('click',function()
-//                        { $('#dialogRegistration div.divForForm').html(''); });
+                    $('div[aria-labelledby=\"ui-dialog-title-dialogRegistration\"] a.ui-dialog-titlebar-close.ui-corner-all[role=\"button\"]').live('click',function()
+                        { $('#dialogRegistration div.divForForm').html(''); });
                 }
                 else
                 {
@@ -87,6 +87,16 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
             'editable' => array(
                 'type' => 'date',
                 'viewformat' => 'dd.mm.yyyy'
+            )
+        ),
+        array(
+            'name' => 'patient_sex',
+            'editable' => array(
+                'type' => 'select',
+                'source' => array(
+                    'male'=>Yii::t('value', 'male'),
+                    'female'=>Yii::t('value', 'female')
+                ),
             )
         ),
         array(
@@ -139,14 +149,17 @@ $new_registration_link = CHtml::Ajax(
             'size'=>'small',
             'buttons'=>array(
                 array(
+                    'label'=>Yii::t('title', 'Download Template'),
+                    'icon'=>'icon-download',
+                    'url'=>Yii::app()->createAbsoluteUrl('registration/gettemplate', array('pid'=>$patient->patient_id)),
+                ),
+                array(
                     'label'=>'Registration',
-//                    'buttonType'=>'ajaxButton',
-//                    'url'=>"{addRegistration(); $('#dialogRegistration').dialog('open');}",
                     'icon'=>'icon-plus',
                     'htmlOptions'=>array(
                         'data-toggle'=>'modal',
 //                        'data-target'=>'#dialogRegistration',
-                        'onClick'=>"{addRegistration(); $('#dialogRegistration').dialog('open');}"
+                        'onClick'=>"addRegistration(); $('#dialogRegistration').dialog('open');"
                     ),
                 ),
             ),

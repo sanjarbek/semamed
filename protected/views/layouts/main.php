@@ -24,7 +24,7 @@
 	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo Yii::app()->request->baseUrl; ?>/images/apple-touch-icon-114x114.png">
 </head>
 
-<body>
+<body style="background-image: url('images/logo.png'); background-repeat: no-repeat; background-position: center;">
 <!--	<div class="navbar">-->
 <!--		<div class="navbar-inner">-->
 <!--			<div class="container">-->
@@ -57,7 +57,8 @@
 
     <?php
     $this->widget('bootstrap.widgets.TbNavbar', array(
-        'brand' => 'Semamed',
+//        'brand' => '<span style="color: #000000; font-family: Verdana;"><b>Sema</b></span><span style="color: #ff0000; font-family: Verdana;"><b>med</b></span>',
+        'brand' => '<img src="images/logo-70h.png" alt="Smiley face" width="90px">',
         'fixed' => 'false',
 //        'htmlOptions' => array('style' => 'position:absolute'),
         'items' => array(
@@ -70,8 +71,9 @@
                     array('label'=>'Patient', 'url'=>array('/patient/admin'), 'visible'=>!Yii::app()->user->isGuest),
                     array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
                     array('label'=>'Report', 'items'=> array(
-                        array('label'=>'Registration', 'url'=>array('/registration/report'), 'visible'=>!Yii::app()->user->isGuest),
-                        array('label'=>'Doctor Report', 'url'=>array('/registration/doctorreport'), 'visible'=>!Yii::app()->user->isGuest),
+                        array('label'=>Yii::t('title','Registration'), 'url'=>array('/registration/report'), 'visible'=>!Yii::app()->user->isGuest),
+                        array('label'=>Yii::t('title','Doctor Report'), 'url'=>array('/registration/doctorreport'), 'visible'=>!Yii::app()->user->isGuest),
+                        array('label'=>Yii::t('title','Excep export'), 'url'=>array('/registration/exceltemplate'), 'visible'=>!Yii::app()->user->isGuest),
                     )),
                 )
             ),
@@ -80,6 +82,11 @@
                 'items'=>array(
 					array('label'=>Yii::app()->user->name . ' - profile', 'url'=>array('//user/profile'), 'visible'=>!Yii::app()->user->isGuest),
                     array('label'=>'User rights', 'url'=>array('/rights'), 'visible'=>Yii::app()->user->checkAccess('admin')),
+                    array('label'=>Yii::t('title', 'Configure'), 'items'=>array(
+                        array('label'=>Yii::t('title', 'Hospitals'), 'url'=>array('/hospital'), 'visible'=>Yii::app()->user->checkAccess('admin')),
+                        array('label'=>Yii::t('title', 'Doctors'), 'url'=>array('/doctor'), 'visible'=>Yii::app()->user->checkAccess('admin')),
+                        array('label'=>Yii::t('title', 'MRT scans'), 'url'=>array('/mrtscan'), 'visible'=>Yii::app()->user->checkAccess('admin')),
+                    )),
 					array('label'=>'Logout', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn')),
 				),
                 'htmlOptions'=>array(

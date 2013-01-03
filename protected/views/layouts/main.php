@@ -11,10 +11,16 @@
 <!--	<link href="--><?php //echo Yii::app()->theme->baseUrl; ?><!--/css/bootstrap.min.css" rel="stylesheet">-->
 <!--	<link href="--><?php //echo Yii::app()->theme->baseUrl; ?><!--/css/application.min.css" rel="stylesheet">-->
 <!--	<link href="--><?php //echo Yii::app()->theme->baseUrl; ?><!--/css/bootstrap-responsive.css" rel="stylesheet">-->
-
+    <?php
+//    $baseUrl = Yii::app()->baseUrl;
+//    $cs = Yii::app()->getClientScript();
+//    $cs->registerCssFile($baseUrl.'/css/bootstrap.min.css');
+//    $cs->registerCssFile($baseUrl.'/css/application.min.css');
+//    $cs->registerCssFile($baseUrl.'/css/bootstrap-responsive.css');
+    ?>
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--	[if lt IE 9]>-->
-		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<!--		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
 <!--	<![endif]-->
 
 	<!-- Le fav and touch icons -->
@@ -81,11 +87,11 @@
                 'class' => 'bootstrap.widgets.TbMenu',
                 'items'=>array(
 					array('label'=>Yii::app()->user->name . ' - profile', 'url'=>array('//user/profile'), 'visible'=>!Yii::app()->user->isGuest),
-                    array('label'=>'User rights', 'url'=>array('/rights'), 'visible'=>Yii::app()->user->checkAccess('admin')),
                     array('label'=>Yii::t('title', 'Configure'), 'items'=>array(
                         array('label'=>Yii::t('title', 'Hospitals'), 'url'=>array('/hospital'), 'visible'=>Yii::app()->user->checkAccess('admin')),
                         array('label'=>Yii::t('title', 'Doctors'), 'url'=>array('/doctor'), 'visible'=>Yii::app()->user->checkAccess('admin')),
                         array('label'=>Yii::t('title', 'MRT scans'), 'url'=>array('/mrtscan'), 'visible'=>Yii::app()->user->checkAccess('admin')),
+                        array('label'=>Yii::t('title', 'User rights'), 'url'=>array('/rights'), 'visible'=>Yii::app()->user->checkAccess('admin')),
                     )),
 					array('label'=>'Logout', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn')),
 				),

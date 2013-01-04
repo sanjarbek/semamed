@@ -1,7 +1,10 @@
 <?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Profile");
-$this->breadcrumbs=array(
-	UserModule::t("Profile"),
-);
+$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+    'links'=>array(
+	    UserModule::t("Profile"),
+    ),
+));
+
 $this->menu=array(
 	((UserModule::isAdmin())
 		?array('label'=>UserModule::t('Manage Users'), 'url'=>array('/user/admin'))
@@ -18,16 +21,22 @@ $this->menu=array(
 <?php $box = $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title' => Yii::t('title', 'Your profile'),
     'headerIcon' => 'icon-user',
-    'headerActions'=>array(
-        ((UserModule::isAdmin())
-            ?array('label'=>UserModule::t('Manage Users'), 'url'=>array('/user/admin'))
-            :array()),
-//        ((UserModule::isAdmin())
-//            ?array('label'=>UserModule::t('List User'), 'url'=>array('/user'))
-//            :array()),
-        array('label'=>UserModule::t('Edit'), 'url'=>array('edit')),
-        array('label'=>UserModule::t('Change password'), 'url'=>array('changepassword')),
-        array('label'=>UserModule::t('Logout'), 'url'=>array('/user/logout')),
+    'headerButtons'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                ((UserModule::isAdmin())
+                    ?array('label'=>UserModule::t('Manage Users'), 'url'=>array('/user/admin'), 'icon'=>'icon-th-list')
+                    :array()),
+        //        ((UserModule::isAdmin())
+        //            ?array('label'=>UserModule::t('List User'), 'url'=>array('/user'))
+        //            :array()),
+                array('label'=>UserModule::t('Edit'), 'url'=>array('edit'), 'icon'=>'icon-pencil'),
+                array('label'=>UserModule::t('Change password'), 'url'=>array('changepassword'), 'icon'=>'icon-edit'),
+                array('label'=>UserModule::t('Logout'), 'url'=>array('/user/logout'), 'icon'=>'icon-off'),
+            ),
+        ),
     ),
 ));?>
 

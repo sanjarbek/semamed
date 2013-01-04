@@ -1,13 +1,10 @@
 <?php
-$this->breadcrumbs=array(
-	UserModule::t('Profile Fields')=>array('admin'),
-	UserModule::t('Manage'),
-);
-//$this->menu=array(
-//    array('label'=>UserModule::t('Create Profile Field'), 'url'=>array('create')),
-//    array('label'=>UserModule::t('Manage Profile Field'), 'url'=>array('admin')),
-//    array('label'=>UserModule::t('Manage Users'), 'url'=>array('/user/admin')),
-//);
+$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+    'links'=>array(
+        UserModule::t('Profile Fields')=>array('admin'),
+        UserModule::t('Manage'),
+    ),
+));
 
 //Yii::app()->clientScript->registerScript('search', "
 //$('.search-button').click(function(){
@@ -34,12 +31,18 @@ $this->breadcrumbs=array(
 //)); ?>
 <!--</div><!-- search-form -->
 <?php $box = $this->beginWidget('bootstrap.widgets.TbBox', array(
-    'title' => 'Advanced Box',
+    'title' => Yii::t('title', 'Manage profile fields'),
     'headerIcon' => 'icon-th-list',
-    'headerActions' => array(
-        array('label'=>UserModule::t('Create Profile Field'), 'url'=>array('create'), 'icon'=>'icon-music'),
-//        array('label'=>UserModule::t('Manage Profile Field'), 'url'=>array('admin')),
-        array('label'=>UserModule::t('Manage Users'), 'url'=>array('/user/admin')),
+    'headerButtons'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                array('label'=>UserModule::t('Create Profile Field'), 'url'=>array('create'), 'icon'=>'icon-plus'),
+//                array('label'=>UserModule::t('Manage Profile Field'), 'url'=>array('admin'), 'icon'=>'icon-th-list'),
+                array('label'=>UserModule::t('Manage Users'), 'url'=>array('//user/admin'), 'icon'=>'icon-th-list'),
+            ),
+        ),
     ),
 // when displaying a table, if we include bootstra-widget-table class
 // the table will be 0-padding to the box

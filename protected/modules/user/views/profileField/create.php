@@ -1,12 +1,24 @@
 <?php
-$this->breadcrumbs=array(
-	UserModule::t('Profile Fields')=>array('admin'),
-	UserModule::t('Create'),
-);
-$this->menu=array(
-    array('label'=>UserModule::t('Manage Profile Field'), 'url'=>array('admin')),
-    array('label'=>UserModule::t('Manage Users'), 'url'=>array('/user/admin')),
-);
+$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+    'links'=>array(
+        UserModule::t('Profile Fields')=>$this->createUrl('admin'),
+        UserModule::t('Create'),
+    ),
+));
 ?>
-<h1><?php echo UserModule::t('Create Profile Field'); ?></h1>
+<?php $box = $this->beginWidget('bootstrap.widgets.TbBox', array(
+    'title' => Yii::t('title', 'Your profile'),
+    'headerIcon' => 'icon-user',
+    'headerButtons'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                array('label'=>UserModule::t('Manage Profile Field'), 'url'=>array('admin'),  'icon'=>'icon-th-list'),
+                array('label'=>UserModule::t('Manage Users'), 'url'=>array('/user/admin'),  'icon'=>'icon-th-list'),
+            ),
+        ),
+    ),
+)); ?>
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->endWidget(); ?>

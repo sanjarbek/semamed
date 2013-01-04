@@ -1,11 +1,11 @@
 <?php
 $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Login");
-$this->breadcrumbs=array(
-	UserModule::t("Login"),
-);
+$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+    'links'=>array(
+	    UserModule::t("Login"),
+    ),
+));
 ?>
-
-<!--<h1>--><?php //echo UserModule::t("Login"); ?><!--</h1>-->
 
 <?php $box = $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title' => Yii::t('title', 'Login'),

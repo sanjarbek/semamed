@@ -1,8 +1,10 @@
 <?php
-$this->breadcrumbs=array(
-	UserModule::t('Users')=>array('//user/admin'),
-	UserModule::t('Create'),
-);
+$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+    'links'=>array(
+        UserModule::t('Users')=>$this->createUrl('//user/admin'),
+        UserModule::t('Create'),
+    ),
+));
 
 //$this->menu=array(
 //    array('label'=>UserModule::t('Manage Users'), 'url'=>array('admin')),
@@ -12,12 +14,17 @@ $this->breadcrumbs=array(
 ?>
 
 <?php $box = $this->beginWidget('bootstrap.widgets.TbBox', array(
-    'title' => 'Create user',
+    'title' => Yii::t('title', 'Create user'),
     'headerIcon' => 'icon-plus',
-//    'headerButtonActionsLabel' => 'My actions',
-    'headerActions' => array(
-        array('label'=>UserModule::t('Manage Users'), 'url'=>array('admin'), 'icon'=>'icon-th-list'),
-        array('label'=>UserModule::t('Manage Profile Fields'), 'url'=>array('profileField/admin'), 'icon'=>'icon-th-list'),
+    'headerButtons'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                array('label'=>UserModule::t('Manage Users'), 'url'=>array('//user/admin'), 'icon'=>'icon-th-list'),
+                array('label'=>UserModule::t('Manage Profile Fields'), 'url'=>array('profileField/admin'), 'icon'=>'icon-th-list'),
+            ),
+        ),
 //        array('label'=>UserModule::t('List User'), 'url'=>array('/user')),
     ),
 ));?>

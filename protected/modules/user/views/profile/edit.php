@@ -1,17 +1,10 @@
 <?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Profile");
-$this->breadcrumbs=array(
-	UserModule::t("Profile")=>array('profile'),
-	UserModule::t("Edit"),
-);
-//$this->menu=array(
-//	((UserModule::isAdmin())
-//		?array('label'=>UserModule::t('Manage Users'), 'url'=>array('/user/admin'))
-//		:array()),
-//    array('label'=>UserModule::t('List User'), 'url'=>array('/user')),
-//    array('label'=>UserModule::t('Profile'), 'url'=>array('/user/profile')),
-//    array('label'=>UserModule::t('Change password'), 'url'=>array('changepassword')),
-//    array('label'=>UserModule::t('Logout'), 'url'=>array('/user/logout')),
-//);
+$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+    'links'=>array(
+        UserModule::t("Profile")=>$this->createUrl('//user/profile'),
+        UserModule::t("Edit"),
+    ),
+));
 ?>
 
 <!--<h1>--><?php //echo UserModule::t('Edit profile'); ?><!--</h1>-->
@@ -19,11 +12,17 @@ $this->breadcrumbs=array(
 <?php $box = $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title' => Yii::t('title', 'Edit profile'),
     'headerIcon' => 'icon-user',
-    'headerActions'=>array(
-        array('label'=>UserModule::t('List User'), 'url'=>array('//user')),
-        array('label'=>UserModule::t('Profile'), 'url'=>array('//user/profile')),
-        array('label'=>UserModule::t('Change password'), 'url'=>array('changepassword')),
-        array('label'=>UserModule::t('Logout'), 'url'=>array('//user/logout')),
+    'headerButtons'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbButtonGroup',
+            'size'=>'small',
+            'buttons'=>array(
+                array('label'=>UserModule::t('Manage users'), 'url'=>array('//user/admin'), 'icon'=>'icon-th-list'),
+                array('label'=>UserModule::t('Profile'), 'url'=>array('//user/profile'), 'icon'=>'icon-eye-open'),
+                array('label'=>UserModule::t('Change password'), 'url'=>array('changepassword'), 'icon'=>'icon-edit'),
+                array('label'=>UserModule::t('Logout'), 'url'=>array('//user/logout'), 'icon'=>'icon-off'),
+            ),
+        ),
     ),
 ));?>
 

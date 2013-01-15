@@ -35,24 +35,19 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 
 </div>
 <div class='span8'>
-<?php $box = $this->beginWidget('bootstrap.widgets.TbBox', array(
-    'title' => Yii::t('title', 'Result'),
-    'headerIcon' => 'icon-filter',
-));?>
+    <?php $box = $this->beginWidget('bootstrap.widgets.TbBox', array(
+        'title' => Yii::t('title', 'Result'),
+        'headerIcon' => 'icon-filter',
+        'htmlOptions'=>array(
+            'class'=>'bootstrap-widget-table',
+        ),
+    ));?>
 
-<?php
-echo CHtml::image(Yii::app()->request->baseUrl .'images/logo.png', 'Semamed', array(
-    'data-original' => 'original',
-));
-?>
-    <article>
-        <h3>Just text</h3>
-        <p>The above table of codes may seem overwhelming first time you are trying to figure
-            out how to write some header or footer. Luckily, there is an easier way. Let Microsoft
-            Office Excel do the work for you. For example, create in Microsoft Office Excel an xlsx
-            file where you insert the header and footer as desired using the programs own interface.
-            Save file as test.xlsx. Now, take that file and read off the values using PHPExcel as follows:</p>
-    </article>
-<?php $this->endWidget(); ?>
+    <?php
+        $this->renderPartial('_manager_gridview', array(
+            'model'=>$model
+        ));
+    ?>
+    <?php $this->endWidget(); ?>
 </div>
 

@@ -29,7 +29,24 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 //        'hint'=>'Click inside! An even a date range field!.',
         'prepend'=>'<i class="icon-calendar"></i>',
         'class'=>'span10',
-        'options' => array('callback'=>'js:function(start, end){console.log(start.toString("MMMM d, yyyy") + " - " + end.toString("MMMM d, yyyy"));}')
+        'options' => array(
+            'callback'=>'js:function(start, end){console.log(start.toString("MMMM d, yyyy") + " - " + end.toString("MMMM d, yyyy"));}',
+            'format'=>'yyyy.MM.dd',
+            'ranges'=>array(
+                'Today'=>array('today', 'today'),
+                'Yesterday'=>array('yesterday', 'yesterday'),
+                'Last 7 Days'=>array('js: Date.today().add({ days: -6 })', 'today'),
+                'Last 30 Days'=>array('js: Date.today().add({ days: -29 })', 'today'),
+                'This Month'=>array(
+                    'js: Date.today().moveToFirstDayOfMonth()',
+                    'js: Date.today().moveToLastDayOfMonth()'
+                ),
+                'Last Month'=>array(
+                    'js: Date.today().moveToFirstDayOfMonth().add({ months: -1 })',
+                    'js: Date.today().moveToFirstDayOfMonth().add({ days: -1 })'
+                ),
+            ),
+        ),
     )); ?>
 
 	<div class="form-actions">

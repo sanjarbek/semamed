@@ -29,6 +29,10 @@ class ReportController extends CController
             $model->doctor = $_POST['ReportForm']['doctor'];
             $model->range_date = $_POST['ReportForm']['range_date'];
 
+            $dates = explode('-', $model->range_date);
+            $model->start_date = trim($dates[0]);
+            $model->end_date = trim($dates[1]);
+
 //            $model->attributes = $_POST['ReportForm'];
         }
 

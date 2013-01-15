@@ -45,4 +45,17 @@ class ReportForm extends CFormModel
         );
     }
 
+    public function getManagerReport()
+    {
+        $str = "call getTest(4, '".$this->start_date."','".$this->end_date."')";
+
+        return new CSqlDataProvider(
+            $str,
+            array(
+                'pagination'=>false,
+                'keyField' => 'hospital_name',
+            )
+        );
+    }
+
 }

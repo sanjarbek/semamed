@@ -1,14 +1,10 @@
 <?php
-$this->breadcrumbs=array(
-	'Mrtscans'=>array('admin'),
-	'Create',
-);
-
-//$this->menu=array(
-//	array('label'=>'List Mrtscan','url'=>array('index')),
-//	array('label'=>'Manage Mrtscan','url'=>array('admin')),
-//);
-
+$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+    'links'=>array(
+        'MRT scans'=>$this->createUrl('mrtscan/admin'),
+        'Create',
+    ),
+));
 ?>
 
 <!--<h1>Create Mrtscan</h1>-->

@@ -2,6 +2,7 @@
 	'id'=>'RegistrationGrid',
     'type'=>'striped bordered condensed',
 	'dataProvider'=>$model->search(),
+    'ajaxUrl' => $this->createUrl('registration/adminmanage', array('pid'=>$patient_id)),
 //	'filter'=>false,
     'template' => "{pager}{items}\n{extendedSummary}",
 	'columns'=>array(

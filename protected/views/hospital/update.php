@@ -1,9 +1,12 @@
 <?php
-$this->breadcrumbs=array(
-    Yii::t('title','Hospitals')=>array('admin'),
-	$model->hospital_id=>array('view','id'=>$model->hospital_id),
-    Yii::t('title','Update'),
-);
+$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+    'links'=>array(
+        Yii::t('title','Hospitals')=>array('admin'),
+        $model->hospital_id=>array('view','id'=>$model->hospital_id),
+        Yii::t('title','Update'),
+    ),
+));
+
 //
 //$this->menu=array(
 //	array('label'=>'List Hospital','url'=>array('index')),

@@ -1,0 +1,53 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: sanzhar
+ * Date: 1/9/13
+ * Time: 4:08 AM
+ * To change this template use File | Settings | File Templates.
+ */
+class ReportController extends CController
+{
+    public $layout = '//layouts/column1';
+
+    public function actionIndex()
+    {
+        $model = new ReportForm();
+
+        $this->render('index', array(
+            'model'=>$model,
+        ));
+    }
+
+    public function actionReport()
+    {
+        $model = new ReportForm();
+
+        if (isset($_POST['ReportForm']))
+        {
+            $model->hospital = $_POST['ReportForm']['hospital'];
+            $model->doctor = $_POST['ReportForm']['doctor'];
+            $model->range_date = $_POST['ReportForm']['range_date'];
+
+//            $model->attributes = $_POST['ReportForm'];
+        }
+
+        $this->render('report', array(
+            'model'=>$model,
+        ));
+    }
+
+    public function actionGridview()
+    {
+        $model = new ReportForm();
+        if (isset($_POST['ReportForm']))
+        {
+            $model->attributes = $_POST['ReportForm'];
+            if ($model->validate())
+            {
+
+            }
+        }
+    }
+
+}

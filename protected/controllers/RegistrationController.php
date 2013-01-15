@@ -1,7 +1,5 @@
 <?php
 
-Yii::import('ext.phpexcel.Classes.*');
-
 class RegistrationController extends Controller
 {
     /**
@@ -392,6 +390,8 @@ class RegistrationController extends Controller
 
     public function actionReport()
     {
+        Yii::import('ext.phpexcel.Classes.*');
+
         $model=new Registration();
         $model->unsetAttributes();  // clear any default values
 

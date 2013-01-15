@@ -1,4 +1,10 @@
 <?php
+$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+    'links'=>array(
+        Yii::t('title','Mrtscans')=>array('admin'),
+        $model->mrtscan_id,
+    ),
+));
 $this->breadcrumbs=array(
 	'Mrtscans'=>array('admin'),
 	$model->mrtscan_id,

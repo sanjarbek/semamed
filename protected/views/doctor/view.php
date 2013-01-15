@@ -1,4 +1,11 @@
 <?php
+$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+    'links'=>array(
+        Yii::t('title', 'Doctors')=>array('admin'),
+        $model->doctor_id=>array('view','id'=>$model->doctor_id),
+        Yii::t('title', 'Update'),
+    ),
+));
 $this->breadcrumbs=array(
 	'Doctors'=>array('admin'),
 	$model->doctor_id,
@@ -18,7 +25,9 @@ $this->breadcrumbs=array(
 <?php $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title'=>Yii::t('title', 'View doctor'),
     'headerIcon'=>'icon-eye-open',
-//    'headerButtonActionsLabel'=>Yii::t('title', 'Actions'),
+    'htmlOptions'=>array(
+        'class'=>'pull-left',
+    ),
     'headerButtons'=>array(
         array(
             'class'=>'bootstrap.widgets.TbButtonGroup',

@@ -1,21 +1,11 @@
 <?php
-$this->breadcrumbs=array(
-    'Patients'=>array('/patient/admin'),
-    'Manage',
-);
+$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+    'links'=>array(
+        Yii::t('title', 'Patients')=>array('/patient/admin'),
+        Yii::t('title', 'Manage'),
+    ),
+));
 ?>
-
-<?php //$this->widget('bootstrap.widgets.TbButton', array(
-//    'label'=>Yii::t('text','New registration'),
-//    'type'=>'primary',
-//    'htmlOptions'=>array(
-//        'data-toggle'=>'modal',
-////        'data-target'=>'#dialogModal',
-////        'data-target'=>'#dialogRegistration',
-//        'onClick'=>"{addRegistration(); $('#dialogRegistration').dialog('open');}"
-//
-//    ),
-//)); ?>
 
 <?php
 $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
@@ -67,11 +57,6 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
 
 </script>
 
-
-
-<!--//##################################################-->
-
-
 <h4>View Patient #<?php echo $patient->patient_id; ?></h4>
 
 <?php $this->widget('bootstrap.widgets.TbEditableDetailView',array(
@@ -113,36 +98,10 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
     ),
 )); ?>
 
-
-<!--//##################################################-->
-
-<!--<h3>Manage Registrations</h3>-->
-
-<!--<p>-->
-<!--You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>-->
-<!--or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.-->
-<!--</p>-->
-<!---->
-<?php //echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn')); ?>
-<!--<div class="search-form" style="display:none">-->
-<?php //$this->renderPartial('_search',array(
-//	'model'=>$model,
-//)); ?>
-</div><!-- search-form -->
-
-
-<?php
-$new_registration_link = CHtml::Ajax(
-    array(
-        'success' => "function(data){addRegistration(); $('#dialogRegistration').dialog('open');}",
-    )
-); ?>
-
 <?php $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title' => 'Registrations',
     'headerIcon' => 'icon-th-list',
-// when displaying a table, if we include bootstrap-widget-table class
-// the table will be 0-padding to the box
+    'htmlOptions' => array('class'=>'bootstrap-widget-table'),
     'headerButtons' => array(
         array(
             'class' => 'bootstrap.widgets.TbButtonGroup',
@@ -165,7 +124,6 @@ $new_registration_link = CHtml::Ajax(
             ),
         ),
     ),
-//    'htmlOptions' => array('class'=>'bootstrap-widget-table')
 ));?>
 
 <?php $this->_getGridViewRegistrationGrid(); ?>

@@ -1,8 +1,11 @@
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
+<?php $this->widget('bootstrap.widgets.TbExtendedGridView',array(
     'id'=>'PatientGrid',
-    'type'=>'condensed striped bordered',
+    'type'=>'condensed striped',
     'dataProvider'=>$model->search(),
     'filter'=>$model,
+    'htmlOptions'=>array(
+//        'class'=>'pagination-small',
+    ),
     'template'=>'{items}{pager}{summary}',
     'columns'=>array(
         //this for the auto page number of cgridview
@@ -91,12 +94,16 @@
           */
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
-            'header'=>Yii::t('text','Action'),
+//            'header'=>Yii::t('text','Action'),
             'template'=>'{view}{delete}',
             'buttons'=> array(
                 'view' => array(
+                    'options'=>array(
+                        'title'=>Yii::t('title', 'Detailed view'),
+                    ),
                     'url'=>  '$this->grid->controller->createUrl("/registration/adminmanage",
                         array("pid"=>$data->patient_id))',
+//                    'visible'=>'$data->'
                 ),
 //                'update' => array
 //                (
@@ -115,21 +122,4 @@
 
         ),
     ),
-
-//    'chartOptions' => array(
-//        'data' => array(
-//            'series' => array(
-//                array(
-//                    'name' => 'Patient doctor',
-//                    'attribute' => 'patient_doctor'
-//                )
-//            )
-//        ),
-//        'config' => array(
-//            'chart'=>array(
-//                'title'=>'Hello World!!!',
-//                'width'=>800
-//            )
-//        )
-//    ),
 )); ?>

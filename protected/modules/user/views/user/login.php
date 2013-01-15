@@ -10,9 +10,19 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 <?php $box = $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title' => Yii::t('title', 'Login'),
     'headerIcon' => 'icon-user',
+    'htmlOptions'=>array(
+        'class'=>'pull-left',
+    ),
 ));?>
 
-
+<div class='span6'>
+<?php
+echo CHtml::image(Yii::app()->request->baseUrl .'images/logo.png', 'Semamed', array(
+    'data-original' => 'original',
+));
+?>
+</div>
+<div class='span6'>
 <?php if(Yii::app()->user->hasFlash('loginMessage')): ?>
 
 <div class="success">
@@ -34,8 +44,8 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 	
 <!--	--><?php //echo CHtml::errorSummary($model); ?>
     <?php echo $form->errorSummary($model); ?>
-    <?php echo $form->textFieldRow($model,'username',array('class'=>'span5','maxlength'=>30)); ?>
-    <?php echo $form->passwordFieldRow($model,'password',array('class'=>'span5','maxlength'=>30)); ?>
+    <?php echo $form->textFieldRow($model,'username',array('class'=>'span6','maxlength'=>30)); ?>
+    <?php echo $form->passwordFieldRow($model,'password',array('class'=>'span6','maxlength'=>30)); ?>
     <?php echo $form->checkboxRow($model, 'rememberMe'); ?>
     <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>'Login')); ?>
 <!--    <div class="row">-->
@@ -64,32 +74,6 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 <!--	</div>-->
 
 <?php $this->endWidget(); ?>
-<?php //echo CHtml::endForm(); ?>
-<!--</div><!-- form -->
+</div> <!--login div -->
 
-
-<?php
-$form = new CForm(array(
-    'elements'=>array(
-        'username'=>array(
-            'type'=>'text',
-            'maxlength'=>32,
-        ),
-        'password'=>array(
-            'type'=>'password',
-            'maxlength'=>32,
-        ),
-        'rememberMe'=>array(
-            'type'=>'checkbox',
-        )
-    ),
-
-    'buttons'=>array(
-        'login'=>array(
-            'type'=>'submit',
-            'label'=>'Login',
-        ),
-    ),
-), $model);
-?>
 <?php $this->endWidget(); ?>

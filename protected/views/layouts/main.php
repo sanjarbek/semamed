@@ -5,11 +5,11 @@
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="author" content="Sanzharbek Amatov">
 
 	<!-- Le styles -->
 <!--	<link href="--><?php //echo Yii::app()->theme->baseUrl; ?><!--/css/bootstrap.min.css" rel="stylesheet">-->
-<!--	<link href="--><?php //echo Yii::app()->theme->baseUrl; ?><!--/css/application.min.css" rel="stylesheet">-->
+	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/application.css" rel="stylesheet">
 <!--	<link href="--><?php //echo Yii::app()->theme->baseUrl; ?><!--/css/bootstrap-responsive.css" rel="stylesheet">-->
     <?php
 //    $baseUrl = Yii::app()->baseUrl;
@@ -30,7 +30,8 @@
 	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo Yii::app()->request->baseUrl; ?>/images/apple-touch-icon-114x114.png">
 </head>
 
-<body style="background-image: url('images/logo.png'); background-repeat: no-repeat; background-position: center;">
+<!--<body style="background-image: url('images/logo.png'); background-repeat: no-repeat; background-position: center;">-->
+<body>
 <!--	<div class="navbar">-->
 <!--		<div class="navbar-inner">-->
 <!--			<div class="container">-->
@@ -63,10 +64,11 @@
 
     <?php
     $this->widget('bootstrap.widgets.TbNavbar', array(
-//        'brand' => '<span style="color: #000000; font-family: Verdana;"><b>Sema</b></span><span style="color: #ff0000; font-family: Verdana;"><b>med</b></span>',
-        'brand' => '<img src="images/logo-70h.png" alt="Smiley face" width="90px">',
+        'brand' => '<span style="color: #000000; font-family: Verdana;"><strong><u>Sema</span><span style="color: #ff0000; font-family: Verdana;">med</u></strong></span>',
+//        'brand' => '<img src="images/logo-70h.png" alt="Smiley face" width="90px">',
         'fixed' => 'false',
 //        'htmlOptions' => array('style' => 'position:absolute'),
+        'htmlOptions' => array('class'=>'nav'),
         'items' => array(
             array(
                 'class' => 'bootstrap.widgets.TbMenu',
@@ -77,8 +79,12 @@
                     array('label'=>'Patient', 'url'=>array('/patient/admin'), 'visible'=>!Yii::app()->user->isGuest),
                     array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
                     array('label'=>'Report', 'items'=> array(
-                        array('label'=>Yii::t('title','Registration'), 'url'=>array('/registration/report'), 'visible'=>!Yii::app()->user->isGuest),
-                        array('label'=>Yii::t('title','Doctor Report'), 'url'=>array('/registration/doctorreport'), 'visible'=>!Yii::app()->user->isGuest),
+                        array('label'=>'Manager reports', 'items'=>array(
+                            array('label'=>Yii::t('title','Doctor Report'), 'url'=>array('/registration/doctorreport'), 'visible'=>!Yii::app()->user->isGuest),
+                        )),
+                        array('label'=>'Registrator reports', 'items'=>array(
+                            array('label'=>Yii::t('title','Registration'), 'url'=>array('/registration/report'), 'visible'=>!Yii::app()->user->isGuest),
+                        )),
                         array('label'=>Yii::t('title','Excep export'), 'url'=>array('/registration/exceltemplate'), 'visible'=>!Yii::app()->user->isGuest),
                     )),
                 )
@@ -87,13 +93,13 @@
                 'class' => 'bootstrap.widgets.TbMenu',
                 'items'=>array(
 					array('label'=>Yii::app()->user->name . ' - profile', 'url'=>array('//user/profile'), 'visible'=>!Yii::app()->user->isGuest),
-                    array('label'=>Yii::t('title', 'Configure'), 'items'=>array(
+                    array('label'=>Yii::t('title', 'Configure'),'icon'=>'icon-wrench', 'items'=>array(
                         array('label'=>Yii::t('title', 'Hospitals'), 'url'=>array('/hospital'), 'visible'=>Yii::app()->user->checkAccess('admin')),
                         array('label'=>Yii::t('title', 'Doctors'), 'url'=>array('/doctor'), 'visible'=>Yii::app()->user->checkAccess('admin')),
                         array('label'=>Yii::t('title', 'MRT scans'), 'url'=>array('/mrtscan'), 'visible'=>Yii::app()->user->checkAccess('admin')),
                         array('label'=>Yii::t('title', 'User rights'), 'url'=>array('/rights'), 'visible'=>Yii::app()->user->checkAccess('admin')),
                     )),
-					array('label'=>'Logout', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn')),
+					array('label'=>'Logout', 'url'=>array('/user/logout'), 'icon'=>'icon-off','visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn')),
 				),
                 'htmlOptions'=>array(
                     'class'=>'nav pull-right',
@@ -102,14 +108,14 @@
         )
     ));
 	?>
-	<div class="container">
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('BBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-			'separator'=>' / ',
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
-	</div>
+<!--	<div class="container">-->
+<!--	--><?php //if(isset($this->breadcrumbs)):?>
+<!--		--><?php //$this->widget('BBreadcrumbs', array(
+//			'links'=>$this->breadcrumbs,
+//			'separator'=>' / ',
+//		)); ?><!--<!-- breadcrumbs -->
+<!--	--><?php //endif?>
+<!--	</div>-->
 	
 	<?php echo $content; ?>
 

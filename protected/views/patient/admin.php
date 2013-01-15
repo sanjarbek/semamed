@@ -1,49 +1,11 @@
 <?php
 $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-    'links'=>array('Patients'),
+    'links'=>array(
+        'Patients'
+    ),
 ));
-//
-//$this->menu=array(
-//	array('label'=>'List Patient','url'=>array('index')),
-//	array('label'=>'Create Patient','url'=>array('create')),
-//);
+?>
 
-//Yii::app()->clientScript->registerScript('search', "
-//$('.search-button').click(function(){
-//	$('.search-form').toggle();
-//	return false;
-//});
-//$('.search-form form').submit(function(){
-//	$.fn.yiiGridView.update('patient-grid', {
-//		data: $(this).serialize()
-//	});
-//	return false;
-//});
-//");
-//?>
-
-<?php
-//echo CHtml::ajaxLink('send a message', '/message',
-//    array('replace' => '#message-div'),
-//    array('id' => 'send-link-'.uniqid())
-//);
-//?>
-
-
-<?php //$this->widget('bootstrap.widgets.TbButton', array(
-//    'label'=>Yii::t('text','New registration'),
-//    'type'=>'primary',
-//    'htmlOptions'=>array(
-//        'data-toggle'=>'modal',
-////        'data-target'=>'#dialogRegistration',
-//        'onClick'=>"{addPatient(); $('#dialogPatient').dialog('open');}"
-//
-//    ),
-//)); ?>
-
-
-
-<!--//################################################-->
 <div id='divDialogPatient'>
     <?php
     $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
@@ -95,36 +57,13 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 
 </script>
 
-<!--//#############################################################/-->
-
-<!--<h3>Manage Patients</h3>-->
-
-<!--<p>-->
-<!--You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>-->
-<!--or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.-->
-<!--</p>-->
-<!---->
-<?php //echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn')); ?>
-<!--<div class="search-form" style="display:none">-->
-<?php //$this->renderPartial('_search',array(
-//	'model'=>$model,
-//)); ?>
-</div><!-- search-form -->
-
-<?php
-//$create_new_patient_via_ajax = CHtml::Ajax(
-//    array(
-//        'success' => "function(){addPatient(); $('#dialogPatient').dialog('open');}",
-//    )
-//);
-
-?>
-
 <?php $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title' => 'Manage Patients',
     'headerIcon' => 'icon-th-list',
-// when displaying a table, if we include bootstra-widget-table class
-// the table will be 0-padding to the box
+    'htmlOptions' => array('class'=>'bootstrap-widget-table'),
+//    'htmlOptions'=>array(
+//        'class'=>'span9 pull-right',
+//    ),
     'headerButtons' => array(
         array(
             'class' => 'bootstrap.widgets.TbButtonGroup',
@@ -150,7 +89,6 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
             ),
         ),
     ),
-//    'htmlOptions' => array('class'=>'bootstrap-widget-table')
 ));?>
 
 <?php //$this->widget('bootstrap.widgets.TbButton', array(

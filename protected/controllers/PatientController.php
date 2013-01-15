@@ -6,7 +6,7 @@ class PatientController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column1';
+	public $layout='column1';
 
 	/**
 	 * @return array action filters
@@ -328,7 +328,7 @@ class PatientController extends Controller
         ));
     }
 
-    public function actionReport()
+    public function actionReportExport()
     {
         $model=new Patient();
         $model->unsetAttributes();  // clear any default values
@@ -379,6 +379,18 @@ class PatientController extends Controller
                 'model'=>$model
             )
         );
+    }
+
+    public function actionReport()
+    {
+        $model=new Patient('search');
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['Patient']))
+            $model->attributes=$_GET['Patient'];
+
+        $this->render('report',array(
+            'model'=>$model,
+        ));
     }
 
 }

@@ -1,7 +1,9 @@
 <?php
-$this->breadcrumbs=array(
-	'Mrtscans',
-);
+$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+    'links'=>array(
+        Yii::t('title','Mrtscans'),
+    ),
+));
 
 $this->menu=array(
 	array('label'=>'Create Mrtscan','url'=>array('create')),

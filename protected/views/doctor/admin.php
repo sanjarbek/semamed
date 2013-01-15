@@ -1,8 +1,10 @@
 <?php
-$this->breadcrumbs=array(
-    Yii::t('title','Doctors')=>array('admin'),
-    Yii::t('title','Manage'),
-);
+$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+    'links'=>array(
+        Yii::t('title','Doctors')=>array('admin'),
+        Yii::t('title','Manage'),
+    ),
+));
 
 //$this->menu=array(
 //	array('label'=>'List Doctor','url'=>array('index')),

@@ -62,7 +62,7 @@ class Patient extends MasterModel
             ),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('patient_id, patient_fullname, patient_phone, patient_birthday, patient_doctor, patient_sex,  created_at, updated_at, created_user, updated_user', 'safe', 'on'=>'search'),
+			array('patient_id, patient_fullname, patient_phone, patient_birthday, patient_doctor, patient_sex,  created_at', 'safe', 'on'=>'search'),
 		);
 	}
 

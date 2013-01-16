@@ -6,9 +6,19 @@
  * Time: 4:08 AM
  * To change this template use File | Settings | File Templates.
  */
-class ReportController extends CController
+class ReportController extends Controller
 {
     public $layout = '//layouts/column1';
+
+    /**
+     * @return array action filters
+     */
+    public function filters()
+    {
+        return CMap::mergeArray(parent::filters(),array(
+
+        ));
+    }
 
     public function actionIndex()
     {

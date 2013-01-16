@@ -29,9 +29,9 @@ return array(
         'application.modules.rights.*',
         'application.modules.rights.models.*',
         'application.modules.rights.components.*',
-//        'ext.bootstrap-theme.widgets.*',
-//        'ext.bootstrap-theme.helpers.*',
-//        'ext.bootstrap-theme.behaviors.*',
+        'ext.bootstrap-theme.widgets.*',
+        'ext.bootstrap-theme.helpers.*',
+        'ext.bootstrap-theme.behaviors.*',
 	),
 
 	'modules'=>array(

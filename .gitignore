@@ -2,4 +2,5 @@ assets/
 protected/runtime/
 themes/classic/views/
 .idea/
-!protected/extensions/bootstrap-theme/
+!protected/extensions/bootstrap-theme/widgets/assets/
+!protected/extensions/bootstrap-theme/vendor/bootstrap/docs/assets/

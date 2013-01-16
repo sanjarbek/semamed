@@ -23,7 +23,7 @@ class Controller extends RController
 
     public function init()
     {
-//        $this->attachBehavior('bootstrap', new BController($this));
+        $this->attachBehavior('bootstrap', new BController($this));
     }
 
     public function filters(){

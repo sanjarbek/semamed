@@ -393,4 +393,43 @@ class PatientController extends Controller
         ));
     }
 
+    public function actionTest()
+    {
+        $sql = "
+            select
+                `h`.`hospital_name` AS `hospital_name`,
+                `d`.`doctor_fullname` AS `doctor_fullname`,
+                cast(`p`.`created_at` as date) AS `date`,
+                count(0) AS `count`
+            from
+                ((`patients` `p`
+                join `doctors` `d`)
+                join `hospitals` `h`)
+            where
+                ((`h`.`hospital_manager_id` = :manager_id)
+                and (`p`.`patient_doctor` = `d`.`doctor_id`)
+                and (`d`.`doctor_hospital` = `h`.`hospital_id`))
+            group by `h`.`hospital_name` , `d`.`doctor_fullname` , cast(`p`.`created_at` as date)
+        ";
+
+        $manager_id = 4;
+        $hospital = '45';
+        $doctor = '';
+
+        $criteria = new CDbCriteria();
+        $criteria->compare('h.hostpital', $hospital);
+        $criteria->compare('doctor', $doctor);
+
+        $where=$criteria->condition;
+        $params=$criteria->params;
+
+        $command = Yii::app()->db->createCommand($sql);
+        $command->bindParam(":manager_id", $manager_id, PDO::PARAM_STR);
+
+        $this->render('test', array(
+            'sql'=>$command->getText()
+        ));
+
+    }
+
 }

@@ -287,7 +287,7 @@ class PatientController extends Controller
 
         $model=Patient::model()->findByPk($id);
 
-        if($model!==NULL)
+        if($model!==NULL && $model->isStatusChangeable())
         {
             $model->$name = $value;
             if(!$model->save())

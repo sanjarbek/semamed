@@ -59,48 +59,99 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
 
 <h4>View Patient #<?php echo $patient->patient_id; ?></h4>
 
-<?php $this->widget('bootstrap.widgets.TbEditableDetailView',array(
-    'id' => 'patient-details',
-    'data'=>$patient,
-    'url' => $this->createUrl('patient/editable'),
-    'attributes'=>array(
-        'patient_id',
-        'patient_fullname',
-        'patient_phone',
-        array(
-            'name' => 'patient_birthday',
-            'editable' => array(
-                'type' => 'date',
-                'viewformat' => 'dd.mm.yyyy'
-            )
-        ),
-        array(
-            'name' => 'patient_sex',
-            'editable' => array(
-                'type' => 'select',
-                'source' => "[{value: '0', text: 'Male'}, {value: '1', text: 'Female'}]",
-            )
-        ),
-        array(
-            'name' => 'patient_status',
-            'editable' => array(
-                'type' => 'select',
-                'source' => "[{value: '0', text: 'Not yet started'}, {value: '1', text: 'Started'}, {value: '2', text: 'Finished'}, {value: '3', text: 'Canceled'}, {value: '4', text: 'Delayed'}]",
-            )
-        ),
-        array(
-            'name' => 'patient_doctor',
-            'editable' => array(
-                'type'=>'select',
-                'source' => CHtml::listData(Doctor::model()->findAll(array('order'=>'doctor_fullname')),'doctor_id','doctor_fullname'),
+<?php
+if ($patient->isStatusChangeable())
+{
+    $this->widget('bootstrap.widgets.TbEditableDetailView',array(
+        'id' => 'patient-details',
+        'data'=>$patient,
+        'url' => $this->createUrl('patient/editable'),
+        'attributes'=>array(
+            'patient_id',
+            'patient_fullname',
+            'patient_phone',
+            array(
+                'name' => 'patient_birthday',
+                'editable' => array(
+                    'type' => 'date',
+                    'viewformat' => 'dd.mm.yyyy'
+                )
             ),
-        ),
-        'created_at',
-        'updated_at',
+            array(
+                'name' => 'patient_sex',
+                'editable' => array(
+                    'type' => 'select',
+                    'source' => "[{value: '0', text: 'Male'}, {value: '1', text: 'Female'}]",
+                )
+            ),
+            array(
+                'name' => 'patient_status',
+                'editable' => array(
+                    'type' => 'select',
+                    'source' => "[{value: '0', text: 'Not yet started'}, {value: '1', text: 'Started'}, {value: '2', text: 'Finished'}, {value: '3', text: 'Canceled'}, {value: '4', text: 'Delayed'}]",
+                )
+            ),
+            array(
+                'name' => 'patient_doctor',
+                'editable' => array(
+                    'type'=>'select',
+                    'source' => CHtml::listData(Doctor::model()->findAll(array('order'=>'doctor_fullname')),'doctor_id','doctor_fullname'),
+                ),
+            ),
+            'created_at',
+            'updated_at',
 //        'created_user',
 //        'updated_user',
-    ),
-)); ?>
+        ),
+    ));
+}
+else
+{
+    $this->widget('bootstrap.widgets.TbDetailView',array(
+        'id' => 'patient-details',
+        'data'=>$patient,
+        'attributes'=>array(
+            'patient_id',
+            'patient_fullname',
+            'patient_phone',
+            array(
+                'name' => 'patient_birthday',
+//                'editable' => array(
+//                    'type' => 'date',
+//                    'viewformat' => 'dd.mm.yyyy'
+//                )
+            ),
+            array(
+                'name' => 'patient_sex',
+                'value' => $patient->getSexText(),
+//                'editable' => array(
+//                    'type' => 'select',
+//                    'source' => "[{value: '0', text: 'Male'}, {value: '1', text: 'Female'}]",
+//                )
+            ),
+            array(
+                'name' => 'patient_status',
+                'value' => $patient->getStatusText(),
+//                'editable' => array(
+//                    'type' => 'select',
+//                    'source' => "[{value: '0', text: 'Not yet started'}, {value: '1', text: 'Started'}, {value: '2', text: 'Finished'}, {value: '3', text: 'Canceled'}, {value: '4', text: 'Delayed'}]",
+//                )
+            ),
+            array(
+                'name' => 'patient_doctor',
+                'value' => $patient->patientDoctor->doctor_fullname,
+//                'editable' => array(
+//                    'type'=>'select',
+//                    'source' => CHtml::listData(Doctor::model()->findAll(array('order'=>'doctor_fullname')),'doctor_id','doctor_fullname'),
+//                ),
+            ),
+            'created_at',
+            'updated_at',
+//        'created_user',
+//        'updated_user',
+        ),
+    ));
+} ?>
 
 <?php $this->beginWidget('bootstrap.widgets.TbBox', array(
     'title' => 'Registrations',

@@ -156,7 +156,10 @@ class RegistrationController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+			$model = $this->loadModel($id);
+
+            if($model->regPatient->isChangeable())
+                $model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
@@ -280,7 +283,7 @@ class RegistrationController extends Controller
 //        Yii::app()->clientScript->scriptMap['jquery.ba-bbq.js'] = false;
 
         $this->renderPartial('_gridview',array(
-			'model'=>$model, 'patient_id'=>$this->_patient->patient_id
+			'model'=>$model, 'patient'=>$this->_patient
 		));
     }
 

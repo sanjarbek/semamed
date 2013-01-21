@@ -191,7 +191,7 @@ class Patient extends MasterModel
     public function isStatusChangeable()
     {
         if ($this->patient_status == self::STATUS_FINISHED
-            && $this->patient_status == self::STATUS_CANCELED
+            || $this->patient_status == self::STATUS_CANCELED
         )
         {
             return false;

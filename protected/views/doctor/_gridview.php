@@ -18,7 +18,7 @@
         array(
             'name'=>'doctor_hospital',
             'value'=>'CHtml::encode($data->doctorHospital->hospital_name)',
-            'filter'=>Hospital::hospitalsList(),
+            'filter'=>Hospital::model()->hospitalsList(),
         ),
         array(
             'name'=>'doctor_enable',

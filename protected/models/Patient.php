@@ -10,6 +10,7 @@
  * @property string $patient_birthday
  * @property enum $patient_sex
  * @property integer $patient_doctor
+ * @property integer $patient_status
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_user
@@ -21,7 +22,15 @@
  */
 class Patient extends MasterModel
 {
-    public $firstLetter;
+    const STATUS_NOT_YET_STARTED = 0;
+    const STATUS_STARTED = 1;
+    const STATUS_FINISHED = 2;
+    const STATUS_CANCELED = 3;
+    const STATUS_DELAYED = 4;
+
+    const SEX_MALE = 0;
+    const SEX_FEMALE = 1;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -52,7 +61,17 @@ class Patient extends MasterModel
 			array('patient_doctor', 'numerical', 'integerOnly'=>true),
 			array('patient_fullname', 'length', 'max'=>30),
 			array('patient_phone', 'length', 'max'=>20),
-            array('patient_sex', 'in', 'range'=>array('male', 'female')),
+            array('patient_sex', 'in', 'range'=>array(
+                self::SEX_MALE,
+                self::SEX_FEMALE,
+            )),
+            array('patient_status', 'in', 'range'=>array(
+                self::STATUS_NOT_YET_STARTED,
+                self::STATUS_STARTED,
+                self::STATUS_FINISHED,
+                self::STATUS_CANCELED,
+                self::STATUS_DELAYED,
+            )),
             array('patient_doctor', 'exist',
                 'allowEmpty' => false,
                 'attributeName' => 'doctor_id',
@@ -62,7 +81,7 @@ class Patient extends MasterModel
             ),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('patient_id, patient_fullname, patient_phone, patient_birthday, patient_doctor, patient_sex,  created_at', 'safe', 'on'=>'search'),
+			array('patient_id, patient_fullname, patient_phone, patient_birthday, patient_status, patient_doctor, patient_sex,  created_at', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -86,11 +105,12 @@ class Patient extends MasterModel
 	{
 		return array(
 			'patient_id' => Yii::t('column', 'Patient'),
-			'patient_fullname' => Yii::t('column', 'Patient Fullname'),
-			'patient_phone' => Yii::t('column', 'Patient Phone'),
-			'patient_birthday' => Yii::t('column', 'Patient Birthday'),
-            'patient_sex'=> Yii::t('column', 'Patient Sex'),
-			'patient_doctor' => Yii::t('column', 'Patient Doctor'),
+			'patient_fullname' => Yii::t('column', 'Fullname'),
+			'patient_phone' => Yii::t('column', 'Phone'),
+			'patient_birthday' => Yii::t('column', 'Birthday'),
+            'patient_sex'=> Yii::t('column', 'Sex'),
+            'patient_status'=> Yii::t('column', 'Status'),
+			'patient_doctor' => Yii::t('column', 'Doctor'),
 			'created_at' => Yii::t('column', 'Created At'),
 			'updated_at' => Yii::t('column', 'Updated At'),
 			'created_user' => Yii::t('column', 'Created User'),
@@ -114,6 +134,7 @@ class Patient extends MasterModel
 		$criteria->compare('patient_phone',$this->patient_phone,true);
 		$criteria->compare('patient_birthday',$this->patient_birthday,true);
         $criteria->compare('patient_sex',$this->patient_sex);
+        $criteria->compare('patient_status',$this->patient_status);
 		$criteria->compare('patient_doctor',$this->patient_doctor);
 		$criteria->compare('created_at',$this->created_at,true);
 		$criteria->compare('updated_at',$this->updated_at,true);
@@ -131,6 +152,52 @@ class Patient extends MasterModel
             ),
 		));
 	}
+
+    public function getStatusOptions()
+    {
+        return array(
+            self::STATUS_NOT_YET_STARTED => Yii::t('value', 'Not yet started'),
+            self::STATUS_STARTED => Yii::t('value', 'Started'),
+            self::STATUS_FINISHED => Yii::t('value', 'Finished'),
+            self::STATUS_CANCELED => Yii::t('value', 'Canceled'),
+            self::STATUS_DELAYED => Yii::t('value', 'Delayed'),
+        );
+    }
+
+    public function getStatusText()
+    {
+        $status_options = $this->getStatusOptions();
+        return isset($status_options[$this->patient_status])
+            ? $status_options[$this->patient_status]
+            : (Yii::t('value', 'Unknown status ') . $this->patient_status);
+    }
+
+    public function getSexOptions()
+    {
+        return array(
+            self::SEX_MALE => Yii::t('value', 'Male'),
+            self::SEX_FEMALE => Yii::t('value', 'Female'),
+        );
+    }
+
+    public function getSexText()
+    {
+        $sex_options = $this->getSexOptions();
+        return isset($sex_options[$this->patient_sex])
+            ? $sex_options[$this->patient_sex]
+            : (Yii::t('value', 'Unknown status ') . $this->patient_sex);
+    }
+
+    public function isStatusChangeable()
+    {
+        if ($this->patient_status == self::STATUS_FINISHED
+            && $this->patient_status == self::STATUS_CANCELED
+        )
+        {
+            return false;
+        }
+        return true;
+    }
 
     /**
      * Retrieves a list of models based on the current search/filter conditions.

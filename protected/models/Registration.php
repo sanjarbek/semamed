@@ -10,6 +10,7 @@
  * @property integer $reg_price
  * @property integer $reg_discont
  * @property integer $reg_total_price
+ * @property integer $reg_status
  * @property integer $reg_report_status
  * @property string $reg_report_text
  * @property string $created_at
@@ -23,20 +24,13 @@
  */
 class Registration extends MasterModel
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @param string $className active record class name.
-	 * @return Registration the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
+    const STATUS_NOT_YET_STARTED = 0;
+    const STATUS_STARTED = 1;
+    const STATUS_FINISHED = 2;
+    const STATUS_CANCELED = 3;
+
+    public function tableName()
 	{
 		return 'registrations';
 	}
@@ -49,8 +43,8 @@ class Registration extends MasterModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('reg_patient, reg_mrtscan, reg_discont, reg_total_price, reg_price, reg_report_status, created_at, updated_at, created_user, updated_user', 'required'),
-			array('reg_patient, reg_mrtscan, reg_discont, reg_total_price, reg_price, reg_report_status', 'numerical', 'integerOnly'=>true),
+			array('reg_patient, reg_mrtscan, reg_discont, reg_total_price, reg_price, created_at, updated_at, created_user, updated_user', 'required'),
+			array('reg_patient, reg_mrtscan, reg_discont, reg_total_price, reg_price, reg_status, reg_report_status', 'numerical', 'integerOnly'=>true),
 			array('reg_price', 'length', 'max'=>10),
 			array('reg_report_text', 'safe'),
 			// The following rule is used by search().
@@ -84,6 +78,7 @@ class Registration extends MasterModel
 			'reg_discont' => Yii::t('column', 'Discont'),
 			'reg_price' => Yii::t('column', 'MRT Price'),
             'reg_total_price' => Yii::t('column', 'Total Price'),
+            'reg_status' => Yii::t('column', 'Status'),
 			'reg_report_status' => Yii::t('column', 'Report Status'),
 			'reg_report_text' => Yii::t('column', 'Report Text'),
 			'created_at' => Yii::t('column', 'Created At'),
@@ -149,6 +144,24 @@ class Registration extends MasterModel
                 'pageSize'=>1000000,
             ),
         ));
+    }
+
+    public function getStatusOptions()
+    {
+        return array(
+            self::STATUS_NOT_YET_STARTED => Yii::t('value', 'Not yet started'),
+            self::STATUS_STARTED => Yii::t('value', 'Started'),
+            self::STATUS_FINISHED => Yii::t('value', 'Finished'),
+            self::STATUS_CANCELED => Yii::t('value', 'Canceled'),
+        );
+    }
+
+    public function getStatusText()
+    {
+        $status_options = $this->getStatusOptions();
+        return isset($status_options[$this->reg_status])
+            ? $status_options[$this->reg_status]
+            : (Yii::t('value', 'Unknown status ') . $this->reg_status);
     }
 
     public function getDoctorReport()

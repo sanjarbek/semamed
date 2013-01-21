@@ -180,7 +180,7 @@ class RegistrationController extends Controller
 	/**
 	 * Manages all models.
 	 */
-	public function actionAdmin()
+	public function actionAdminManage()
 	{
 //		$model=new Registration('search');
 //
@@ -225,7 +225,7 @@ class RegistrationController extends Controller
     /**
      * Manages all models.
      */
-    public function actionAdminManage()
+    public function actionAdmin()
     {
 		$model=new Registration('search');
 
@@ -235,7 +235,7 @@ class RegistrationController extends Controller
 
         $model->reg_patient = $this->_patient->patient_id;
 
-        $this->render('adminmanage',array(
+        $this->render('admin',array(
 			'model'=>$model, 'patient'=>$this->_patient
 		), false, true);
     }

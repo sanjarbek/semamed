@@ -81,7 +81,7 @@ $cs->registerScript(
         echo $form->textFieldRow($model,'reg_discont',
             array(
                 'class'=>'span2',
-                'append'=>'.00',
+//                'append'=>'.00',
                 'maxlength'=>5
             )
         );
@@ -89,7 +89,9 @@ $cs->registerScript(
 
     <?php echo $form->textFieldRow($model,'reg_total_price',array('readonly'=>true, 'class'=>'span2','maxlength'=>10,'append'=>'.00 сомов')); ?>
 
-	<?php echo $form->checkBoxRow($model,'reg_report_status'); ?>
+<!--    --><?php //echo $form->dropDownListRow($model, 'reg_status', $model->getStatusOptions()); ?>
+
+<!--	--><?php //echo $form->dropDownListRow($model,'reg_report_status', $model->getReportOptions()); ?>
 
 <!--	--><?php //echo $form->textAreaRow($model,'reg_report_text',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 <!--    --><?php //echo $form->html5EditorRow($model, 'reg_report_text', array('class'=>'span4', 'rows'=>5,

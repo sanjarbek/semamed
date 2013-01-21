@@ -3,6 +3,7 @@
     'type'=>'condensed striped',
     'dataProvider'=>$model->search(),
     'filter'=>$model,
+    'ajaxUrl'=>$this->createUrl('patient/admin'),
     'htmlOptions'=>array(
 //        'class'=>'pagination-small',
     ),
@@ -66,11 +67,16 @@
         ),
         array(
             'name'=>'patient_sex',
-            'value'=>'Yii::t(\'value\', $data->patient_sex)',
-            'filter'=>array(
-                'male'=>Yii::t('value','male'),
-                'female'=>Yii::t('value','female'),
-            ),
+            'value'=> '$data->getSexText()',
+//            'filter'=>"[{text: '0', value: 'Male'}, {text: '1', value: 'Female'}]",
+            'filter'=>$model->getSexOptions(),
+            'sortable'=>false,
+        ),
+        array(
+            'name'=>'patient_status',
+            'value'=> '$data->getStatusText()',
+//            'filter'=>"[{text: '0', value: 'Male'}, {text: '1', value: 'Female'}]",
+            'filter'=>$model->getStatusOptions(),
             'sortable'=>false,
         ),
         array(
@@ -101,7 +107,7 @@
                     'options'=>array(
                         'title'=>Yii::t('title', 'Detailed view'),
                     ),
-                    'url'=>  '$this->grid->controller->createUrl("/registration/adminmanage",
+                    'url'=>  '$this->grid->controller->createUrl("/registration/admin",
                         array("pid"=>$data->patient_id))',
 //                    'visible'=>'$data->'
                 ),

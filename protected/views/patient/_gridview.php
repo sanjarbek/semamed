@@ -101,7 +101,7 @@
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
 //            'header'=>Yii::t('text','Action'),
-            'template'=>'{view}{delete}',
+            'template'=>'{view}',
             'buttons'=> array(
                 'view' => array(
                     'options'=>array(

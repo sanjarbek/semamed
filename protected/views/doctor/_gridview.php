@@ -16,6 +16,23 @@
         'doctor_fullname',
         'doctor_phone',
         array(
+            'name'=>'doctor_type',
+            'filter'=>$this->widget('bootstrap.widgets.TbTypeahead', array(
+                'model'=>$model,
+                'attribute'=>'doctor_type',
+                'htmlOptions'=>array(
+                    'autocomplete' => 'off',
+                ),
+                'options'=>array(
+                    'source'=> $model->getTypeOptions(),
+                    'items'=>4,
+                    'matcher'=>"js:function(item) {
+                        return ~item.toLowerCase().indexOf(this.query.toLowerCase());
+                    }",
+                )
+            ), true),
+        ),
+        array(
             'name'=>'doctor_hospital',
             'value'=>'CHtml::encode($data->doctorHospital->hospital_name)',
             'filter'=>Hospital::model()->hospitalsList(),

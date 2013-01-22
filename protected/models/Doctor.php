@@ -7,6 +7,7 @@
  * @property integer $doctor_id
  * @property string $doctor_fullname
  * @property string $doctor_phone
+ * @property string $doctor_type
  * @property integer $doctor_hospital
  * @property integer $doctor_enable
  * @property string $created_at
@@ -46,9 +47,9 @@ class Doctor extends MasterModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('doctor_fullname, doctor_phone, doctor_hospital, doctor_enable, created_at, updated_at, created_user, updated_user', 'required'),
+			array('doctor_fullname, doctor_type, doctor_phone, doctor_hospital, doctor_enable, created_at, updated_at, created_user, updated_user', 'required'),
 			array('doctor_hospital, doctor_enable', 'numerical', 'integerOnly'=>true),
-			array('doctor_fullname, doctor_phone', 'length', 'max'=>45),
+			array('doctor_fullname, doctor_phone, doctor_type', 'length', 'max'=>45),
             array('doctor_hospital', 'exist',
                 'allowEmpty' => false,
                 'attributeName' => 'hospital_id',
@@ -58,7 +59,7 @@ class Doctor extends MasterModel
             ),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('doctor_id, doctor_fullname, doctor_phone, doctor_hospital, doctor_enable, created_at, updated_at, created_user, updated_user', 'safe', 'on'=>'search'),
+			array('doctor_id, doctor_fullname, doctor_type, doctor_phone, doctor_hospital, doctor_enable, created_at, updated_at, created_user, updated_user', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -84,6 +85,7 @@ class Doctor extends MasterModel
 			'doctor_id' => Yii::t('column', 'Doctor'),
 			'doctor_fullname' => Yii::t('column', 'Doctor fullname'),
 			'doctor_phone' => Yii::t('column', 'Doctor phone'),
+            'doctor_type' => Yii::t('column', 'Doctor type'),
 			'doctor_hospital' => Yii::t('column', 'Hospital'),
 			'doctor_enable' => Yii::t('column', 'Enable'),
 			'created_at' => Yii::t('column', 'Created At'),
@@ -92,6 +94,16 @@ class Doctor extends MasterModel
 			'updated_user' => Yii::t('column', 'Updated User'),
 		);
 	}
+
+    public function getTypeOptions()
+    {
+        $rawData = Doctor::model()->findAll(array('select'=>'doctor_type', 'distinct'=>true));
+        $typeOptions = array();
+        foreach($rawData as $model)
+            $typeOptions[] = $model->doctor_type;
+        return $typeOptions;
+    }
+
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
@@ -107,6 +119,7 @@ class Doctor extends MasterModel
 		$criteria->compare('doctor_id',$this->doctor_id);
 		$criteria->compare('doctor_fullname',$this->doctor_fullname,true);
 		$criteria->compare('doctor_phone',$this->doctor_phone,true);
+		$criteria->compare('doctor_type',$this->doctor_type,true);
 		$criteria->compare('doctor_hospital',$this->doctor_hospital);
 		$criteria->compare('doctor_enable',$this->doctor_enable);
 		$criteria->compare('created_at',$this->created_at,true);
@@ -130,6 +143,6 @@ class Doctor extends MasterModel
 
     public function doctorsList()
     {
-        return CHtml::listData(Doctor::model()->findAll(), 'doctor_id', 'doctor_fullname');
+        return CHtml::listData(Doctor::model()->findAll(), 'doctor_id', 'doctor_type');
     }
 }

@@ -49,6 +49,7 @@ $this->breadcrumbs=array(
 		'doctor_id',
 		'doctor_fullname',
 		'doctor_phone',
+        'doctor_type',
         array(
             'name'=>'doctor_hospital',
             'value'=>CHtml::encode($model->doctorHospital->hospital_name),

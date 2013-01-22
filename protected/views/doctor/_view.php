@@ -12,7 +12,11 @@
 	<?php echo CHtml::encode($data->doctor_phone); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('doctor_hospital')); ?>:</b>
+    <b><?php echo CHtml::encode($data->getAttributeLabel('doctor_type')); ?>:</b>
+    <?php echo CHtml::encode($data->doctor_type); ?>
+    <br />
+
+    <b><?php echo CHtml::encode($data->getAttributeLabel('doctor_hospital')); ?>:</b>
 	<?php echo CHtml::encode($data->doctorHospital->hospital_name); ?>
 	<br />
 

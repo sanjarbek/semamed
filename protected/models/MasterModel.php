@@ -9,8 +9,6 @@
 
 abstract class MasterModel extends CActiveRecord
 {
-    const STATUS_ENABLE = 1;
-    const STATUS_DISABLE = 0;
 
     protected function beforeValidate()
     {
@@ -30,14 +28,5 @@ abstract class MasterModel extends CActiveRecord
 
         return parent::beforeValidate();
     }
-
-    protected  function getStatusOptions()
-    {
-        return array(
-            self::STATUS_ENABLE=>Yii::t('status', 'Enable'),
-            self::STATUS_DISABLE=>Yii::t('status', 'Disable'),
-        );
-    }
-
 
 }

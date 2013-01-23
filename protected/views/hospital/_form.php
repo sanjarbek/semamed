@@ -14,7 +14,7 @@
     <?php echo $form->dropDownListRow($model,'hospital_manager_id',
         CHtml::listData(User::model()->getManagersList(), 'id', 'fullname')); ?>
 
-	<?php echo $form->checkBoxRow($model,'hospital_enable'); ?>
+	<?php echo $form->dropDownListRow($model,'hospital_enable', $model->getStatusOptions()); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

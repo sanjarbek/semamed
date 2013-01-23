@@ -19,6 +19,8 @@
  */
 class Hospital extends MasterModel
 {
+    const STATUS_ENABLED = 1;
+    const STATUS_DISABLED = 0;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -77,7 +79,7 @@ class Hospital extends MasterModel
 			'hospital_id' => Yii::t('column', 'Hospital'),
 			'hospital_name' => Yii::t('column', 'Hospital name'),
 			'hospital_phone' => Yii::t('column', 'Hospital phone'),
-			'hospital_enable' => Yii::t('column', 'Enable'),
+			'hospital_enable' => Yii::t('column', 'Status'),
             'hospital_manager_id' => Yii::t('column', 'Manager'),
 			'created_at' => Yii::t('column', 'Created At'),
 			'updated_at' => Yii::t('column', 'Updated At'),
@@ -112,13 +114,21 @@ class Hospital extends MasterModel
 		));
 	}
 
+    public function getStatusOptions()
+    {
+        return array(
+            self::STATUS_ENABLED => Yii::t('value', 'Enabled'),
+            self::STATUS_DISABLED => Yii::t('value', 'Disabled'),
+        );
+    }
+
     /**
      * @return string the status text display for the current issue
      */
     public function getStatusText()
     {
         $statusOptions = $this->statusOptions;
-        return isset($statusOptions[$this->hospital_enable]) ? $statusOptions[$this->hospital_enable] : "unknown status ({$this->hospital_enable})";
+        return isset($statusOptions[$this->hospital_enable]) ? $statusOptions[$this->hospital_enable] : "Unknown status ({$this->hospital_enable})";
     }
 
     public function hospitalsList()

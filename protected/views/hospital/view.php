@@ -27,7 +27,7 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
             'buttons'=>array(
                 array('label'=>Yii::t('title','Create Hospital'),'url'=>array('create'), 'icon'=>'icon-plus'),
                 array('label'=>Yii::t('title','Update Hospital'),'url'=>array('update','id'=>$model->hospital_id), 'icon'=>'icon-pencil'),
-                array('label'=>Yii::t('title','Delete Hospital'),'url'=>'#', 'icon'=>'icon-remove','linkOptions'=>array('submit'=>array('delete','id'=>$model->hospital_id),'confirm'=>'Are you sure you want to delete this item?')),
+//                array('label'=>Yii::t('title','Delete Hospital'),'url'=>'#', 'icon'=>'icon-remove','linkOptions'=>array('submit'=>array('delete','id'=>$model->hospital_id),'confirm'=>'Are you sure you want to delete this item?')),
                 array('label'=>Yii::t('title','Manage Hospital'),'url'=>array('admin'), 'icon'=>'icon-th-list'),
             ),
         ),
@@ -44,14 +44,16 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
             'hospital_name',
             'hospital_phone',
             array(
-                'name'=>'hospital_enable',
-                'value'=>CHtml::encode($model->getStatusText()),
-//                'editable'=>CHtml::encode($model->getStatusText()),
-            ),
-            array(
                 'name'=>'hospital_manager_id',
                 'value'=>CHtml::encode($model->manager->getFullname()),
             ),
+            array(
+                'name'=>'hospital_enable',
+                'value'=>$model->getStatusText(),
+//                'editable'=>CHtml::encode($model->getStatusText()),
+            ),
+            'created_at',
+            'updated_at',
 //            array(
 //                'name' => 'updated_at',
 //                'editable' => array(

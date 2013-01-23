@@ -40,11 +40,8 @@
         ),
         array(
             'name'=>'doctor_enable',
-            'value'=>'CHtml::encode($data->getEnableStatus())',
-            'filter'=>array(
-                0=>Yii::t('status', 'false'),
-                1=>Yii::t('status', 'true'),
-            ),
+            'value'=>'$data->getStatusText()',
+            'filter'=>Doctor::model()->getStatusOptions(),
         ),
 //		'created_at',
 //		'created_user',
@@ -55,6 +52,7 @@
         */
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
+            'template'=>'{view}{update}'
         ),
     ),
 )); ?>

@@ -21,6 +21,9 @@
  */
 class Doctor extends MasterModel
 {
+    const STATUS_ENABLED = 1;
+    const STATUS_DISABLED = 0;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -87,7 +90,7 @@ class Doctor extends MasterModel
 			'doctor_phone' => Yii::t('column', 'Doctor phone'),
             'doctor_type' => Yii::t('column', 'Doctor type'),
 			'doctor_hospital' => Yii::t('column', 'Hospital'),
-			'doctor_enable' => Yii::t('column', 'Enable'),
+			'doctor_enable' => Yii::t('column', 'Status'),
 			'created_at' => Yii::t('column', 'Created At'),
 			'updated_at' => Yii::t('column', 'Updated At'),
 			'created_user' => Yii::t('column', 'Created User'),
@@ -102,6 +105,20 @@ class Doctor extends MasterModel
         foreach($rawData as $model)
             $typeOptions[] = $model->doctor_type;
         return $typeOptions;
+    }
+
+    public function getStatusOptions()
+    {
+        return array(
+            self::STATUS_ENABLED => Yii::t('value', 'Enabled'),
+            self::STATUS_DISABLED => Yii::t('value', 'Disabled'),
+        );
+    }
+
+    public function getStatusText()
+    {
+        $statusOptions = $this->getStatusOptions();
+        return isset($statusOptions[$this->doctor_enable]) ? $statusOptions[$this->doctor_enable] : Yii::t('value', 'Unknown status ') . $this->doctor_enable;
     }
 
 

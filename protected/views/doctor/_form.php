@@ -34,7 +34,7 @@
 	<?php echo $form->dropDownListRow($model,'doctor_hospital',
         CHtml::listData(Hospital::model()->findAll(), 'hospital_id', 'hospital_name')); ?>
 
-	<?php echo $form->checkBoxRow($model,'doctor_enable'    ); ?>
+	<?php echo $form->dropDownListRow($model,'doctor_enable', $model->getStatusOptions() ); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

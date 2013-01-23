@@ -35,7 +35,7 @@ $this->breadcrumbs=array(
             'buttons'=>array(
                 array('label'=>Yii::t('title', 'Create Doctor'),'url'=>array('create'), 'icon'=>'icon-plus'),
                 array('label'=>Yii::t('title', 'Update Doctor'),'url'=>array('update','id'=>$model->doctor_id), 'icon'=>'icon-pencil'),
-                array('label'=>Yii::t('title', 'Delete Doctor'),'url'=>'#', 'icon'=>'icon-remove', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->doctor_id),'confirm'=>'Are you sure you want to delete this item?')),
+//                array('label'=>Yii::t('title', 'Delete Doctor'),'url'=>'#', 'icon'=>'icon-remove', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->doctor_id),'confirm'=>'Are you sure you want to delete this item?')),
                 array('label'=>Yii::t('title', 'Manage Doctor'),'url'=>array('admin'), 'icon'=>'icon-th-list'),
             ),
         ),
@@ -56,7 +56,7 @@ $this->breadcrumbs=array(
         ),
         array(
             'name'=>'doctor_enable',
-            'value'=>CHtml::encode($model->getEnableStatus()),
+            'value'=>$model->getStatusText(),
         ),
 		'created_at',
 		'updated_at',

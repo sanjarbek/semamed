@@ -1,6 +1,9 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'mrtscan-form',
 	'enableAjaxValidation'=>false,
+    'htmlOptions'=>array(
+        'class'=>'row-fluid',
+    ),
 )); ?>
 
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
@@ -9,7 +12,7 @@
 
 	<?php echo $form->textFieldRow($model,'mrtscan_name',array('class'=>'span5','maxlength'=>45)); ?>
 
-	<?php echo $form->textFieldRow($model,'mrtscan_description',array('class'=>'span5','maxlength'=>255)); ?>
+	<?php echo $form->textAreaRow($model,'mrtscan_description',array('class'=>'span5','rows'=>10, 'maxlength'=>255)); ?>
 
 	<?php echo $form->textFieldRow($model,'mrtscan_price',array('class'=>'span2','maxlength'=>10)); ?>
 

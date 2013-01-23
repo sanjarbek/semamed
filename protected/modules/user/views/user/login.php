@@ -17,7 +17,7 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 
 <div class='span6'>
 <?php
-echo CHtml::image(Yii::app()->request->baseUrl .'images/logo.png', 'Semamed', array(
+echo CHtml::image(Yii::app()->baseUrl. ('/images/logo.png'), 'Semamed', array(
     'data-original' => 'original',
 ));
 ?>

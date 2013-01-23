@@ -14,8 +14,8 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
         'title'=>'New Registration',
         'autoOpen'=>false,
         'modal'=>true,
-        'width'=>550,
-        'height'=>500,
+        'width'=>350,
+        'height'=>450,
         'closeOnEscape'=>true,
     ),
 ));?>
@@ -29,7 +29,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array( // the dialog
     function addRegistration()
     {
         <?php echo CHtml::ajax(array(
-            'url'=>array('registration/create&pid='.$patient->patient_id),
+            'url'=>$this->createUrl('registration/create', array('pid'=>$patient->patient_id)),
             'data'=> "js:$(this).serialize()",
             'type'=>'post',
             'dataType'=>'json',

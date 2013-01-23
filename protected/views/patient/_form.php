@@ -24,7 +24,9 @@
 
 	<?php echo $form->dropDownListRow($model,'patient_sex', $model->getSexOptions()); ?>
 
-	<?php echo $form->dropDownListRow($model,'patient_doctor',Doctor::model()->doctorsList()); ?>
+	<?php echo $form->dropDownListRow($model,'patient_doctor', CHtml::listData(
+        Doctor::model()->findAll(), 'doctor_id', 'doctor_fullname'
+    )); ?>
 
 	<?php echo $form->dropDownListRow($model,'patient_status', $model->getStatusOptions()); ?>
 

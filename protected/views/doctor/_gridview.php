@@ -5,6 +5,7 @@
     'dataProvider'=>$model->search(),
     'filter'=>$model,
     'template'=>'{items}{pager}{summary}',
+    'ajaxUrl'=>$this->createUrl('doctor/admin'),
     'columns'=>array(
         array(
             'name'=>'No',

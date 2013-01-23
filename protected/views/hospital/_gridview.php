@@ -4,6 +4,7 @@
     'type'=>'condensed, striped, bordered',
     'filter'=>$model,
     'template'=>'{items}{pager}{summary}',
+    'ajaxUrl'=>$this->createUrl('hospital/admin'),
     'columns'=>array(
         'hospital_id',
         'hospital_name',

@@ -5,6 +5,7 @@
     'dataProvider'=>$model->search(),
     'filter'=>$model,
     'template'=>'{items}{pager}{summary}',
+    'ajaxUrl'=>$this->createUrl('mrtscan/admin'),
     'columns'=>array(
         //this for the auto page number of cgridview
         array(

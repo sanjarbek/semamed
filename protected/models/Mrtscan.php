@@ -20,6 +20,9 @@
  */
 class Mrtscan extends MasterModel
 {
+    const STATUS_ENABLED = 1;
+    const STATUS_DISABLED = 0;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -114,13 +117,19 @@ class Mrtscan extends MasterModel
 		));
 	}
 
-    /**
-     * @return string the status text display for the current issue
-     */
-    public function getEnableStatus()
+    public function getStatusOptions()
     {
-        $statusOptions = $this->statusOptions;
-        return isset($statusOptions[$this->mrtscan_enable]) ? $statusOptions[$this->mrtscan_enable] : "unknown status ({$this->mrtscan_enable})";
+        return array(
+            self::STATUS_ENABLED => Yii::t('value', 'Enabled'),
+            self::STATUS_DISABLED => Yii::t('value', 'Disabled'),
+        );
     }
+
+    public function getStatusText()
+    {
+        $statusOptions = $this->getStatusOptions();
+        return isset($statusOptions[$this->mrtscan_enable]) ? $statusOptions[$this->mrtscan_enable] : Yii::t('value', 'Unknown status ') . $this->mrtscan_enable;
+    }
+
 
 }

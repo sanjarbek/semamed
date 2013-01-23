@@ -31,7 +31,7 @@ $this->breadcrumbs=array(
             'buttons'=>array(
                 array('label'=>Yii::t('menu', 'Create Mrtscan'),'url'=>array('create'), 'icon'=>'icon-plus'),
                 array('label'=>Yii::t('menu', 'Update Mrtscan'),'url'=>array('update','id'=>$model->mrtscan_id), 'icon'=>'icon-pencil'),
-                array('label'=>Yii::t('menu', 'Delete Mrtscan'),'url'=>'#','icon'=>'icon-remove', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->mrtscan_id),'confirm'=>'Are you sure you want to delete this item?')),
+//                array('label'=>Yii::t('menu', 'Delete Mrtscan'),'url'=>'#','icon'=>'icon-remove', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->mrtscan_id),'confirm'=>'Are you sure you want to delete this item?')),
                 array('label'=>Yii::t('menu', 'Manage Mrtscan'),'url'=>array('admin'), 'icon'=>'icon-th-list'),
             ),
         ),
@@ -47,7 +47,7 @@ $this->breadcrumbs=array(
 		'mrtscan_price',
 		array(
             'name'=>'mrtscan_enable',
-            'value'=>$model->getEnableStatus(),
+            'value'=>$model->getStatusText(),
         ),
 		'created_at',
 		'updated_at',

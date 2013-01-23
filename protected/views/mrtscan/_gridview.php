@@ -20,13 +20,10 @@
         'mrtscan_price',
         array(
             'name'=>'mrtscan_enable',
-            'value'=>'CHtml::encode($data->getEnableStatus())',
-            'filter'=>array(
-                0=>Yii::t('status', 'false'),
-                1=>Yii::t('status', 'true'),
-            ),
+            'value'=>'$data->getStatusText()',
+            'filter'=>Mrtscan::model()->getStatusOptions(),
         ),
-        'created_at',
+//        'created_at',
         /*
         'updated_at',
         'created_user',
@@ -34,6 +31,7 @@
         */
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
+            'template'=>'{view}{update}',
         ),
     ),
 

@@ -17,7 +17,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('mrtscan_enable')); ?>:</b>
-	<?php echo CHtml::encode($data->mrtscan_enable); ?>
+	<?php echo CHtml::encode($data->getStatusText); ?>
 	<br />
 
 <!--	<b>--><?php //echo CHtml::encode($data->getAttributeLabel('created_at')); ?><!--:</b>-->

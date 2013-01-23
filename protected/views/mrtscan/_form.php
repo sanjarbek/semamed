@@ -13,7 +13,7 @@
 
 	<?php echo $form->textFieldRow($model,'mrtscan_price',array('class'=>'span2','maxlength'=>10)); ?>
 
-	<?php echo $form->checkBoxRow($model,'mrtscan_enable'); ?>
+	<?php echo $form->dropDownListRow($model,'mrtscan_enable', $model->getStatusOptions()); ?>
 
 <!--	--><?php //echo $form->textFieldRow($model,'created_at',array('class'=>'span5')); ?>
 <!---->

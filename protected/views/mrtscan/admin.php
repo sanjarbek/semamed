@@ -31,13 +31,6 @@ $('.search-form form').submit(function(){
     ),
 )); ?>
 
-<?php //echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn')); ?>
-<div>
-<?php $this->renderPartial('_search',array(
-    'model'=>$model,
-)); ?>
-</div><!-- search-form -->
-
 <?php $this->_getGridViewMrtscanGrid(); ?>
 
 <?php $this->endWidget(); ?>

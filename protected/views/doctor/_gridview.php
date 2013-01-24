@@ -13,7 +13,12 @@
             'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize + $row+1',
             'filter'=>''//without filtering
         ),
-        'doctor_id',
+        array(
+            'name'=>'doctor_id',
+            'htmlOptions'=>array(
+                'width'=>'50px',
+            ),
+        ),
         'doctor_fullname',
         'doctor_phone',
         array(

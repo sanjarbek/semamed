@@ -19,6 +19,9 @@ $this->widget('bootstrap.widgets.TbExtendedGridView',array(
 //            'value'=>'CHtml::encode($data->reg_id)',
             'sortable'=>true,
             'filter'=>false,
+            'htmlOptions'=>array(
+                'width'=>'110px',
+            ),
         ),
         array(
             'name'=>'reg_patient',

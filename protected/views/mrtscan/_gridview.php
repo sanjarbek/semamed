@@ -14,7 +14,12 @@
             'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize + $row+1',
             'filter'=>''//without filtering
         ),
-        'mrtscan_id',
+        array(
+            'name'=>'mrtscan_id',
+            'htmlOptions'=>array(
+                'width'=>'80px',
+            ),
+        ),
         'mrtscan_name',
         'mrtscan_description',
         'mrtscan_price',

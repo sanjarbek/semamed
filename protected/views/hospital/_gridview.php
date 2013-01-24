@@ -6,7 +6,18 @@
     'template'=>'{items}{pager}{summary}',
     'ajaxUrl'=>$this->createUrl('hospital/admin'),
     'columns'=>array(
-        'hospital_id',
+        array(
+            'name'=>'No',
+            'type'=>'raw',
+            'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize + $row+1',
+            'filter'=>''//without filtering
+        ),
+        array(
+            'name'=>'hospital_id',
+            'htmlOptions'=>array(
+                'width'=>'60px',
+            ),
+        ),
         'hospital_name',
         'hospital_phone',
         array(

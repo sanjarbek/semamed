@@ -74,6 +74,19 @@ class RegistrationController extends Controller
 	{
 		$model=new Registration;
 
+        if (!$this->_patient->isStatusChangeable())
+        {
+            if(Yii::app()->request->isAjaxRequest)
+            {
+                echo CJSON::encode( array(
+                    'status' => 'success',
+                    'div' => 'You cannot make any actions with this patient',
+                ));
+                Yii::app()->end();
+            }
+            throw new CHttpException(400,'Invalid request. You cannot to make any actions with this patient.');
+        }
+
         $model->reg_patient = $this->_patient->patient_id;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -164,7 +177,7 @@ class RegistrationController extends Controller
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
-				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');

@@ -13,6 +13,7 @@ class RegistrationController extends Controller
 	 */
 	public $layout='//layouts/column1';
 
+
 	/**
 	 * @return array action filters
 	 */
@@ -20,7 +21,7 @@ class RegistrationController extends Controller
 	{
         return CMap::mergeArray(parent::filters(),array(
 //			'accessControl', // perform access control for CRUD operations
-            'patientContext + create admin adminmanage gettemplate', //check to ensure valid patient context
+            'patientContext + create index adminmanage gettemplate', //check to ensure valid patient context
             'postOnly + delete', // we only allow deletion via POST request
             array(
                 'application.filters.GridViewHandler' //path to GridViewHandler.php class
@@ -169,66 +170,44 @@ class RegistrationController extends Controller
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
-	/**
-	 * Lists all models.
-	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Registration');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
+    /**
+     * Manages all models of specified patient model.
+     */
+    public function actionIndex()
+    {
+        $model=new Registration('search');
+
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['Registration']))
+            $model->attributes=$_GET['Registration'];
+
+        $model->reg_patient = $this->_patient->patient_id;
+
+        $this->render('index',array(
+            'model'=>$model, 'patient'=>$this->_patient
+        ), false, true);
+    }
+
 
 	/**
 	 * Manages all models.
 	 */
-	public function actionAdminManage()
+	public function actionAdmin()
 	{
-//		$model=new Registration('search');
-//
-//		$model->unsetAttributes();  // clear any default values
-//		if(isset($_GET['Registration']))
-//			$model->attributes=$_GET['Registration'];
-//
-//        $model->reg_patient = $this->_patient->patient_id;
+		$model=new Registration('search');
 
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Registration']))
+			$model->attributes=$_GET['Registration'];
 
-
-        if( Yii::app()->request->isAjaxRequest)
-        {
-            Yii::app()->clientscript->scriptMap['jquery.js'] = false;
-            Yii::app()->clientscript->scriptMap['bootstrap.js'] = false;
-            Yii::app()->clientscript->scriptMap['jquery.min.js'] = false;
-            Yii::app()->clientscript->scriptMap['bootstrap.min.js'] = false;
-            Yii::app()->clientscript->scriptMap['bootstrap.bootbox.min.js'] = false;
-            Yii::app()->clientscript->scriptMap['bootstrap.datepicker.js'] = false;
-            Yii::app()->clientscript->scriptMap['jquery.ba-bbq.js'] = false;
-            Yii::app()->clientscript->scriptMap['jquery-ui.min.js'] = false;
-            Yii::app()->clientscript->scriptMap['jquery.yiigridview.js'] = false;
-
-            echo CJSON::encode( array(
-                'status' => 'successfully',
-                'div' => $this->renderPartial('admin',
-                    array( 'patient_id'=>$this->_patient->patient_id), true, true),
-            ));
-            Yii::app()->end();
-        }
-
-//        echo CJSON::encode( array(
-//            'status' => 'failure',
-//            'div' => $this->renderPartial('admin', array( 'patient_id'=>$this->_patient->patient_id), true, true),
-//        ));
-//        Yii::app()->end();
-
-//        $this->render('admin',array(
-//			'model'=>$model, 'patient_id'=>$this->_patient->patient_id
-//		));
+        $this->render('admin',array(
+			'model'=>$model
+		));
 	}
     /**
      * Manages all models.
      */
-    public function actionAdmin()
+    public function actionAdminManage()
     {
 		$model=new Registration('search');
 
@@ -284,6 +263,19 @@ class RegistrationController extends Controller
 
         $this->renderPartial('_gridview',array(
 			'model'=>$model, 'patient'=>$this->_patient
+		));
+    }
+
+    public function _getGridViewAdminRegistrationGrid()
+	{
+        $model=new Registration('search');
+
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Registration']))
+			$model->attributes=$_GET['Registration'];
+
+        $this->renderPartial('_admingridview',array(
+			'model'=>$model
 		));
     }
 

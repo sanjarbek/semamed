@@ -107,7 +107,7 @@
                     'options'=>array(
                         'title'=>Yii::t('title', 'Detailed view'),
                     ),
-                    'url'=>  '$this->grid->controller->createUrl("/registration/admin",
+                    'url'=>  '$this->grid->controller->createUrl("/registration/index",
                         array("pid"=>$data->patient_id))',
 //                    'visible'=>'$data->'
                 ),

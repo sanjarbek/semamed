@@ -76,7 +76,7 @@
                     array('label'=>'Home', 'url'=>array('/site/index'), /*'active'=>true*/),
 //                    array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 //                    array('label'=>'Contact', 'url'=>array('/site/contact')),
-                    array('label'=>'Patient', 'url'=>array('/patient/admin'), 'visible'=>!Yii::app()->user->isGuest),
+                    array('label'=>'Patient', 'url'=>array('/patient'), 'visible'=>!Yii::app()->user->isGuest),
                     array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
                     array('label'=>'Report', 'items'=> array(
                         array('label'=>'Manager reports', 'items'=>array(
@@ -94,6 +94,8 @@
                 'items'=>array(
 					array('label'=>Yii::app()->user->name . ' - profile', 'url'=>array('//user/profile'), 'visible'=>!Yii::app()->user->isGuest),
                     array('label'=>Yii::t('title', 'Configure'),'icon'=>'icon-wrench', 'items'=>array(
+                        array('label'=>Yii::t('title', 'Patients'), 'url'=>array('/patient/admin'), 'visible'=>Yii::app()->user->checkAccess('admin')),
+                        array('label'=>Yii::t('title', 'Registrations'), 'url'=>array('/registration/admin'), 'visible'=>Yii::app()->user->checkAccess('admin')),
                         array('label'=>Yii::t('title', 'Hospitals'), 'url'=>array('/hospital'), 'visible'=>Yii::app()->user->checkAccess('admin')),
                         array('label'=>Yii::t('title', 'Doctors'), 'url'=>array('/doctor'), 'visible'=>Yii::app()->user->checkAccess('admin')),
                         array('label'=>Yii::t('title', 'MRT scans'), 'url'=>array('/mrtscan'), 'visible'=>Yii::app()->user->checkAccess('admin')),

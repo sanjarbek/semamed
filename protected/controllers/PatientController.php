@@ -199,10 +199,14 @@ class PatientController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Patient');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+        $model=new Patient('search');
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['Patient']))
+            $model->attributes=$_GET['Patient'];
+
+        $this->render('index',array(
+            'model'=>$model,
+        ));
 	}
 
 	/**

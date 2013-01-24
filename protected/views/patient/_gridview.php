@@ -3,7 +3,7 @@
     'type'=>'condensed striped',
     'dataProvider'=>$model->search(),
     'filter'=>$model,
-    'ajaxUrl'=>$this->createUrl('patient/admin'),
+    'ajaxUrl'=>$this->createUrl('patient/index'),
     'htmlOptions'=>array(
 //        'class'=>'pagination-small',
     ),

@@ -131,7 +131,7 @@ class Hospital extends MasterModel
         return isset($statusOptions[$this->hospital_enable]) ? $statusOptions[$this->hospital_enable] : "Unknown status ({$this->hospital_enable})";
     }
 
-    public function hospitalsList()
+    public function getHospitalsList()
     {
         return CHtml::listData(Hospital::model()->findAll(), 'hospital_id', 'hospital_name');
     }

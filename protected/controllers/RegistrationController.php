@@ -21,7 +21,7 @@ class RegistrationController extends Controller
 	{
         return CMap::mergeArray(parent::filters(),array(
 //			'accessControl', // perform access control for CRUD operations
-            'patientContext + create index adminmanage gettemplate', //check to ensure valid patient context
+            'patientContext + create index gettemplate', //check to ensure valid patient context
             'postOnly + delete', // we only allow deletion via POST request
             array(
                 'application.filters.GridViewHandler' //path to GridViewHandler.php class
@@ -172,8 +172,10 @@ class RegistrationController extends Controller
 			// we only allow deletion via POST request
 			$model = $this->loadModel($id);
 
-            if($model->regPatient->isChangeable())
+            if($model->regPatient->isStatusChangeable())
+            {
                 $model->delete();
+            }
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
@@ -217,24 +219,6 @@ class RegistrationController extends Controller
 			'model'=>$model
 		));
 	}
-    /**
-     * Manages all models.
-     */
-    public function actionAdminManage()
-    {
-		$model=new Registration('search');
-
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Registration']))
-			$model->attributes=$_GET['Registration'];
-
-        $model->reg_patient = $this->_patient->patient_id;
-
-        $this->render('admin',array(
-			'model'=>$model, 'patient'=>$this->_patient
-		), false, true);
-    }
-
 
     /**
 	 * Returns the data model based on the primary key given in the GET variable.

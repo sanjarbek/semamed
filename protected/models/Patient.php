@@ -93,7 +93,7 @@ class Patient extends MasterModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'patientDoctor' => array(self::BELONGS_TO, 'Doctor', 'patient_doctor'),
+			'patientDoctor' => array(self::BELONGS_TO, 'Doctor', 'patient_doctor', 'alias'=>'doctor'),
 			'registrations' => array(self::HAS_MANY, 'Registration', 'reg_patient'),
 		);
 	}
@@ -141,10 +141,12 @@ class Patient extends MasterModel
 		$criteria->compare('created_user',$this->created_user);
 		$criteria->compare('updated_user',$this->updated_user);
 
+        $criteria->with = array('patientDoctor');
+
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
             'sort'=>array(
-                'defaultOrder'=>'created_at desc',
+                'defaultOrder'=>'t.created_at desc',
             ),
 
             'pagination'=>array(

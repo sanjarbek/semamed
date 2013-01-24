@@ -15,7 +15,7 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array(
-//        'log',
+        'log',
         'bootstrap',
     ),
 
@@ -101,16 +101,15 @@ return array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
 				array(
-//                    'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
 					'class'=>'CFileLogRoute',
 					'levels'=>'info',
 				),
 				// uncomment the following to show log messages on web pages
-				/*
-				array(
-					'class'=>'CWebLogRoute',
-				),
-				*/
+
+//				array(
+//					'class'=>'CWebLogRoute',
+//				),
+				
 			),
 		),
 	),

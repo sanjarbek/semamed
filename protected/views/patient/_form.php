@@ -7,18 +7,20 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'patient_fullname',array('class'=>'span5','maxlength'=>30)); ?>
+	<?php echo $form->textFieldRow($model,'patient_fullname',array('class'=>'span3','maxlength'=>30)); ?>
 
-	<?php echo $form->textFieldRow($model,'patient_phone',array('class'=>'span5','maxlength'=>20)); ?>
+	<?php echo $form->textFieldRow($model,'patient_phone',array('class'=>'span3','maxlength'=>20)); ?>
 
 	<?php echo $form->datepickerRow($model,'patient_birthday',
         array(
             'id'=>'patient_birthday',
-            'prepend'=>'<i class="icon-calendar"></i>',
+            'append'=>'<i class="icon-calendar"></i>',
             'options'=>array(
                 'format'=>'yyyy-mm-dd',
-                'viewformat'=>'dd.mm.yyyy',
+                'calendarWeeks'=>true,
+                'startView'=>'decade',
             ),
+            'class'=>'span2',
         )
     ); ?>
 

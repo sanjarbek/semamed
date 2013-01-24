@@ -19,7 +19,7 @@ $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
             ),
         ),
     ),
-//    'htmlOptions' => array('class'=>'bootstrap-widget-table'),
+    'htmlOptions' => array('class'=>'bootstrap-widget-table'),
 )); ?>
 
 <?php $this->_getGridViewHospitalGrid(); ?>

@@ -303,7 +303,8 @@ class PatientController extends Controller
 
     }
     
-    public function _getGridViewPatientGrid(){ 
+    public function _getGridViewPatientGrid()
+    {
         //create data provider and renderPartial CGridView widget
         $model=new Patient('search');
 		$model->unsetAttributes();  // clear any default values
@@ -320,16 +321,22 @@ class PatientController extends Controller
         );
     }
 
-    public function _getGridViewManagePatientGrid(){
+    public function _getGridViewAdminPatientGrid()
+    {
         //create data provider and renderPartial CGridView widget
         $model=new Patient('search');
-        $model->unsetAttributes();  // clear any default values
-        if(isset($_GET['Patient']))
-            $model->attributes=$_GET['Patient'];
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Patient']))
+			$model->attributes=$_GET['Patient'];
 
-        $this->renderPartial('_manage_gridview',array(
-            'model'=>$model, true, false
-        ));
+//        Yii::app()->clientscript->scriptMap['jquery.js'] = false;
+//        Yii::app()->clientscript->scriptMap['jquery.min.js'] = false;
+//        Yii::app()->clientscript->scriptMap['bootstrap.js'] = false;
+//        Yii::app()->clientscript->scriptMap['bootstrap.bootbox.min.js'] = false;
+
+        $this->renderPartial('_admingridview',array(
+            'model'=>$model)
+        );
     }
 
     public function actionReportExport()

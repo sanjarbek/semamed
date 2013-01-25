@@ -14,9 +14,9 @@
     <?php
 //    $baseUrl = Yii::app()->baseUrl;
 //    $cs = Yii::app()->getClientScript();
-//    $cs->registerCssFile($baseUrl.'/css/bootstrap.min.css');
+//    $cs->registerCssFile($baseUrl.'/protected/extentions/bootstrap/assets/css/bootstrap.min.css');
 //    $cs->registerCssFile($baseUrl.'/css/application.min.css');
-//    $cs->registerCssFile($baseUrl.'/css/bootstrap-responsive.css');
+//    $cs->registerCssFile($baseUrl.'/protected/extentions/bootstrap/assets/css/bootstrap-responsive.css');
     ?>
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--	[if lt IE 9]>-->
@@ -32,36 +32,6 @@
 
 <!--<body style="background-image: url('images/logo.png'); background-repeat: no-repeat; background-position: center;">-->
 <body>
-<!--	<div class="navbar">-->
-<!--		<div class="navbar-inner">-->
-<!--			<div class="container">-->
-<!--				<a class="brand" href="--><?php //echo $this->createAbsoluteUrl('//'); ?><!--">--><?php //echo CHtml::encode(Yii::app()->name); ?><!--</a>-->
-<!--				--><?php //$this->widget('zii.widgets.CMenu',array(
-//					'items'=>array(
-//						array('label'=>'Home', 'url'=>array('/site/index')),
-////						array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-////						array('label'=>'Contact', 'url'=>array('/site/contact')),
-//                        array('label'=>'Patient', 'url'=>array('/patient/admin'), 'visible'=>!Yii::app()->user->isGuest),
-//                        array('label'=>'Report', 'url'=>array('/registration/report'), 'visible'=>!Yii::app()->user->isGuest),
-//						array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
-//					),
-//					'htmlOptions'=>array(
-//						'class'=>'nav',
-//					),
-//				)); ?>
-<!--				--><?php //$this->widget('zii.widgets.CMenu',array(
-//					'items'=>array(
-//						array('label'=>Yii::app()->user->name . ' - profile', 'url'=>array('user/profile'), 'visible'=>!Yii::app()->user->isGuest),
-//						array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn'))
-//					),
-//					'htmlOptions'=>array(
-//						'class'=>'nav pull-right',
-//					),
-//				)); ?>
-<!--			</div>-->
-<!--		</div>-->
-<!--	</div>-->
-
     <?php
     $this->widget('bootstrap.widgets.TbNavbar', array(
         'brand' => '<span style="color: #000000; font-family: Verdana;"><strong><u>Sema</span><span style="color: #ff0000; font-family: Verdana;">med</u></strong></span>',

@@ -67,11 +67,11 @@ $this->widget('bootstrap.widgets.TbExtendedGridView',array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
             'header'=>Yii::t('text','Action'),
             'template'=>'{delete}',
-            'buttons'=>array(
-                'delete'=>array(
-                    'visible'=>'$data->regPatient->isStatusChangeable()',
-                ),
-            ),
+//            'buttons'=>array(
+//                'delete'=>array(
+//                    'visible'=>'$data->regPatient->isStatusChangeable()',
+//                ),
+//            ),
 		),
 	),
     'extendedSummary' => array(

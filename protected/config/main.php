@@ -72,7 +72,7 @@ return array(
             'class'=>'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
 //            'responsiveCss' => true,
         ),
-
+		/*
 		'urlManager'=>array(
 			'urlFormat'=>'path',
             'showScriptName'=>false,
@@ -82,7 +82,7 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-
+		*/
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=semamed',
 			'emulatePrepare' => true,

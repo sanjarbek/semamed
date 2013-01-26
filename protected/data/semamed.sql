@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 21, 2013 at 09:59 PM
--- Server version: 5.5.28
--- PHP Version: 5.3.10-1ubuntu3.4
+-- Generation Time: Jan 26, 2013 at 08:58 AM
+-- Server version: 5.5.29
+-- PHP Version: 5.3.10-1ubuntu3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -213,8 +213,13 @@ CREATE TABLE IF NOT EXISTS `AuthItemChild` (
 
 INSERT INTO `AuthItemChild` (`parent`, `child`) VALUES
 ('Registrator', 'Mrtscan.GetPrice'),
-('Registrator', 'Patient.*'),
-('Registrator', 'Registration.*'),
+('Registrator', 'Patient.Create'),
+('Registrator', 'Patient.Delete'),
+('Registrator', 'Patient.Editable'),
+('Registrator', 'Patient.Index'),
+('Registrator', 'Registration.Create'),
+('Registrator', 'Registration.Delete'),
+('Registrator', 'Registration.Index'),
 ('Guest', 'Site.Contact'),
 ('Guest', 'Site.Error'),
 ('Guest', 'Site.Index'),
@@ -226,28 +231,6 @@ INSERT INTO `AuthItemChild` (`parent`, `child`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `disconts`
---
-
-CREATE TABLE IF NOT EXISTS `disconts` (
-  `discont_id` int(11) NOT NULL AUTO_INCREMENT,
-  `discont_mriscan` int(11) NOT NULL,
-  `discont_name` varchar(45) NOT NULL,
-  `discont_type` enum('percent','money') NOT NULL,
-  `discont_value` int(11) NOT NULL,
-  `discont_description` varchar(100) DEFAULT NULL,
-  `discont_enable` bit(1) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  `created_user` int(11) NOT NULL,
-  `updated_user` int(11) NOT NULL,
-  PRIMARY KEY (`discont_id`),
-  KEY `fk_disconts_mriscan` (`discont_mriscan`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `doctors`
 --
 
@@ -255,6 +238,7 @@ CREATE TABLE IF NOT EXISTS `doctors` (
   `doctor_id` int(11) NOT NULL AUTO_INCREMENT,
   `doctor_fullname` varchar(45) NOT NULL,
   `doctor_phone` varchar(45) NOT NULL,
+  `doctor_type` varchar(45) NOT NULL,
   `doctor_hospital` int(11) NOT NULL,
   `doctor_enable` tinyint(1) NOT NULL,
   `created_at` datetime NOT NULL,
@@ -263,16 +247,17 @@ CREATE TABLE IF NOT EXISTS `doctors` (
   `updated_user` int(11) NOT NULL,
   PRIMARY KEY (`doctor_id`),
   KEY `fk_doctors_1` (`doctor_hospital`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `doctors`
 --
 
-INSERT INTO `doctors` (`doctor_id`, `doctor_fullname`, `doctor_phone`, `doctor_hospital`, `doctor_enable`, `created_at`, `updated_at`, `created_user`, `updated_user`) VALUES
-(6, 'Калмурзаев Бектемир', '0700 106940', 8, 1, '2012-10-17 06:59:39', '2012-12-27 00:09:16', 1, 1),
-(7, 'Доктор Айболит', '0543 294738', 7, 1, '2012-10-26 10:20:52', '2012-12-19 14:09:28', 1, 1),
-(8, 'Мансуров Нурсултан', '0543 192912', 10, 1, '2012-12-27 00:07:36', '2013-01-14 14:40:24', 1, 1);
+INSERT INTO `doctors` (`doctor_id`, `doctor_fullname`, `doctor_phone`, `doctor_type`, `doctor_hospital`, `doctor_enable`, `created_at`, `updated_at`, `created_user`, `updated_user`) VALUES
+(6, 'Калмурзаев Бектемир', '0700 106940', 'Хирург', 8, 1, '2012-10-17 06:59:39', '2013-01-22 16:37:14', 1, 1),
+(7, 'Доктор Айболит', '0543 294738', 'Терапевт', 7, 1, '2012-10-26 10:20:52', '2013-01-22 16:37:34', 1, 1),
+(8, 'Мансуров Нурсултан', '0543 192912', 'Терапевт', 10, 1, '2012-12-27 00:07:36', '2013-01-22 16:37:44', 1, 1),
+(13, 'Эйтгазиев О. Е.', '0505 293949', 'Уролог', 8, 1, '2013-01-22 16:38:27', '2013-01-22 16:38:27', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -365,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `patients` (
   `updated_user` int(11) NOT NULL,
   PRIMARY KEY (`patient_id`),
   KEY `fk_patients_1` (`patient_doctor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=103 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=107 ;
 
 --
 -- Dumping data for table `patients`
@@ -428,7 +413,11 @@ INSERT INTO `patients` (`patient_id`, `patient_fullname`, `patient_phone`, `pati
 (98, 'Темиров Ф. В.', '0556 101020', '1990-08-05', 1, 3, 6, '2013-01-19 15:31:03', '2013-01-20 16:22:55', 1, 1),
 (99, 'Бердибекова А. С.', '0779 203040', '1989-05-27', 1, 2, 6, '2013-01-20 16:39:19', '2013-01-21 10:33:17', 1, 1),
 (101, 'Калмурзаев А. Ц.', '0700 203948', '1973-05-14', 0, 3, 6, '2013-01-21 17:34:11', '2013-01-21 17:36:53', 1, 1),
-(102, 'Кимсанов У. М.', '0702 304020', '1991-03-12', 0, 0, 7, '2013-01-21 18:41:34', '2013-01-21 18:41:34', 6, 6);
+(102, 'Кимсанов У. М.', '0702 304020', '1991-03-12', 0, 2, 7, '2013-01-21 18:41:34', '2013-01-23 14:34:50', 6, 1),
+(103, 'Саронов К. Т.', '0773 102974', '1988-10-24', 0, 0, 13, '2013-01-23 15:08:33', '2013-01-24 11:42:50', 1, 1),
+(104, 'Жылкычиев Г. П.', '0556 020203', '1985-10-29', 0, 2, 8, '2013-01-24 12:16:56', '2013-01-24 12:22:19', 1, 1),
+(105, 'Балмурзаева А. М.', '0543 293847', '1959-11-24', 1, 0, 8, '2013-01-24 12:32:49', '2013-01-24 12:32:49', 6, 6),
+(106, 'Мышкова Г. Т.', '0543 187563', '1985-07-30', 1, 0, 13, '2013-01-24 12:34:14', '2013-01-24 12:34:25', 6, 6);
 
 -- --------------------------------------------------------
 
@@ -525,7 +514,7 @@ CREATE TABLE IF NOT EXISTS `registrations` (
   PRIMARY KEY (`reg_id`),
   KEY `fk_reg_mriscan` (`reg_mrtscan`),
   KEY `fk_registrations_1` (`reg_patient`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=155 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=161 ;
 
 --
 -- Dumping data for table `registrations`
@@ -632,7 +621,13 @@ INSERT INTO `registrations` (`reg_id`, `reg_patient`, `reg_mrtscan`, `reg_price`
 (151, 95, 4, 2300.00, 500, 1800.00, 0, 0, NULL, '2013-01-21 10:00:59', '2013-01-21 10:00:59', 1, 1),
 (152, 101, 2, 3500.00, 600, 2900.00, 0, 0, NULL, '2013-01-21 17:34:44', '2013-01-21 17:34:44', 1, 1),
 (153, 102, 2, 3500.00, 400, 3100.00, 0, 0, NULL, '2013-01-21 18:58:42', '2013-01-21 18:58:42', 1, 1),
-(154, 102, 3, 2800.00, 600, 2200.00, 0, 0, NULL, '2013-01-21 18:59:31', '2013-01-21 18:59:31', 6, 6);
+(154, 102, 3, 2800.00, 600, 2200.00, 0, 0, NULL, '2013-01-21 18:59:31', '2013-01-21 18:59:31', 6, 6),
+(155, 103, 3, 2800.00, 600, 2200.00, 0, 0, NULL, '2013-01-23 15:18:26', '2013-01-23 15:18:26', 1, 1),
+(156, 104, 2, 3500.00, 0, 3500.00, 0, 0, NULL, '2013-01-24 12:17:11', '2013-01-24 12:17:11', 1, 1),
+(157, 104, 4, 2300.00, 0, 2300.00, 0, 0, NULL, '2013-01-24 12:21:57', '2013-01-24 12:21:57', 1, 1),
+(158, 106, 3, 2800.00, 0, 2800.00, 0, 0, NULL, '2013-01-24 12:34:36', '2013-01-24 12:34:36', 6, 6),
+(159, 106, 1, 3400.00, 0, 3400.00, 0, 0, NULL, '2013-01-24 12:34:48', '2013-01-24 12:34:48', 6, 6),
+(160, 4, 3, 2800.00, 0, 2800.00, 0, 0, NULL, '2013-01-24 14:41:13', '2013-01-24 14:41:13', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -675,12 +670,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `activkey`, `create_at`, `lastvisit_at`, `superuser`, `status`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'webmaster@example.com', '9a24eff8c15a6a141ece27eb6947da0f', '2012-10-16 23:19:17', '2013-01-21 12:58:07', 1, 1),
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'webmaster@example.com', '9a24eff8c15a6a141ece27eb6947da0f', '2012-10-16 23:19:17', '2013-01-25 13:53:25', 1, 1),
 (2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo@example.com', '099f825543f7850cc038b90aaff39fac', '2012-10-16 23:19:17', '2012-12-15 06:28:10', 0, 1),
 (3, 'sayra', '34f85ca80ec353d3052b8a2d3973a0c5', 'sayra@mail.ru', '617c2373700b63b4649dd0cb1a2bd746', '2012-12-08 10:49:18', '2013-01-04 09:08:49', 0, 1),
 (4, 'bakyt', '34f85ca80ec353d3052b8a2d3973a0c5', 'ebakyt@yahoo.com', '472149b54c9209fe3ad0fe84de140eac', '2012-12-10 11:18:54', '2013-01-16 05:35:47', 0, 1),
 (5, 'testmanager1', '34f85ca80ec353d3052b8a2d3973a0c5', 'asanjarbek@gmail.com', '2a6a65d6ba2f711e1e4cbec908572ee3', '2012-12-16 05:02:46', '0000-00-00 00:00:00', 0, 1),
-(6, 'cholpon', '708a9c84b47404c5524405e5cbd910b8', 'cholpon@mail.ru', '90f5513fbf36f711057a5b2ebf4dbef6', '2013-01-21 12:36:49', '2013-01-21 12:59:09', 0, 1),
+(6, 'cholpon', '708a9c84b47404c5524405e5cbd910b8', 'cholpon@mail.ru', '90f5513fbf36f711057a5b2ebf4dbef6', '2013-01-21 12:36:49', '2013-01-24 06:28:00', 0, 1),
 (7, 'nurzida', '38a082bc53acfddae0d4600d81c79959', 'nurzida@mail.ru', '2837e0c7c09167d203a32e89e394def4', '2013-01-21 12:37:54', '0000-00-00 00:00:00', 0, 1);
 
 -- --------------------------------------------------------
@@ -717,12 +712,6 @@ ALTER TABLE `AuthAssignment`
 ALTER TABLE `AuthItemChild`
   ADD CONSTRAINT `AuthItemChild_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `AuthItemChild_ibfk_2` FOREIGN KEY (`child`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `disconts`
---
-ALTER TABLE `disconts`
-  ADD CONSTRAINT `fk_disconts_mriscan` FOREIGN KEY (`discont_mriscan`) REFERENCES `mrtscans` (`mrtscan_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `doctors`
